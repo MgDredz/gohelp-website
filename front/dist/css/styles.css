@@ -11259,6 +11259,14 @@ header.masthead .masthead-heading {
   height: 2.75rem;
 }
 
+section#leave_sugestion {
+  background-image: url("../assets/img/sugestionsedited.jpg");
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+section#leave_sugestion .f{}
+
 section#contact {
   background-color: #212529;
   background-image: url("../assets/img/map-image.png");
