@@ -1282,6 +1282,7 @@ progress {
   .col-lg-4 {
     flex: 0 0 auto;
     width: 33.33333333%;
+    font-size: 12px;
   }
   .col-lg-5 {
     flex: 0 0 auto;
