@@ -11361,3 +11361,50 @@ section#contact form#contactForm :-ms-input-placeholder {
 #customContainer {
   background-color: red;
 }
+
+header.headerinscricao {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  text-align: center;
+
+  background-image: url('../assets/atividades.png');
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+}
+header.headerinscricao .headerinscricao-subheading {
+  font-size: 1.5rem;
+  font-style: normal;
+  line-height: 1.5rem;
+  margin-bottom: 5px;
+  font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color:white;
+}
+header.headerinscricao .headerinscricaoricao-heading {
+  font-size: 3.25rem;
+  font-weight: 700;
+  line-height: 0.25rem;
+  margin-bottom: 0.5rem;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color:white;
+}
+
+@media (min-width: 768px) {
+  header.headerinscricao {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  header.headerinscricao .headerinscricao-subheading {
+    font-size: 2.25rem;
+    font-style: normal;
+    line-height: 2.25rem;
+    margin-bottom: 0.5rem;
+  }
+  header.headerinscricao .headerinscricao-heading {
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 4.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
