@@ -10926,14 +10926,20 @@ p {
 }
 #mainNav .navbar-nav .nav-item .nav-link {
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 0.95rem;
-  color: white;
+  font-size: 1.05rem;
+  color: black;
   letter-spacing: 0.0625em;
 }
-#mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
-  color: #ffc800;
+#mainNav .navbar-nav .nav-item .nav-link.active, 
+#mainNav .navbar-nav .nav-item .nav-link:hover,
+#mainNav.navbar-shrink .navbar-nav .nav-item .nav-link.active,
+#mainNav.navbar-shrink .navbar-nav .nav-item .nav-link:hover {
+  color: #ffc800; /* This ensures the hover/active color is applied */
 }
 
+#mainNav.navbar-shrink .navbar-nav .nav-item .nav-link {
+  color: white; /* New color when scrolled */
+}
 @media (min-width: 992px) {
   #mainNav {
     padding-top: 1.5rem;
