@@ -557,6 +557,9 @@ progress {
     font-size: 2.5rem;
   }
 }
+.data{
+  display:none;
+}
 
 .list-unstyled {
   padding-left: 0;
