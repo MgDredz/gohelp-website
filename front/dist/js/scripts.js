@@ -53,6 +53,12 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
+   function updateModal(modalId, eventName, place, description) {
+    document.querySelector(modalId + ' .modal-body h2').innerText = eventName;
+    document.querySelector(modalId + ' .item-intro').innerText = place;
+    document.querySelector(modalId + ' .item-description').innerText = description;
+}
+
 // Google Sign-In function
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
