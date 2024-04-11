@@ -8503,6 +8503,7 @@ a:focus{
         margin-right:.25rem
     }
     .sidebar .nav-item .nav-link span{
+        color: #5E5E5E;
         font-size:.85rem;
         display:inline
     }
