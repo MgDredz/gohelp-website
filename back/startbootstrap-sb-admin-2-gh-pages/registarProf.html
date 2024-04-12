@@ -14,61 +14,285 @@
 
 
 </head>
-<body>
 
-<div class="container mt-5">
-    
-    <h2>Registrar Profissional</h2>
-    <form>
-        
-        <div class="form-group">
-            <label for="nome">Nome *</label>
-            <input type="text" class="form-control" id="nome" required>
-        </div>
-        <div class="form-group">
-            <label for="email">Email *</label>
-            <input type="email" class="form-control" id="email" required>
-        </div>
-        <div class="form-group">
-            <label for="telefone">Telemóvel *</label>
-            <input type="tel" class="form-control" id="telefone" required>
-        </div>
-        <div class="form-group">
-            <label for="regiao">Região *</label>
-            <input type="text" class="form-control" id="regiao" required>
-        </div>
-        <div class="form-group">
-            <label for="fotografia">Fotografia</label>
-            <button type="button" class="btn btn-secondary btn-block">Carregar imagem</button>
-        </div>
-        <div class="form-group">
-            <label>Profissão</label>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="profissao" id="ajudante">
-                <label class="form-check-label" for="ajudante">
-                    Ajudante
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="profissao" id="advogado">
-                <label class="form-check-label" for="advogado">
-                    Advogado
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="profissao" id="gestor">
-                <label class="form-check-label" for="gestor">
-                    Gestor de Seguros
-                </label>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary">REGISTAR</button>
-    </form>
-</div>
+<body id="page-top">
 
-<!-- Bootstrap JS, Popper.js, and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.7.14/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <img src="img/logo_final.png" alt="..." width="150" height="35"/>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Funcionários
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="gestor-terreno.html">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Gestor no terreno</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item active">
+                <a class="nav-link collapsed" href="criar-profissional.html">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Profissionais</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Iniciativas
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Gerir</span>
+                </a>                
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="criar-iniciativa.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Criar Plano</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="pedidos.html">
+                    <i class="far fa-check-square fa-lg"></i>
+                    <span>Pedidos</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <form class="form-inline">
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </form>
+
+                    <!-- Topbar Search 
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                     -->
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Registar Profissional</h1>
+                    
+                            <div class="container">
+                                
+                            </div>
+                    <!-- DataTales Example -->
+                    <div class="container">
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- * * SB Forms Contact Form * *-->
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- This form is pre-integrated with SB Forms.-->
+                        <!-- To make this form functional, sign up at-->
+                        <!-- https://startbootstrap.com/solution/contact-forms-->
+                        <!-- to get an API token!-->
+                        <form id="inscricaoForm" data-sb-form-api-token="API_TOKEN">
+                            <div class="row align-items-stretch mb-5">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <!-- Name input-->
+                                        <input class="form-control-2" id="name" type="text" placeholder="Nome *" data-sb-validations="required" />
+                                        <div class="invalid-feedback" data-sb-feedback="name:required">Insira o seu nome.</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <!-- Email address input-->
+                                        <input class="form-control-2" id="email" type="email" placeholder="Email *" data-sb-validations="required,email" />
+                                        <div class="invalid-feedback" data-sb-feedback="email:required">Insira o seu email.</div>
+                                        <div class="invalid-feedback" data-sb-feedback="email:email">Email inválido.</div>
+                                    </div>
+                                    <div class="form-group mb-md-0">
+                                        <!-- Phone number input-->
+                                        <input class="form-control-2" id="phone" type="tel" placeholder="Telemovél *" data-sb-validations="required" />
+                                        <div class="invalid-feedback" data-sb-feedback="phone:required">Insira o seu contacto.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Submit success message-->
+                            <!---->
+                            <!-- This is what your users will see when the form-->
+                            <!-- has successfully submitted-->
+                            <div class="d-none" id="submitSuccessMessage">
+                                <div class="text-center text-white mb-3">
+                                    <div class="fw-bolder">Envio de formulário bem sucedido!!</div>
+                                    Para ativar este formulário, inscreva-se em
+                                    <br />
+                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                </div>
+                            </div>
+                            <!-- Submit error message-->
+                            <!---->
+                            <!-- This is what your users will see when there is-->
+                            <!-- an error submitting the form-->
+                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Erro ao enviar a mensagem!</div></div>
+                            <!-- Submit Button-->
+                            <button class="btn btn-primary btn-xl text-uppercase">Registar</button>
+                        </form>
+                    </div>
+                <!-- /.container-fluid -->
+
+                <br></div>
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Go Help | Política de Privacidade, Proteção de Dados e Termos e Condições; </span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
+
 </body>
+
 </html>
