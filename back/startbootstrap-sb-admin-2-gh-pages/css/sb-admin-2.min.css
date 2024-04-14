@@ -8092,14 +8092,14 @@ a:focus{
     color:#3a3b45!important
 }
 .text-Black-Bold{
-    color:#000000!important;
+    color:#212529!important;
     font-weight: bold;
     font-size: 40px;
     width: 412px;
     height: 51px;
     position: relative;
-    left: 73px;
-    top: 29px;
+    top: 8px;
+    left: 40px;
 }
 .icon-circle{
     height:2.5rem;
