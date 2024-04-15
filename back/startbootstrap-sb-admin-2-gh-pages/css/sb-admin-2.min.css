@@ -1962,18 +1962,13 @@ a.btn.disabled,fieldset:disabled a.btn{
 }
 .btn-primary{
     color:#fff;
-    background-color:#4e73df;
-    border-color:#4e73df
-}
-.btn-registar-profissional{
-    color:#fff;
     background-color:#5e5e5e;
-    border-color:#5e5e5e
+    border-color:#5e5e5e;
 }
 .btn-primary:hover{
     color:#fff;
-    background-color:#2e59d9;
-    border-color:#2653d4
+    background-color:#212529;
+    border-color:#212529
 }
 .btn-primary.focus,.btn-primary:focus{
     color:#fff;
