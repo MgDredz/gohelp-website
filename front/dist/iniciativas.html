@@ -25,22 +25,87 @@
         </nav>
         <!-- HeaderInscrição-->
         <header class="headergeral">
-            <br></br>
             <div class="container">
                 <div class="headergeral-subheading">INICIATIVAS</div>
             </div>
         </header>
         <!-- Inscrição-->
 
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <!-- Section Iniciativas -->
+        <section id="iniciativas">
+            <div class="button-group">
+            <button class="tab-button" onclick="changeTab('past', this)">PASSADAS</button>
+            <button class="tab-button" onclick="changeTab('current', this)">A DECORRER</button>
+            <button class="tab-button" onclick="changeTab('future', this)">FUTURAS</button>
+            </div>
+            <h2>INICIATIVAS</h2>
+            <p>A nossa página de Iniciativas tem tudo o que precisa de saber sobre corridas e eventos de beneficência. 
+                Inscreva-se num evento local ou descubra como garantir um lugar em corridas de beneficência como a Maratona 
+                de Loures e a Corrida do Adepto. Filtre por local para encontrar uma corrida local ou desloque-se para 
+                baixo para ver os maiores eventos solidários em Portugal.
+            </p>
+            <div class="filter-region">
+                <span>PROCURAR POR REGIÃO:</span>
+                <button class="region-button">NORTE</button>
+                <button class="region-button">CENTRO</button>
+                <button class="region-button">LISBOA</button>
+                <button class="region-button">ALENTEJO</button>
+                <button class="region-button">ALGARVE</button>
+            </div>
+        </section>
+        
+        <!-- Section Eventos -->
+        <section id="eventos">
+            <div class="event-container">
+                <img src="assets/img/portfolio/1.jpg" alt="Event Image">
+                <div class="event-date">Dom 12 Abr</div>
+                <div class="event-location">MIRE DE TIBÃES, BRAGA</div>
+                <h3>CORRIDA DO MOSTEIRO</h3>
+                <p>Junte-se a nós numa corrida noturna pelas históricas ruas de Mire de Tibães, iluminando caminhos com esperança e união pela caridade.</p>
+                <a href="inscricao.html" class="register-button">INSCREVER</a>
+            </div>
+
+            <div class="event-container">
+                <img src="assets/img/portfolio/2.jpg" alt="Event Image">
+                <div class="event-date">Dom 12 Abr</div>
+                <div class="event-location">MIRE DE TIBÃES, BRAGA</div>
+                <h3>CORRIDA DO ADEPTO</h3>
+                <p>Vista as cores da sua equipa e venha fazer parte deste evento energizante, unindo os fãs de futebol  numa corrida de pura paixão pelas ruas de Leiria. </p>
+                <a href="inscricao.html" class="register-button">INSCREVER</a>
+            </div>
+
+            <div class="event-container">
+                <img src="assets/img/portfolio/3.jpg" alt="Event Image">
+                <div class="event-date">Dom 12 Abr</div>
+                <div class="event-location">CAMPOLIDE, LISBOA</div>
+                <h3>CORRIDA SOCIAL DE CAMPOLIDE</h3>
+                <p>Junte-se a nós numa corrida matinal pelas ruas de liboa, iluminando caminhos com esperança e união pela caridade.</p>
+                <a href="inscricao.html" class="register-button">INSCREVER</a>
+            </div>
+
+            <div class="event-container">
+                <img src="assets/img/portfolio/4.jpg" alt="Event Image">
+                <div class="event-date">Dom 12 Abr</div>
+                <div class="event-location">MIRE DE TIBÃES, BRAGA</div>
+                <h3>JOGO SOLIDÁRIO</h3>
+                <p>Junte-se a nós numa corrida noturna...</p>
+                <a href="inscricao.html" class="register-button">INSCREVER</a>
+            </div>
+
+            <!-- Repeat the .event-container for as many events as you have -->
+        </section>
+    </body>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
     <!-- Footer-->
     <footer class="footer py-lg-4">
         <div class="container">
@@ -55,5 +120,4 @@
             </div>
         </div>
        </footer>
-    </body>
 </html>
