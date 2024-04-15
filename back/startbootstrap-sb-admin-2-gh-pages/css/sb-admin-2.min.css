@@ -8800,6 +8800,18 @@ a:focus{
         height:calc(20rem - 43px)!important
     }
 }
+
+.chart-pie2{
+    
+    height:15rem;
+    width:100%
+}
+@media (min-width:768px){
+    .chart-pie2{
+        height:calc(15rem + 11px)!important
+    }
+}
+
 .bg-login-image{
     background:url(https://source.unsplash.com/K4mSJ7kc0As/600x800);
     background-position:center;
