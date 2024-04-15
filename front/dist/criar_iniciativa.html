@@ -41,38 +41,39 @@
                 <!-- to get an API token!-->
                 <form id="inscricaoForm" data-sb-form-api-token="API_TOKEN">
                     <div class="row align-items-stretch mb-5">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <div class="form-group">
                                 <!-- Localidade input-->
-                                <input class="form-control-2" id="localidade" type="text" placeholder="Localidade *" data-sb-validations="required" />
+                                <input class="form-control-4" id="localidade" type="text" placeholder="Localidade *" data-sb-validations="required" />
                                 <div class="invalid-feedback" data-sb-feedback="name:required">Insira a localidade.</div>
                             </div>
                             <div class="form-group">
                                 <!-- Data input-->
-                                <input type="date" class="form-control-2" id="data" required>
+                                <input type="date" class="form-control-4" id="data" required>
                             </div>
                             <div class="form-group">
                                 <!-- Title input-->
-                                <input class="form-control-2" id="titulo" type="text" placeholder="Título *" data-sb-validations="required" />
+                                <input class="form-control-4" id="titulo" type="text" placeholder="Título *" data-sb-validations="required" />
                                 <div class="invalid-feedback" data-sb-feedback="phone:required">Insira um título.</div>
                             </div>
                             <div class="form-group">
                                 <!-- Duração input-->
-                                <input class="form-control-2" id="duracao" type="text" placeholder="Duração *" data-sb-validations="required" />
+                                <input class="form-control-4" id="duracao" type="text" placeholder="Duração *" data-sb-validations="required" />
                                 <div class="invalid-feedback" data-sb-feedback="name:required">Insira uma duração.</div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="position: relative;">
                                 <!-- Imagem input-->
-                                <input class="form-control-2" id="imagem" type="file" placeholder="Imagem *" data-sb-validations="required" />
+                                <input class="form-control-4" id="imagem" type="file" placeholder="Imagem *" data-sb-validations="required" />
                                 <div class="invalid-feedback" data-sb-feedback="name:required">Insira uma imagem.</div>
-                            </div>
+                              </div>
                         </div>
-                        <div class="col-md-2"></div>
+                        <div class="col-md-1"></div>
                         <div class="col-md-5">
                             <div class="form-group">
-                                <textarea class="form-control-2" id="descricao" placeholder="Descrição *" maxlength="200" required></textarea>
+                                <textarea class="form-control-4" id="descricao" placeholder="Descrição *" maxlength="350" required></textarea>
                             </div>
+                            <br></br>
+                            <button class="btn btn-primary btn-xl text-uppercase">Submeter</button>
                         </div>
                     </div>
                     <!-- Submit success message-->
@@ -92,8 +93,6 @@
                     <!-- This is what your users will see when there is-->
                     <!-- an error submitting the form-->
                     <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Erro ao enviar a mensagem!</div></div>
-                    <!-- Submit Button-->
-                    <button class="btn btn-primary btn-xl text-uppercase">Submeter</button>
                 </form>
             </div>
         </section>
