@@ -227,93 +227,56 @@
                 <div class="container-fluid">
 
                     <div class="container"></div>
-                    <!-- DataTales Example -->
-                    <div class="container">
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- * * SB Forms Contact Form * *-->
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- This form is pre-integrated with SB Forms.-->
-                        <!-- To make this form functional, sign up at-->
-                        <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
-                        <form id="inscricaoForm" data-sb-form-api-token="API_TOKEN">
-                            <div class="row align-items-stretch mb-5">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <!-- Name input-->
-                                        <input class="form-control-2" id="name" type="text" placeholder="Nome *" data-sb-validations="required" />
-                                        <div class="invalid-feedback" data-sb-feedback="name:required">Insira o seu nome.</div>
-                                    </div>
-                                    <div class="form-group">
-                                        <!-- Email address input-->
-                                        <input class="form-control-2" id="email" type="email" placeholder="Email *" data-sb-validations="required,email" />
-                                        <div class="invalid-feedback" data-sb-feedback="email:required">Insira o seu email.</div>
-                                        <div class="invalid-feedback" data-sb-feedback="email:email">Email inválido.</div>
-                                    </div>
-                                    <div class="form-group ">
-                                        <!-- Phone number input-->
-                                        <input class="form-control-2" id="phone" type="tel" placeholder="Telemovél *" data-sb-validations="required" />
-                                        <div class="invalid-feedback" data-sb-feedback="phone:required">Insira o seu contacto.</div>
-                                    </div>
-                                    <div class="form-group">
-                                        <!-- Region input-->
-                                        <input class="form-control-2" id="region" type="reg" placeholder="Região *" data-sb-validations="required" />
-                                        <div class="invalid-feedback" data-sb-feedback="region:required">Insira a sua região.</div>
-                                    </div>
-                                    <div class="form-group">
-                                        <!-- Imagem input-->
-                                        <div class="invalid-feedback" data-sb-feedback="image:required">Insira uma imagem.</div>
-                                        <input class="form-control-2" id="imagem" type="file" placeholder="Imagem *" data-sb-validations="required" />
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <!-- Profession input -->
-        
-                                    <div class="form-check">
-                                        <p>Profissão</p>
-                                        <input class="form-check-input" type="radio" name="profession" id="assistant" value="ajudante" data-sb-validations="required">
-                                        <label class="form-check-label" for="assistant">
-                                            Ajudante
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="profession" id="lawyer" value="advogado" data-sb-validations="required">
-                                        <label class="form-check-label" for="lawyer">
-                                            Advogado
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="profession" id="insuranceManager" value="gestor_de_seguros" data-sb-validations="required">
-                                        <label class="form-check-label" for="insuranceManager">
-                                            Gestor de Seguros
-                                        </label>
-                                    </div>
-                                    <div class="invalid-feedback" data-sb-feedback="profession:required">Escolha uma profissão.</div>
-                                </div>
-                            </div>
-                            <!-- Submit success message-->
-                            <!---->
-                            <!-- This is what your users will see when the form-->
-                            <!-- has successfully submitted-->
-                            <div class="d-none" id="submitSuccessMessage">
-                                <div class="text-center text-white mb-3">
-                                    <div class="fw-bolder">Envio de formulário bem sucedido!!</div>
-                                </div>
-                            </div>
-                            <!-- Submit error message-->
-                            <!---->
-                            <!-- This is what your users will see when there is-->
-                            <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Erro ao enviar a mensagem!</div></div>
-                            <!-- Submit Button-->
-                            <button id="myButton" class="btn btn-primary btn-xl text-uppercase">Registar</button>
-                                <script>
-                                    document.getElementById("myButton").addEventListener("click", function(event) {
-                                        myfunc(event);
-                                    });
-                                </script>
-                        </form>
+        <div class="container">
+            <form id="inscricaoForm" data-sb-form-api-token="API_TOKEN">
+                <div class="row align-items-stretch mb-5">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input class="form-control-2" id="name" type="text" placeholder="Nome *" required />
+                            <div class="invalid-feedback">Insira o seu nome.</div>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control-2" id="email" type="email" placeholder="Email *" required />
+                            <div class="invalid-feedback">Insira o seu email.</div>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control-2" id="phone" type="tel" placeholder="Telemovél *" required />
+                            <div class="invalid-feedback">Insira o seu contacto.</div>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control-2" id="region" type="text" placeholder="Região *" required />
+                            <div class="invalid-feedback">Insira a sua região.</div>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control-2" id="imagem" type="file" required />
+                            <div class="invalid-feedback">Insira uma imagem.</div>
+                        </div>
                     </div>
+                    <div class="mb-3">
+                        <p>Profissão</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="profession" id="assistant" value="ajudante" required>
+                            <label class="form-check-label" for="assistant">Ajudante</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="profession" id="lawyer" value="advogado" required>
+                            <label class="form-check-label" for="lawyer">Advogado</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="profession" id="insuranceManager" value="gestor_de_seguros" required>
+                            <label class="form-check-label" for="insuranceManager">Gestor de Seguros</label>
+                        </div>
+                        <div class="invalid-feedback">Escolha uma profissão.</div>
+                    </div>
+                </div>
+                <!-- Validation Feedback Placeholder -->
+                <div class="alert alert-danger d-none" id="errorMessage">Por favor, preencha todos os campos obrigatórios.</div>
+                <!-- Success Message Placeholder -->
+                <div class="alert alert-success d-none" id="successMessage">Profissional registado com sucesso</div>
+                <!-- Submit Button -->
+                <button id="myButton" class="btn btn-primary btn-xl text-uppercase" type="button">Registar</button>
+            </form>
+        </div>
                 <!-- /.container-fluid -->
 
                 <br></div>

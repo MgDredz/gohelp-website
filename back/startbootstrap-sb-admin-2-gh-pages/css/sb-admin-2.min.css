@@ -1947,6 +1947,7 @@ textarea.form-control{
     color:#858796;
     text-decoration:none
 }
+
 .btn.focus,.btn:focus{
     outline:0;
     box-shadow:0 0 0 .2rem rgba(78,115,223,.25)
@@ -1967,7 +1968,7 @@ a.btn.disabled,fieldset:disabled a.btn{
 }
 .btn-primary:hover{
     color:#fff;
-    background-color:#212529;
+    background-color:#266eb6;
     border-color:#212529
 }
 .btn-primary.focus,.btn-primary:focus{
