@@ -306,7 +306,12 @@
                             <!-- an error submitting the form-->
                             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Erro ao enviar a mensagem!</div></div>
                             <!-- Submit Button-->
-                            <button class="btn btn-primary btn-xl text-uppercase">Registar</button>
+                            <button id="myButton" class="btn btn-primary btn-xl text-uppercase">Registar</button>
+                                <script>
+                                    document.getElementById("myButton").addEventListener("click", function(event) {
+                                        myfunc(event);
+                                    });
+                                </script>
                         </form>
                     </div>
                 <!-- /.container-fluid -->
