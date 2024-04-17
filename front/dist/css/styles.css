@@ -11827,12 +11827,13 @@ header.headerDonation .headerDonation-heading {
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  border-radius: 5px; /* Rounded corners */
+  border-radius: 5px; 
   margin: 0 5px; /* Space between buttons */
 }
 
 .tab-button.active, .tab-button:hover {
-  background-color: #FFC800; /* Button stays yellow when active or on hover */
+  background-color: #FFC800; 
+  color: white;
 }
 
 .filter-region {
@@ -11851,26 +11852,23 @@ header.headerDonation .headerDonation-heading {
 }
 
 .region-button:hover {
-  background-color: #e6b800;
+  background-color: #FFC800;
+  color: white;
 }
 
 #eventos {
   background-color: #f0f0f0;
-  width: 100%; /* Set width to full screen */
-  box-sizing: border-box; /* Include padding in width calculations */
+  width: 100%;
 }
 
 .event-container {
   background-color: #ffffff;
-  width: 350px; /* Adjust as needed */
-  overflow: hidden;
-  box-sizing: border-box; /* Include padding in width calculations */
-  display: inline-block; /* Align containers in a row */
+  width: 350px; 
+  display: inline-block; 
   padding: 20px;
-  margin: 10px; /* Adjust margin to manage spacing */
-  float: left; /* Use float to align containers in a row */
+  margin: 10px; 
   box-sizing: border-box;
-  display: inline-block; /* Align containers in a row */
+  display: inline-block; 
   border-radius: 5px
 }
 
@@ -11878,19 +11876,20 @@ header.headerDonation .headerDonation-heading {
   object-fit: cover;
   width: 100%;
   height: 200px
-  display: block; /* Removes any potential space below the image */
-  border-top-left-radius: 5px; /* Top-left rounded corner for the image */
-  border-top-right-radius: 5px; /* Top-right rounded corner for the image */
+  display: block; 
+  border-top-left-radius: 5px; 
+  border-top-right-radius: 5px; 
+  border-bottom-left-radius: 5px; 
+  border-bottom-right-radius: 5px; 
 }
-
 .event-date {
   background-color: #5DFDCB; 
-  display: inline-block; /* Allows the div to fit the content's size */
-  padding: 5px 10px; /* Padding around the text */
-  border-radius: 5px; /* Slightly rounded corners for the date */
+  display: inline-block; 
+  padding: 5px 10px; 
+  border-radius: 5px; 
   margin: 10px; 
-  position: relative; /* Adjust the position if you want to move it around within the container */
-  top: -25px; /* Example to move the date label up, overlapping the image */
+  position: relative; 
+  top: -25px; 
   left: -5px; 
 }
 
@@ -11909,6 +11908,7 @@ header.headerDonation .headerDonation-heading {
 
 .register-button:hover {
   background-color: #FFC800;
+  color: white;
 }
 
 .tab-button.active {
@@ -11916,26 +11916,26 @@ header.headerDonation .headerDonation-heading {
 }
 
 #iniciativas, #eventos{
-  max-width: 1200px; /* Adjust to fit the design */
+  max-width: 1200px; 
   margin: auto;
   padding: 20px;
   text-align: start;
 }
 
 #eventos{
-  max-width: 1200px; /* Adjust to fit the design */
+  max-width: 1200px; 
   margin: auto;
-  padding: 20px;
+  padding: 40px;
   text-align: start;
   background-color: #f0f0f0;
-  width: 100%; /* Set width to full screen */
-  box-sizing: border-box; /* Include padding in width calculations */
+  width: 100%; 
+  box-sizing: border-box; 
 }
  
 .button-group {
   display: flex;
   justify-content: center;
-  gap: 10px; /* Adjust as per the space you want between buttons */
+  gap: 10px; 
 }
 
 #eventos::after {
@@ -11944,7 +11944,6 @@ header.headerDonation .headerDonation-heading {
   clear: both;
 }
 
-/* Responsive adjustments for smaller screens */
 @media (max-width: 1200px) {
   .event-container {
     width: calc(50% - 20px); /* Adjust for two containers in a row */
