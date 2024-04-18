@@ -11897,6 +11897,10 @@ header.headerDonation .headerDonation-heading {
   margin-bottom: 10px;
 }
 
+h3{
+  font-size: 109%;
+}
+
 .register-button {
   background-color: #FFC800; 
   border: none;
