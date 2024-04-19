@@ -11861,6 +11861,7 @@ header.headerDonation .headerDonation-heading {
   width: 100%;
 }
 
+
 .event-container {
   background-color: #ffffff;
   width: 350px; 
@@ -11936,6 +11937,15 @@ h3{
   box-sizing: border-box; 
 }
  
+#eventos2{
+  max-width: 1200px; ;
+  padding: 1.5rem;
+  text-align: start;
+  width: 100%; 
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); 
+}
+
 .button-group {
   display: flex;
   justify-content: center;

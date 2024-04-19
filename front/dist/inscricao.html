@@ -42,7 +42,7 @@
                 <!-- to get an API token!-->
                 <form id="inscricaoForm" data-sb-form-api-token="API_TOKEN">
                     <div class="row align-items-stretch mb-5">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="form-group">
                                 <!-- Name input-->
                                 <input class="form-control-2" id="name" type="text" placeholder="Nome *" data-sb-validations="required" />
@@ -59,6 +59,48 @@
                                 <input class="form-control-2" id="phone" type="tel" placeholder="Telemovél *" data-sb-validations="required" />
                                 <div class="invalid-feedback" data-sb-feedback="phone:required">Insira o seu contacto.</div>
                             </div>
+                            <br></br>
+                            <button class="btn btn-primary btn-xl text-uppercase">Submeter</button>
+                        </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4">
+                            <section id="eventos2">
+                                <div class="event-container">
+                                    <img src="assets/img/portfolio/1.jpg" alt="Event Image">
+                                    <div class="event-date">Dom 12 Abr</div>
+                                    <div class="event-location">Mire de Tibães, Braga</div>
+                                    <h3>CORRIDA DO MOSTEIRO</h3>
+                                    <p>Junte-se a nós numa corrida noturna pelas históricas ruas de Mire de Tibães, iluminando caminhos com esperança e união pela caridade.</p>
+                                </div>
+                    
+                                <div class="event-container">
+                                    <img src="assets/img/portfolio/2.jpg" alt="Event Image">
+                                    <div class="event-date">Sab 15 Mai</div>
+                                    <div class="event-location">Estádio Dr. Magalhães Pessoa, Leiria</div>
+                                    <h3>CORRIDA DO ADEPTO</h3>
+                                    <p>Vista as cores da sua equipa e venha fazer parte deste evento energizante, unindo os fãs de futebol  numa corrida de pura paixão pelas ruas de Leiria. </p>
+                                </div>
+                    
+                                <div class="event-container">
+                                    <img src="assets/img/portfolio/3.jpg" alt="Event Image">
+                                    <div class="event-date">Sex 22 Jul</div>
+                                    <div class="event-location">Campolide, Lisboa</div>
+                                    <h3>CORRIDA SOCIAL DE CAMPOLIDE</h3>
+                                    <p>Junte-se a nós numa corrida matinal pelas ruas de liboa, iluminando caminhos com esperança e união pela caridade.</p>
+                                </div>
+                    
+                            <!--
+                                <div class="event-container">
+                                    <img src="assets/img/portfolio/4.jpg" alt="Event Image">
+                                    <div class="event-date">Dom 12 Abr</div>
+                                    <div class="event-location">MIRE DE TIBÃES, BRAGA</div>
+                                    <h3>JOGO SOLIDÁRIO</h3>
+                                    <p>Junte-se a nós numa corrida noturna...</p>
+                                    <a href="inscricao.html" class="register-button">INSCREVER</a>
+                                </div>
+                            -->
+                        
+                            </section>
                         </div>
                     </div>
                     <!-- Submit success message-->
@@ -79,7 +121,6 @@
                     <!-- an error submitting the form-->
                     <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Erro ao enviar a mensagem!</div></div>
                     <!-- Submit Button-->
-                    <button class="btn btn-primary btn-xl text-uppercase">Submeter</button>
                 </form>
             </div>
         </section>
@@ -92,6 +133,19 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const eventoId = urlParams.get('evento');
+                const eventos = document.querySelectorAll('.event-container');
+                eventos.forEach((ev, idx) => {
+                    if (eventoId !== (idx + 1).toString()) {
+                        ev.style.display = 'none';
+                    }
+                });
+            });
+            </script>
     <!-- Footer-->
     <footer class="footer py-lg-4">
         <div class="container">
