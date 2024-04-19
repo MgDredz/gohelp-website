@@ -1964,32 +1964,36 @@ a.btn.disabled,fieldset:disabled a.btn{
 .btn-primary{
     color:#fff;
     background-color:#5e5e5e;
-    border-color:#5e5e5e;
+    border-color:#212529;
 }
 .btn-primary:hover{
     color:#fff;
-    background-color:#266eb6;
+    background-color:#5e5e5e;
     border-color:#212529
 }
 .btn-primary.focus,.btn-primary:focus{
     color:#fff;
-    background-color:#2e59d9;
-    border-color:#2653d4;
-    box-shadow:0 0 0 .2rem rgba(105,136,228,.5)
+    background-color:#5e5e5e;
+    border-color:#212529;
+    box-shadow:0 0 0 .2rem rgba(255, 255, 255, 0.5)
 }
 .btn-primary.disabled,.btn-primary:disabled{
     color:#fff;
-    background-color:#4e73df;
-    border-color:#4e73df
+    background-color:#5e5e5e;
+    border-color:#212529
 }
 .btn-primary:not(:disabled):not(.disabled).active,.btn-primary:not(:disabled):not(.disabled):active,.show>.btn-primary.dropdown-toggle{
     color:#fff;
-    background-color:#2653d4;
-    border-color:#244ec9
+    background-color:#5e5e5e;
+    border-color:#212529
 }
 .btn-primary:not(:disabled):not(.disabled).active:focus,.btn-primary:not(:disabled):not(.disabled):active:focus,.show>.btn-primary.dropdown-toggle:focus{
-    box-shadow:0 0 0 .2rem rgba(105,136,228,.5)
+    box-shadow:0 0 0 .2rem rgba(94, 94, 94, 0.5)
 }
+#myButton{
+    margin-top: 160px; /* pushes the button 20px down from the top */
+    margin-left: 450px;
+} 
 .btn-secondary{
     color:#fff;
     background-color:#858796;
