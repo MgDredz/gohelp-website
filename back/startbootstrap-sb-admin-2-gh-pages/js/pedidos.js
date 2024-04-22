@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    // Assuming you have 4 items per page
-    const itemsPerPage = 4;
+    const itemsPerPage = 5;
     let currentPage = 1;
     const listItems = document.querySelectorAll('.list-group-item');
     const totalPages = Math.ceil(listItems.length / itemsPerPage);
