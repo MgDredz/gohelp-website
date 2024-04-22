@@ -1993,6 +1993,9 @@ a.btn.disabled,fieldset:disabled a.btn{
 #myButton{
     margin-top: 160px; /* pushes the button 20px down from the top */
     margin-left: 450px;
+    position: absolute;
+    
+    
 } 
 .btn-secondary{
     color:#fff;

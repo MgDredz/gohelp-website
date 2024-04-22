@@ -228,7 +228,7 @@
 
                     <div class="container"></div>
         <div class="container">
-            <form id="inscricaoForm" data-sb-form-api-token="API_TOKEN">
+            <form id="inscricaoForm" data-sb-form-api-token="API_TOKEN" onsubmit="saveData(event)">
                 <div class="row align-items-stretch mb-5">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -253,8 +253,9 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <p>Profissão</p>
+
                         <div class="form-check">
+                            <p>Profissão</p>
                             <input class="form-check-input" type="radio" name="profession" id="assistant" value="ajudante" required>
                             <label class="form-check-label" for="assistant">Ajudante</label>
                         </div>
