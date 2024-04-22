@@ -9594,3 +9594,50 @@ body.sidebar-toggled footer.sticky-footer{
 .list-group-flush>.list-group-item2:last-child{
     border-bottom-width:0
 }
+
+.tab-menu {
+    width: 100%; /* Faz a barra de abas ocupar a largura toda */
+    background-color: #5E5E5E;
+    display: flex; /* Utiliza flexbox para alinhar os botões */
+    justify-content: space-between; /* Distribui os espaços igualmente */
+}
+  
+.tab-button {
+    background-color: inherit;
+    flex-grow: 1; /* Faz cada aba crescer igualmente para preencher o espaço */
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    text-align: center; /* Centraliza o texto no botão */
+    color: #FFFFFF;
+    border-right: 1px solid white; /* Adiciona borda branca à direita */
+}
+
+.tab-button:last-child {
+    border-right: none;
+}
+
+.tab-button:hover {
+    background-color: #212529;
+}
+  
+.tab-button.active {
+    background-color: #212529;
+}
+  
+.tab-content {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+}
+
+.full-width-container {
+    width: 100%; /* Garante que ocupe toda a largura */
+    margin: 0; /* Remove margens externas */
+    padding: 0; /* Remove paddings internos */
+    box-sizing: border-box; /* Inclui padding e border na largura total */
+}
+

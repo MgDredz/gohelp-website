@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,20 +9,17 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>GoHelp</title>
+    <title>SB Admin 2 - Blank</title>
+    <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/favicon.png" />
-
-    <!-- Custom fonts for this template -->
+    <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template -->
+    <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -36,6 +34,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <img src="img/logo_final.png" alt="..." width="150" height="35"/>
+                
             </a>
 
             <!-- Divider -->
@@ -43,7 +42,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.html" target="_self">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -81,7 +80,7 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="gerir-iniciativa.html">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Gerir</span>
@@ -89,7 +88,7 @@
             </li>
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="criar-iniciativa.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Criar Plano</span>
@@ -105,8 +104,7 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-
-
+            
         </ul>
         <!-- End of Sidebar -->
 
@@ -118,18 +116,41 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
+                <h1 class="text-Black-Bold">Iniciativas</h1>    
+                
                     <!-- Sidebar Toggle (Topbar) -->
-                    <form class="form-inline">
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                    </form>
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
 
                     <!-- Topbar Navbar -->
-                    <h1 class="text-Black-Bold">Criar Plano de Iniciativa</h1>
                     <ul class="navbar-nav ml-auto">
-                        
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
@@ -181,12 +202,6 @@
                             </div>
                         </li>
 
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            </a>
-                        
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -224,69 +239,57 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="full-width-container">
 
-                    <div class="container"></div>
-        <div class="container">
-            <form id="inscricaoForm" data-sb-form-api-token="API_TOKEN" onsubmit="storeFormData(); return false;">
-                <div class="row align-items-stretch mb-5">
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            <!-- Localidade input-->
-                            <input class="form-control-4" id="localidade" type="text" placeholder="Localidade *" data-sb-validations="required" />
-                            <div class="invalid-feedback" data-sb-feedback="name:required">Insira a localidade.</div>
-                        </div>
-                        <div class="form-group">
-                            <!-- Data input-->
-                            <input type="date" class="form-control-4" id="data" required>
-                        </div>
-                        <div class="form-group">
-                            <!-- Title input-->
-                            <input class="form-control-4" id="titulo" type="text" placeholder="Título *" data-sb-validations="required" />
-                            <div class="invalid-feedback" data-sb-feedback="phone:required">Insira um título.</div>
-                        </div>
-                        <div class="form-group">
-                            <!-- Duração input-->
-                            <input class="form-control-4" id="duracao" type="text" placeholder="Duração *" data-sb-validations="required" />
-                            <div class="invalid-feedback" data-sb-feedback="name:required">Insira uma duração.</div>
-                        </div>
-                        <div class="form-group" style="position: relative;">
-                            <!-- Imagem input-->
-                            <input class="form-control-4" id="imagem" type="file" placeholder="Imagem *" data-sb-validations="required" />
-                            <div class="invalid-feedback" data-sb-feedback="name:required">Insira uma imagem.</div>
-                          </div>
-                    </div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            <textarea class="form-control-4" id="descricao" placeholder="Descrição *" maxlength="350" required></textarea>
-                        </div>
-                        <br></br>
-                        <button class="btn btn-primary btn-xl text-uppercase">Submeter</button>
-                    </div>
+                    <div class="tab-menu">
+                        <button class="tab-button" data-tab="Realizadas" onclick="openTab('Realizadas')">Realizadas</button>
+                        <button class="tab-button active" data-tab="ADecorrer" onclick="openTab('ADecorrer')">A decorrer</button>
+                        <button class="tab-button" data-tab="ARealizar" onclick="openTab('ARealizar')">A Realizar</button>
+                      </div>
+                      
+                      <div id="Realizadas" class="tab-content" style="display:none">
+                        <h3>Realizadas</h3>
+                        <p>Conteúdo das iniciativas realizadas.</p>
+                      </div>
+                      
+                      <div id="ADecorrer" class="tab-content">
+                        <h3>A decorrer</h3>
+                        <p>Conteúdo das iniciativas a decorrer.</p>
+                      </div> <!-- Este conteúdo de aba será exibido inicialmente -->
+                      
+                      <div id="ARealizar" class="tab-content" style="display:none">
+                        <h3>A Realizar</h3>
+                        <p>Conteúdo das iniciativas a realizar.</p>
+                      </div>
+
+                      <script>
+                        function openTab(tabName) {
+                          // Esconde todos os conteúdos de abas
+                          var tabcontents = document.querySelectorAll(".tab-content");
+                          tabcontents.forEach(function(tabcontent) {
+                            tabcontent.style.display = "none";
+                          });
+                        
+                          // Remove 'active' de todos os botões
+                          var tabbuttons = document.querySelectorAll(".tab-button");
+                          tabbuttons.forEach(function(tabbutton) {
+                            tabbutton.classList.remove("active");
+                          });
+                        
+                          // Mostra a aba específica e adiciona 'active' ao botão correspondente
+                          document.getElementById(tabName).style.display = "block";
+                          document.querySelector(".tab-button[data-tab='" + tabName + "']").classList.add("active");
+                        }
+                        
+                        // Garante que o script rode após o carregamento completo do DOM
+                        window.onload = function() {
+                          openTab('ADecorrer');
+                        };
+                    </script>
+                           
                 </div>
-                <!-- Submit success message-->
-                <!---->
-                <!-- This is what your users will see when the form-->
-                <!-- has successfully submitted-->
-                <div class="d-none" id="submitSuccessMessage">
-                    <div class="text-center text-white mb-3">
-                        <div class="fw-bolder">Envio de formulário bem sucedido!!</div>
-                        Para ativar este formulário, inscreva-se em
-                        <br />
-                        <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                    </div>
-                </div>
-                <!-- Submit error message-->
-                <!---->
-                <!-- This is what your users will see when there is-->
-                <!-- an error submitting the form-->
-                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Erro ao enviar a mensagem!</div></div>
-            </form>
-        </div>
                 <!-- /.container-fluid -->
 
-                <br></div>
             </div>
             <!-- End of Main Content -->
 
@@ -294,7 +297,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Go Help | Política de Privacidade, Proteção de Dados e Termos e Condições</span>
+                        <span>Go Help | Política de Privacidade, Proteção de Dados e Termos e Condições; </span>
                     </div>
                 </div>
             </footer>
@@ -340,14 +343,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-    <script src="js/criar-PlanoInciativa.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 
