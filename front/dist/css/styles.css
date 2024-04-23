@@ -11876,7 +11876,7 @@ header.headerDonation .headerDonation-heading {
 .event-container img {
   object-fit: cover;
   width: 100%;
-  height: 200px
+  height: 200px;
   display: block; 
   border-top-left-radius: 5px; 
   border-top-right-radius: 5px; 
