@@ -9714,5 +9714,9 @@ body.sidebar-toggled footer.sticky-footer{
     color: white;
   }
 .event-Titel{
-    font-family: bold;
+    margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+  line-height: 1.2;
 }
