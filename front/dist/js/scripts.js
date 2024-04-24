@@ -67,27 +67,3 @@ function onSignIn(googleUser) {
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
-
-document.getElementById('donationForm').onsubmit = function(e) {
-    e.preventDefault(); // Prevent actual form submission
-    var myModal = new bootstrap.Modal(document.getElementById('confirmationModal'), {
-        keyboard: false
-    });
-    myModal.show();
-};
-
-
-// JavaScript to handle tab click and maintain yellow background on active tab - INICIATIVAS
-function changeTab(tab, element) {
-  // Clear all active classes
-  var buttons = document.getElementsByClassName('tab-button');
-  for (var i = 0; i < buttons.length; i++) {
-    buttons[i].classList.remove('active');
-  }
-  // Add active class to the clicked button
-  element.classList.add('active');
-  
-  // Additional code to filter events based on the tab can go here
-}
-
-
