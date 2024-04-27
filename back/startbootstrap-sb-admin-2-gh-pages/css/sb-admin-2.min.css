@@ -9663,11 +9663,10 @@ body.sidebar-toggled footer.sticky-footer{
 
 .event-container {
     background-color: #E2E6E9;
-    width: 350px; 
+    width: 340px; 
     display: inline-block; 
     padding: 20px;
-    margin: 10px;
-    height: 550px; 
+    height: 450px; 
     box-sizing: border-box;
     display: inline-block; 
     border-radius: 5px;
@@ -9723,9 +9722,41 @@ body.sidebar-toggled footer.sticky-footer{
 .event-button{
     display: inline-block;
     text-decoration: none;
-    
     color: #fff; /* cor do texto */
-    padding: 10px 20px; /* espaçamento interno */
-    border-radius: 5px; /* arredondamento dos cantos */
-    transition: background-color 0.3s ease; /* transição suave da cor de fundo */
+    padding: 1px; /* espaçamento interno */
+    transition: background-color 0.3s ease;
+    background-color: #fff; /* transição suave da cor de fundo */
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-right: 5px;
 }
+
+.numero-evento-euros {
+    color: #13BB04; /* Cor dos números */
+    font-weight: bold;
+}
+
+.numero-evento-inscricoes {
+    color: #0465BB; /* Cor dos números */
+    font-weight: bold;
+}
+
+.texto-evento {
+    color: #000000; /* Cor do texto */
+    font-weight: bold;
+}
+
+.event-inscricoes,
+.event-angariacoes {
+    width: 44%;
+    height: 20px;
+}
+
+.event-inscricoes{
+    margin-left: 20px;
+}
+.event-angariacoes{
+    text-align: right; 
+}
+
+
