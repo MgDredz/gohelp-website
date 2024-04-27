@@ -9720,3 +9720,12 @@ body.sidebar-toggled footer.sticky-footer{
   font-weight: 700;
   line-height: 1.2;
 }
+.event-button{
+    display: inline-block;
+    text-decoration: none;
+    
+    color: #fff; /* cor do texto */
+    padding: 10px 20px; /* espaçamento interno */
+    border-radius: 5px; /* arredondamento dos cantos */
+    transition: background-color 0.3s ease; /* transição suave da cor de fundo */
+}

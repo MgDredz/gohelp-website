@@ -18,5 +18,5 @@ function openTab(tabName) {
   
   // Garante que o script rode após o carregamento completo do DOM
   window.onload = function() {
-    openTab('ADecorrer');
+    openTab('Dados');
   };
