@@ -9792,7 +9792,7 @@ body.sidebar-toggled footer.sticky-footer{
 .output-descricao{
     background: white;
     border: 1px solid #dcdcdc;
-    width: 450px;
+    width: 440px;
     height: 150px;
     border-radius: 4px;
     color:#000;
@@ -9808,19 +9808,70 @@ body.sidebar-toggled footer.sticky-footer{
     margin-top: 40px;
 }
 
-.conteiner-output-event-dados-2 tr td {
-    border: 2px solid #B7BBBF; 
-}
-
-.conteiner-output-event-dados-2 tr:last-child td {
+.tabela-events-dados td {
     border: 2px solid #B7BBBF;
-    border-radius: 2px; 
 }
 
-.conteiner-output-event-dados-2 table {
-    border-collapse: collapse;
+.tabela-events-dados table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border: none;
 }
 
+.tabela-events-dados{
+    position:relative;
+    width:100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    flex:0 0 66.66667%;
+    max-width:66.66667%;
+}
 
-
+.tabela-events-dados tbody{
+    background-color: #FFFFFF;
+    color: #000;
+}
   
+  /* Bottom left border radius on the first cell of the last row */
+.tabela-events-dados tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+  
+/* Bottom right border radius on the last cell of the last row */
+.tabela-events-dados tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+ /* Bottom left border radius on the first cell of the last row */
+.tabela-events-dados tbody tr:first-child td:last-child {
+    border-top-right-radius: 10px;
+}
+  
+/* Bottom right border radius on the last cell of the last row */
+.tabela-events-dados tbody tr:first-child td:first-child {
+    border-top-left-radius: 10px;
+}
+
+.tabela-events-dados tbody td:first-child{
+    width: 260px;
+}
+  
+.event-tabela-subtitulo{
+    font-size: 11px;
+    text-align: center;
+}
+
+.tabela-events-dados tr td:nth-child(2){
+    text-align: center;
+    width: 80px;
+}
+  
+  /* Center text for the last td element in each row */
+.tabela-events-dados tr td:last-child {
+    text-align: center;
+    width: 80px;
+}
+
+.conteiner-output-event-dados-3{
+    background-color: #093b29;
+}
