@@ -9,7 +9,7 @@ var myPieChart = new Chart(ctx, {
   data: {
     labels: ["Online", "Patrocinadores", "No Terreno"],
     datasets: [{
-      data: [65, 20, 15],
+      data: [800000, 300000, 150000],
       backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
       hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
@@ -24,12 +24,19 @@ var myPieChart = new Chart(ctx, {
       borderWidth: 1,
       xPadding: 15,
       yPadding: 15,
-      displayColors: false,
+      displayColors: true,
       caretPadding: 10,
+      callbacks: {
+        label: function(tooltipItem, data) {
+          var label = data.labels[tooltipItem.index] || '';
+          var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+          return label +': ' +  value +'€';
+        }
+      }
     },
     legend: {
       display: false
     },
-    cutoutPercentage: 80,
+    cutoutPercentage: 60,
   },
 });
