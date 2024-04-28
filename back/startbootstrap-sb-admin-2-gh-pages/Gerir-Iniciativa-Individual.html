@@ -252,41 +252,91 @@
                         <div class="container">
                             <form id="inscricaoForm" data-sb-form-api-token="API_TOKEN" onsubmit="storeFormData(); return false;">
                                 <div class="row align-items-stretch mb-5">
-                                    <div class="col-md-5">
-                                        <div class="form-group">
-                                            <!-- Localidade input-->
-                                            <input class="form-control-4" id="localidade" type="text" placeholder="Localidade *" data-sb-validations="required" />
-                                            <div class="invalid-feedback" data-sb-feedback="name:required">Insira a localidade.</div>
+                                    <div class="col-md-4 conteiner-output-event-dados">
+                                          <div class="field">
+                                            <div class="label">Localidade</div>
+                                            <div class="output">Mira de Tibães, Braga</div>
+                                          </div>
+                                          <div class="field">
+                                            <div class="label">Data</div>
+                                            <div class="output"> 
+                                                12/04/2024
+                                                <img src="assets\calendario.png" class="date-event-dados"/>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <!-- Data input-->
-                                            <input type="date" class="form-control-4" id="data" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <!-- Title input-->
-                                            <input class="form-control-4" id="titulo" type="text" placeholder="Título *" data-sb-validations="required" />
-                                            <div class="invalid-feedback" data-sb-feedback="phone:required">Insira um título.</div>
-                                        </div>
-                                        <div class="form-group">
-                                            <!-- Duração input-->
-                                            <input class="form-control-4" id="duracao" type="text" placeholder="Duração *" data-sb-validations="required" />
-                                            <div class="invalid-feedback" data-sb-feedback="name:required">Insira uma duração.</div>
-                                        </div>
-                                        <div class="form-group" style="position: relative;">
-                                            <!-- Imagem input-->
-                                            <input class="form-control-4" id="imagem" type="file" placeholder="Imagem *" data-sb-validations="required" />
-                                            <div class="invalid-feedback" data-sb-feedback="name:required">Insira uma imagem.</div>
+                                          <div class="field">
+                                            <div class="label">Título</div>
+                                            <div class="output">
+                                                Corrida do mosteiro
+                                            </div>
+                                          </div>
+                                          <div class="field">
+                                            <div class="label">Duração</div>
+                                            <div class="output">5 Horas</div>
+                                          </div>
+                                          <div class="field">
+                                            <div class="label">Inscritos</div>
+                                            <div class="output-2">87</div>
+                                          </div>
+                                          <div class="field">
+                                            <div class="label">Dinheiro já angariado</div>
+                                            <div class="output-2">400 €</div>
                                           </div>
                                     </div>
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-5">
-                                        <div class="form-group">
-                                            <textarea class="form-control-4" id="descricao" placeholder="Descrição *" maxlength="350" required></textarea>
+                                    
+                                    <div class="col-md-8 conteiner-output-event-dados-2">
+                                        <div class="field">
+                                            <div class="label">Título</div>
+                                            <div class="output-descricao">
+                                                Junte-se a nós numa corrida noturna pelas históricas ruas de Mire 
+                                                de Tibães, iluminando caminhos com esperança e união pela 
+                                                caridade.
+                                            </div>
                                         </div>
-                                        <br></br>
-                                        <button class="btn btn-primary btn-xl text-uppercase">Submeter</button>
+                                        <table>
+                                            <thead>
+                                              <tr>
+                                                <th class="table-events-header">Profissionais</th>
+                                                <th class="table-events-header">Atribuídos</th>
+                                                <th class="table-events-header">Necessários</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <td>Distribuidor de águas</td>
+                                                <td>7</td>
+                                                <td>10</td>
+                                              </tr>
+                                              <tr>
+                                                <td>Advogado</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                              </tr>
+                                              <tr>
+                                                <td>Enfermeiros</td>
+                                                <td>1</td>
+                                                <td>2</td>
+                                              </tr>
+                                              <tr>
+                                                <td>Organizadores de inscrição</td>
+                                                <td>6</td>
+                                                <td>7</td>
+                                              </tr>
+                                              <tr>
+                                                <td>Organizador do percurso</td>
+                                                <td>5</td>
+                                                <td>5</td>
+                                              </tr>
+                                              <tr>
+                                                <td>Distribuidor de sandes</td>
+                                                <td>8</td>
+                                                <td>8</td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
                                     </div>
                                 </div>
+
                                 <!-- Submit success message-->
                                 <!---->
                                 <!-- This is what your users will see when the form-->
