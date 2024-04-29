@@ -75,3 +75,43 @@ document.addEventListener('DOMContentLoaded', (event) => {
         headerText.textContent = count + ' Pedidos em Aberto';
     }
 });
+
+function showDetails() {
+  // Here you would get the details from somewhere. 
+  // For demonstration, we'll hardcode an example entry:
+  var eventDetails = {
+    localidade: "Mire de Tibães, Braga",
+    data: "12/04/2024",
+    titulo: "Corrida do Mosteiro",
+    duracao: "5 horas",
+    nome: "Junta Freguesia de Mire de Tibães",
+    email: "juntamiretibaes@gmail.com",
+    telemovel: "969999999",
+    descricao: "Junte-se a nós numa corrida noturna pelas históricas ruas de Mire de Tibães, iluminando caminhos com esperança e união pela caridade.",
+    imagem: "path/to/image.jpg" // You'll replace this with the actual path to your image.
+  };
+
+  var modalBody = document.querySelector('#detailsModal .modal-body');
+  modalBody.innerHTML = `
+    <div class="row">
+      <div class="col-md-6">
+        <!-- Event Details -->
+        <p><strong>Localidade:</strong> ${eventDetails.localidade}</p>
+        <p><strong>Data:</strong> ${eventDetails.data}</p>
+        <p><strong>Título:</strong> ${eventDetails.titulo}</p>
+        <p><strong>Duração:</strong> ${eventDetails.duracao}</p>
+        <p><strong>Nome:</strong> ${eventDetails.nome}</p>
+        <p><strong>Email:</strong> ${eventDetails.email}</p>
+        <p><strong>Nº Telemóvel:</strong> ${eventDetails.telemovel}</p>
+        <p><strong>Descrição:</strong> ${eventDetails.descricao}</p>
+      </div>
+      <div class="col-md-6">
+        <!-- Event Image -->
+        <img src="${eventDetails.imagem}" class="img-fluid" alt="Evento">
+      </div>
+    </div>
+  `;
+
+  // Show the modal
+  $('#detailsModal').modal('show');
+}

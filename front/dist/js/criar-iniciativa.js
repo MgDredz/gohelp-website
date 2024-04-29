@@ -36,3 +36,15 @@ function storeFormData() {
         errorMessage.classList.remove('d-none');
     }
 }
+
+function updateStyle(selectElement) {
+    if (selectElement.value === "") {
+      selectElement.style.fontWeight = "bold";
+    } else {
+      selectElement.style.fontWeight = "normal";
+    }
+  }
+  
+  window.onload = function() {
+    updateStyle(document.getElementById('region'));
+  };

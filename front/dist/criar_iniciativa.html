@@ -43,23 +43,54 @@
                     <div class="row align-items-stretch mb-5">
                         <div class="col-md-5">
                             <div class="form-group">
-                                <!-- Localidade input-->
-                                <input class="form-control-4" id="localidade" type="text" placeholder="Localidade *" data-sb-validations="required" />
-                                <div class="invalid-feedback" data-sb-feedback="name:required">Insira a localidade.</div>
-                            </div>
-                            <div class="form-group">
-                                <!-- Data input-->
-                                <input type="date" class="form-control-4" id="data" required>
-                            </div>
-                            <div class="form-group">
                                 <!-- Title input-->
                                 <input class="form-control-4" id="titulo" type="text" placeholder="Título *" data-sb-validations="required" />
                                 <div class="invalid-feedback" data-sb-feedback="phone:required">Insira um título.</div>
                             </div>
                             <div class="form-group">
-                                <!-- Duração input-->
-                                <input class="form-control-4" id="duracao" type="text" placeholder="Duração *" data-sb-validations="required" />
-                                <div class="invalid-feedback" data-sb-feedback="name:required">Insira uma duração.</div>
+                                <!-- Type dropdown -->
+                                <select class="form-control-4" id="type" required onchange="updateStyle(this)">
+                                    <option value="" selected disabled hidden>Tipo *</option>
+                                    <option value="norte">Corrida/Maratona</option>
+                                    <option value="centro">Aulas</option>
+                                    <option value="lisboa">Jogos de Futebol</option>
+                                    <option value="alentejo">Workshop</option>
+                                    <option value="algarve">Outro</option>
+                                </select>
+                                <div class="invalid-feedback">Insira a localidade.</div>
+                            </div>
+                            <div class="form-group">
+                                <!-- Localidade input-->
+                                <input class="form-control-4" id="localidade" type="text" placeholder="Morada *" data-sb-validations="required" />
+                                <div class="invalid-feedback" data-sb-feedback="name:required">Insira a localidade.</div>
+                            </div>
+                            <div class="form-group">
+                                <!-- Region dropdown -->
+                                <select class="form-control-4" id="region" required onchange="updateStyle(this)">
+                                    <option value="" selected disabled hidden>Região *</option>
+                                    <option value="norte">Norte</option>
+                                    <option value="centro">Centro</option>
+                                    <option value="lisboa">Lisboa</option>
+                                    <option value="alentejo">Alentejo</option>
+                                    <option value="algarve">Algarve</option>
+                                </select>
+                                <div class="invalid-feedback">Insira a localidade.</div>
+                            </div>
+                            <div class="form-group">
+                                <!-- Data input-->
+                                <input type="date" class="form-control-4" id="data" required onchange="updateStyle(this)">
+                            </div>
+                            <div class="form-group" style="display: flex; justify-content: center; gap: 20px;">
+                                <!-- Starting Hour input -->
+                                <div style="flex: 1; text-align: center;">
+                                    <label for="horaInicio">Hora de Início *</label>
+                                    <input class="form-control-4" id="horaInicio" type="time" required />
+                                </div>
+                                <!-- Finishing Hour input -->
+                                <div style="flex: 1; text-align: center;">
+                                    <label for="horaFim">Hora de Fim *</label>
+                                    <input class="form-control-4" id="horaFim" type="time" required />
+                                </div>
                             </div>
                             <div class="form-group" style="position: relative;">
                                 <!-- Imagem input-->
@@ -75,6 +106,7 @@
                             <br></br>
                             <button class="btn btn-primary btn-xl text-uppercase">Submeter</button>
                         </div>
+                    </div>
                     </div>
                     <!-- Submit success message-->
                     <!---->

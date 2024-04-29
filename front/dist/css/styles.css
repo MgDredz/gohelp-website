@@ -2213,6 +2213,15 @@ textarea.form-control-lg {
           appearance: none;
   border-radius: 0.375rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  font-family: "Montserrat";
+}
+
+select.form-control-4 {
+  font-size: 1rem;
+  color: #212529;
+  font-weight: bold;
+  padding: 1.25rem;
+  font-family: "Montserrat";
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2380,6 +2389,11 @@ textarea.form-control-4 {
 .form-control-4:hover:not(:disabled):not([readonly]):before {
   background-color: #d9aa00;
 }
+
+.form-control-4[type="time"] {
+  text-align: center;
+}
+
 
 
 .form-select {
