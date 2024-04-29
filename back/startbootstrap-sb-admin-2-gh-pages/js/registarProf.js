@@ -9,33 +9,38 @@ document.getElementById("myButton").addEventListener("click", function(event) {
 
     // Validate required fields
     if (!name || !email || !phone || !region || !professionChecked) {
-        // Show error message
         const errorMessage = document.getElementById('errorMessage');
         errorMessage.classList.remove('d-none');
         const successMessage = document.getElementById('successMessage');
         successMessage.classList.add('d-none');
     } else {
-        // Hide error message
         const errorMessage = document.getElementById('errorMessage');
         errorMessage.classList.add('d-none');
-
-        // Display success message
         const successMessage = document.getElementById('successMessage');
         successMessage.classList.remove('d-none');
 
-        // Save data to local storage
-        localStorage.setItem('name', name);
-        localStorage.setItem('email', email);
-        localStorage.setItem('phone', phone);
-        localStorage.setItem('region', region);
-        localStorage.setItem('profession', professionChecked.value);
+        // Form data as an object
+        const profs = {
+            name: name,
+            email: email,
+            phone: phone,
+            region: region,
+            profession: professionChecked ? professionChecked.value : ''
+        };
 
-        // Clear all text inputs and file input
+        // Retrieve the existing array of form data from local storage or initialize it if not present
+        const profissionais = JSON.parse(localStorage.getItem('profissionais')) || [];
+
+        // Add the new form data to the array
+        profissionais.push(profs);
+
+        // Save the updated array back to local storage
+        localStorage.setItem('profissionais', JSON.stringify(profissionais));
+
+        // Clear all inputs
         form.querySelectorAll('input[type=text], input[type=email], input[type=tel], input[type=reg], input[type=file]').forEach(input => {
             input.value = '';
         });
-
-        // Reset radio buttons
         form.querySelectorAll('input[type=radio]').forEach(radio => {
             radio.checked = false;
         });
@@ -43,21 +48,14 @@ document.getElementById("myButton").addEventListener("click", function(event) {
 });
 
 // Function to load data from local storage when the page loads
-window.onload = function loadData() {
-    if (localStorage.getItem('name')) {
-        document.querySelector('#name').value = localStorage.getItem('name');
-    }
-    if (localStorage.getItem('email')) {
-        document.querySelector('#email').value = localStorage.getItem('email');
-    }
-    if (localStorage.getItem('phone')) {
-        document.querySelector('#phone').value = localStorage.getItem('phone');
-    }
-    if (localStorage.getItem('region')) {
-        document.querySelector('#region').value = localStorage.getItem('region');
-    }
-    if (localStorage.getItem('profession')) {
-        var profession = localStorage.getItem('profession');
+/* window.onload = function loadData() {
+    const storedData = JSON.parse(localStorage.getItem('formData'));
+    if (storedData) {
+        document.querySelector('#name').value = storedData.name;
+        document.querySelector('#email').value = storedData.email;
+        document.querySelector('#phone').value = storedData.phone;
+        document.querySelector('#region').value = storedData.region;
+        var profession = storedData.profession;
         document.querySelector('input[name="profession"][value="' + profession + '"]').checked = true;
     }
-};
+}; */

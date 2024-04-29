@@ -1,38 +1,54 @@
-function storeFormData() {
+document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('inscricaoForm');
-    
-    const localidade = form.querySelector('#localidade').value.trim();
-    const data = form.querySelector('#data').value.trim();
-    const titulo = form.querySelector('#titulo').value.trim();
-    const duracao = form.querySelector('#duracao').value.trim();
-    const descricao = form.querySelector('#descricao').value.trim();
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
 
-    // Storing file data is tricky because Local Storage cannot directly store files.
-    // Instead, you can convert the file to a Base64 string and store it, but this has limits.
-    const fileInput = form.querySelector('#imagem');
-    if (fileInput.files.length > 0) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const fileData = e.target.result; // Base64 string
-            localStorage.setItem('imagem', fileData);
+        // Get form elements
+        const localidade = document.getElementById('localidade').value.trim();
+        const data = document.getElementById('data').value;
+        const titulo = document.getElementById('titulo').value.trim();
+        const duracao = document.getElementById('duracao').value.trim();
+        const imagem = document.getElementById('imagem').files[0]; // Handling file input
+        const descricao = document.getElementById('descricao').value.trim();
+
+        // Message elements
+        const successMessage = document.getElementById('submitSuccessMessage');
+        const errorMessage = document.getElementById('submitErrorMessage');
+
+        // Hide previous messages
+        successMessage.classList.add('d-none');
+        errorMessage.classList.add('d-none');
+
+        // Simple validation check
+        if (!localidade || !data || !titulo || !duracao || !descricao || !imagem) {
+            errorMessage.classList.remove('d-none');
+            return;
+        }
+
+        // Create initiative object
+        const initiative = {
+            localidade: localidade,
+            data: data,
+            titulo: titulo,
+            duracao: duracao,
+            descricao: descricao,
+            imagem: imagem.name // Storing the filename; handle file separately
         };
-        reader.readAsDataURL(fileInput.files[0]); // Convert file to Base64
-    }
 
-    localStorage.setItem('localidade', localidade);
-    localStorage.setItem('data', data);
-    localStorage.setItem('titulo', titulo);
-    localStorage.setItem('duracao', duracao);
-    localStorage.setItem('descricao', descricao);
+        // Retrieve the existing initiatives array from local storage or initialize it if not present
+        const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
 
-    // Display success or error message
-    const successMessage = document.getElementById('submitSuccessMessage');
-    const errorMessage = document.getElementById('submitErrorMessage');
-    if (localidade && data && titulo && duracao && descricao) {
+        // Add the new initiative to the array
+        initiatives.push(initiative);
+
+        // Save the updated array back to local storage
+        localStorage.setItem('initiatives', JSON.stringify(initiatives));
+
+        // Show success message and hide error message
         successMessage.classList.remove('d-none');
         errorMessage.classList.add('d-none');
-    } else {
-        successMessage.classList.add('d-none');
-        errorMessage.classList.remove('d-none');
-    }
-}
+
+        // Optionally, reset the form after a successful submission
+        form.reset(); // Resets the form after submission
+    });
+});
