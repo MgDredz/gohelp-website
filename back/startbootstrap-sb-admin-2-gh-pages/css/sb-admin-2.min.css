@@ -9875,3 +9875,80 @@ body.sidebar-toggled footer.sticky-footer{
 .conteiner-output-event-dados-3{
     background-color: #093b29;
 }
+
+.tabela-events-GerirMateriais td {
+    border: 2px solid #B7BBBF;
+}
+
+.tabela-events-GerirMateriais table {
+    border-collapse: separate;
+    border-spacing: 2px;
+    border: none;
+}
+
+.tabela-events-GerirMateriais{
+    position:relative;
+    width:100%;
+}
+
+.tabela-events-GerirMateriais tbody{
+    background-color: #FFFFFF;
+    color: #000;
+}
+  
+.tabela-events-GerirMateriais tbody td:first-child{
+    width: 400px;
+}
+  
+.tabela-events-GerirMateriais tr td:nth-child(2){
+    text-align: center;
+    width: 100px;
+}
+
+.tabela-events-GerirMateriais tr td:nth-child(3){
+    text-align: center;
+    width: 100px;
+}
+  
+  /* Center text for the last td element in each row */
+.tabela-events-GerirMateriais tr td:last-child {
+    text-align: center;
+    width: 100px;
+}
+
+.buttons-events-gerirmateriais {
+    display: flex;
+    justify-content: space-between; /* Distribui o espaço entre os elementos internos */
+    align-items: center; /* Alinha os elementos verticalmente */
+}
+
+.quantity {
+    margin: 0 10px; /* Ajuste o valor conforme necessário */
+    font-size: 19px; /* Para manter consistência com o tamanho dos botões */
+}
+
+.plus-btn,
+.minus-btn {
+  width: 33px;
+  height: 33px; /* Define um tamanho fixo para os botões */
+  font-size: 19px;
+  border: none;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  line-height: 33px; /* Alinha o texto do botão verticalmente */
+}
+
+
+.plus-btn {
+    order: 2; /* Garante que o botão + fique sempre à direita */
+}
+  
+.minus-btn {
+    order: 0; /* Garante que o botão - fique sempre à esquerda */
+}
+  
+.quantity {
+    order: 1; /* Garante que o número fique sempre no meio */
+    flex-grow: 1; /* Permite que o número se expanda se houver espaço disponível */
+    text-align: center; /* Centraliza o número horizontalmente */
+}
