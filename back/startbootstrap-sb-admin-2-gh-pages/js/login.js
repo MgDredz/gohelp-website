@@ -1,24 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const loginButton = document.querySelector('.btn-user.btn-block'); // Assuming the login button has these classes
+    const loginButton = document.querySelector('.btn-user.btn-block');
     loginButton.addEventListener("click", function(event) {
-        event.preventDefault(); // Prevent default submission of form
+        event.preventDefault();
 
         const email = document.getElementById("exampleInputEmail").value.trim();
         const password = document.getElementById("exampleInputPassword").value.trim();
 
-        // Retrieve users data from local storage
         const users = JSON.parse(localStorage.getItem('users')) || [];
 
-        // Validate credentials
         const user = users.find(user => user.email === email && user.password === password);
 
         if (user) {
-            // Login success
             alert("Login successful!");
-            // Here you can redirect the user to another page or perform other actions on successful login
+            // Combine first name and last name and save in local storage
+            const fullName = user.firstName + ' ' + user.lastName;
+            localStorage.setItem('loggedInUser', JSON.stringify({ name: fullName, email: user.email }));
             window.location.href = 'index.html'; // Redirect to a specific page
+
+            const storedUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    if (storedUser && storedUser.name) {
+        document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = storedUser.name;
+    }
         } else {
-            // Login failed
             alert("Invalid credentials!");
         }
     });
