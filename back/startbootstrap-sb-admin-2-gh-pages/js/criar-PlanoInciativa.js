@@ -1,15 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
+     const storedUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    if (storedUser && storedUser.name) {
+        document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = storedUser.name;
+        }
     const form = document.getElementById('inscricaoForm');
     form.addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent default form submission
 
         // Get form elements
-        const localidade = document.getElementById('localidade').value.trim();
-        const data = document.getElementById('data').value;
         const titulo = document.getElementById('titulo').value.trim();
-        const duracao = document.getElementById('duracao').value.trim();
-        const imagem = document.getElementById('imagem').files[0]; // Handling file input
+        const type = document.getElementById('type').value.trim();
+        const localidade = document.getElementById('localidade').value.trim();
+        const region = document.getElementById('region').value.trim();
+        const data = document.getElementById('data').value;
+        const horaInicio = document.getElementById('horaInicio').value;
+        const horaFim = document.getElementById('horaFim').value;
         const descricao = document.getElementById('descricao').value.trim();
+        const imagemFile = document.getElementById('imagem').files[0];
+        const imagem = imagemFile ? imagemFile.name : ''; // Adjust as necessary for handling the file
 
         // Message elements
         const successMessage = document.getElementById('submitSuccessMessage');
@@ -20,19 +28,22 @@ document.addEventListener('DOMContentLoaded', () => {
         errorMessage.classList.add('d-none');
 
         // Simple validation check
-        if (!localidade || !data || !titulo || !duracao || !descricao || !imagem) {
+        if (!titulo || !type || !localidade || !region || !data || !horaInicio || !horaFim || !descricao || !imagem) {
             errorMessage.classList.remove('d-none');
             return;
         }
 
         // Create initiative object
         const initiative = {
-            localidade: localidade,
-            data: data,
             titulo: titulo,
-            duracao: duracao,
+            type: type,
+            localidade: localidade,
+            region: region,
+            data: data,
+            horaInicio: horaInicio,
+            horaFim: horaFim,
             descricao: descricao,
-            imagem: imagem.name // Storing the filename; handle file separately
+            imagem: imagem // Storing the filename; handle file separately
         };
 
         // Retrieve the existing initiatives array from local storage or initialize it if not present

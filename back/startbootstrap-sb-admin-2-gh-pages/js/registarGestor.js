@@ -40,6 +40,13 @@ document.getElementById("myButton").addEventListener("click", function(event) {
     }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const storedUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    if (storedUser && storedUser.name) {
+        document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = storedUser.name;
+    }
+  });
+
 // Function to load data from local storage when the page loads
 window.onload = function loadData() {
     if (localStorage.getItem('name')) {

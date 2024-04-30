@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', (event) => {
+    const storedUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    if (storedUser && storedUser.name) {
+        document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = storedUser.name;
+    }
     const itemsPerPage = 5;
     let currentPage = 1;
     const listItems = document.querySelectorAll('.list-group-item');
