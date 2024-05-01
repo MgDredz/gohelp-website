@@ -69,7 +69,7 @@ function createInitiativeElement(initiative) {
   container.innerHTML = `
       <a href="Gerir-Iniciativa-Individual.html">
           <div class="event-container">
-              <img src="${initiative.imagem}" alt="Event Image" style="width: 100%; height: auto;" />
+              <img src="${initiative.imagem}" alt="Event Image" style="width: 100%; height: auto;" /> <!-- Set the src attribute with the image data -->
               <div class="event-date">${formattedDate}</div>
               <div class="event-location">${initiative.localidade}</div>
               <h3 class="event-Titel">${initiative.titulo}</h3>
@@ -90,3 +90,4 @@ function createInitiativeElement(initiative) {
 
   return container;
 }
+
