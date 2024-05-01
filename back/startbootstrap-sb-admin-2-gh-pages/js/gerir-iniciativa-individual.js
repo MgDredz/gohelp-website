@@ -19,6 +19,7 @@ function openTab(tabName) {
   // Garante que o script rode após o carregamento completo do DOM
   window.onload = function() {
     openTab('Dados');
+    window.onclick = carregarQuantidades;
   };
 
   /*
@@ -72,5 +73,16 @@ function carregarQuantidades() {
   });
 }
 
-// Chama a função carregarQuantidades quando a janela é carregada
-window.onload = carregarQuantidades;
+function toggleTableBody() {
+  var tableBody = document.getElementById("tableBody");
+  var arrow = document.getElementById("arrow");
+  if (tableBody.style.display === "none") {
+      tableBody.style.display = "block";
+      arrow.textContent = "▼";  // Muda a seta para baixo quando expandido
+  } else {
+      tableBody.style.display = "none";
+      arrow.textContent = "▲";  // Muda a seta para cima quando minimizado
+  }
+}
+
+

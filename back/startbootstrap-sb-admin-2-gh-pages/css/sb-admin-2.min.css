@@ -9839,6 +9839,12 @@ body.sidebar-toggled footer.sticky-footer{
     max-width:66.66667%;
 }
 
+.tabela-buttons-events-dados {
+    display: flex;
+    justify-content: space-between; /* Distribui o espaço entre os elementos internos */
+    align-items: center; /* Alinha os elementos verticalmente */
+}
+
 .tabela-events-dados tbody{
     background-color: #FFFFFF;
     color: #000;
@@ -9963,4 +9969,179 @@ body.sidebar-toggled footer.sticky-footer{
     order: 1; /* Garante que o número fique sempre no meio */
     flex-grow: 1; /* Permite que o número se expanda se houver espaço disponível */
     text-align: center; /* Centraliza o número horizontalmente */
+}
+
+.event-dados-tabela-mais{
+    margin-left: 10px; /* Por exemplo, adicione uma margem à esquerda para separar da tabela */
+}
+
+.tabela-events-dados-adicionar td {
+    border: 2px solid #B7BBBF;
+}
+
+.tabela-events-dados-adicionar table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border: none;
+}
+
+.tabela-events-dados-adicionar {
+    position:relative;
+    width:100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    flex:0 0 66.66667%;
+    max-width:66.66667%;
+    display: flex;              /* Faz com que os elementos filhos (plus-sign e table) sejam dispostos em linha */
+    align-items: center;        /* Centraliza os elementos filhos verticalmente */
+}
+
+.tabela-events-dados-adicionar tbody{
+    background-color: #FFFFFF;
+    color: #000;
+}
+  
+  /* Bottom left border radius on the first cell of the last row */
+.tabela-events-dados-adicionar tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+  
+/* Bottom right border radius on the last cell of the last row */
+.tabela-events-dados-adicionar tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+ /* Bottom left border radius on the first cell of the last row */
+.tabela-events-dados-adicionar tbody tr:first-child td:last-child {
+    border-top-right-radius: 10px;
+}
+  
+/* Bottom right border radius on the last cell of the last row */
+.tabela-events-dados-adicionar tbody tr:first-child td:first-child {
+    border-top-left-radius: 10px;
+}
+
+.tabela-events-dados-adicionar tbody td:first-child{
+    width: 260px;
+}
+
+.tabela-events-dados-adicionar tr td:nth-child(2){
+    text-align: center;
+    width: 80px;
+}
+  
+  /* Center text for the last td element in each row */
+.plus-sign {
+    display: inline-block;      /* Faz com que o elemento seja tratado como inline mas permita dimensionamento */
+    width: 39px;                /* Largura do quadrado */
+    height: 30px;               /* Altura do quadrado */
+    background-color: #fff;  /* Cor de fundo do quadrado */
+    color: black;               /* Cor do texto */
+    font-size: 24px;            /* Tamanho do texto */
+    text-align: center;         /* Centraliza o texto */
+    line-height: 26px;          /* Centraliza verticalmente o texto dentro do quadrado */
+    margin-left: 10px;         /* Espaçamento à direita do quadrado */
+    margin-top: 26px; 
+    border: 2px solid #B7BBBF;    /* Borda do quadrado */
+    border-radius: 4px;
+}
+
+.input-style{
+    width: 100%;
+    border: 0;
+    padding: 4px;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #ffffff; /* Cor de fundo sutil */
+}
+
+.input-style[type="text"] {
+    margin-left: 5px;
+    width: 98%;
+    color: #333; /* Cor do texto para inputs de texto */
+}
+
+.input-style[type="number"] {
+    width: 85%;
+    color: #333;
+}
+
+.input-style:focus {
+    border: 0;
+    outline: none;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.1); /* Sombra interna sutil ao focar */
+}
+
+.GerirProfissionais-table{
+    margin-top: 90px;
+    margin-left: 70px;
+}
+
+.GerirProfissionais-table-container {
+    width: 301px;
+    border: 1px solid #858796;
+    background: #F8F9FC;
+    margin-top: 0px;
+    border-radius: 5px;
+    overflow: hidden; /* Garante que tudo dentro do contêiner seja contido, incluindo a barra de rolagem */
+}
+
+.GerirProfissionais-table-body {
+    height: 240px; /* Altura ajustável para ativar a barra de rolagem */
+    overflow-y: auto;
+}
+
+.GerirProfissionais-table-body table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.GerirProfissionais-table-body th, .GerirProfissionais-table-body td {
+    padding: 8px;
+    text-align: left;
+    border-top: 1px solid #858796;
+}
+
+.GerirProfissionais-table-body th {
+    background: #f9f9f9;
+}
+
+#arrow-container {
+    display: inline-block;
+    border-radius: 3px; /* Adiciona bordas arredondadas se desejado */ 
+    cursor: pointer; 
+    background-color: #5E5E5E; 
+    padding: 4px;
+    margin-left: 262px;
+    width: 35px;
+    text-align: center;
+    color: white;
+}
+
+.GerirProfissionais-table-body::-webkit-scrollbar {
+    width: 10px; /* Largura da barra de rolagem */
+}
+
+/* Estiliza o track da barra de rolagem (parte por onde a thumb se move) */
+.GerirProfissionais-table-body::-webkit-scrollbar-track {
+    background: #ffffff; /* Cor de fundo do track, definido como branco */
+    border-left: 1px solid #858796;
+    box-shadow: inset 0 0 5px grey; /* Adiciona uma sombra interna para definição */    
+}
+
+/* Estiliza a thumb da barra de rolagem (parte móvel que você arrasta) */
+.GerirProfissionais-table-body::-webkit-scrollbar-thumb {
+    background-color: #cccccc; /* Cor da thumb */
+    border-radius: 6px; /* Borda arredondada para a thumb */
+    border: 2px solid #f0f0f0; /* Borda adicional para separar thumb do track */    
+}
+
+/* Remove as setas da barra de rolagem */
+.GerirProfissionais-table-body::-webkit-scrollbar-button {
+    display: none; /* Esconde os botões */
+}
+
+.GerirProfissionais-table-titulo{
+    font-size: 20px;
+    margin-left: 5px;
 }
