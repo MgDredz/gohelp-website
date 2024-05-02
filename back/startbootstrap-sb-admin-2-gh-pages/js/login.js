@@ -75,10 +75,10 @@ function preloadProfiles() {
 function preloadInitiatives() {
     // Predefined initiatives
     const predefinedInitiatives = [
-        { titulo: "Corrida da Cidade", type: "Corrida/Maratona", localidade: "Centro da Cidade", region: "Centro", data: "2024-05-10", horaInicio: "09:00", horaFim: "11:00", descricao: "Uma maratona urbana para todos os níveis de corredores.", imagem: "maratona.jpg" },
-        { titulo: "Aulas de Yoga", type: "Aulas", localidade: "Parque das Águas", region: "Lisboa", data: "2024-05-12", horaInicio: "08:00", horaFim: "10:00", descricao: "Sessão de yoga ao ar livre para promover a saúde e o bem-estar.", imagem: "yoga.jpg" },
-        { titulo: "Jogo de Futebol Beneficente", type: "Jogos de Futebol", localidade: "Estádio Municipal", region: "Norte", data: "2024-05-15", horaInicio: "15:00", horaFim: "17:00", descricao: "Jogo de futebol para arrecadar fundos para a caridade local.", imagem: "futebol.jpg" },
-        { titulo: "Workshop de Fotografia", type: "Workshop", localidade: "Centro Cultural", region: "Alentejo", data: "2024-05-18", horaInicio: "10:00", horaFim: "12:00", descricao: "Workshop introdutório sobre técnicas de fotografia digital.", imagem: "fotografia.jpg" }
+        { titulo: "Corrida da Cidade", type: "Corrida/Maratona", localidade: "Centro da Cidade", region: "Centro", data: "2024-05-10", horaInicio: "09:00", horaFim: "11:00", descricao: "Uma maratona urbana para todos os níveis de corredores.", imagem: "maratona.jpg", participantes: 24, doacoes: 535.00, materiais: [], profissionais: [] },
+        { titulo: "Aulas de Yoga", type: "Aulas", localidade: "Parque das Águas", region: "Lisboa", data: "2024-05-12", horaInicio: "08:00", horaFim: "10:00", descricao: "Sessão de yoga ao ar livre para promover a saúde e o bem-estar.", imagem: "yoga.jpg", participantes: 14, doacoes: 245.00, materiais: [], profissionais: [] },
+        { titulo: "Jogo de Futebol Beneficente", type: "Jogos de Futebol", localidade: "Estádio Municipal", region: "Norte", data: "2024-05-15", horaInicio: "15:00", horaFim: "17:00", descricao: "Jogo de futebol para arrecadar fundos para a caridade local.", imagem: "futebol.jpg", participantes: 34, doacoes: 245.42, materiais: [], profissionais: [] },
+        { titulo: "Workshop de Fotografia", type: "Workshop", localidade: "Centro Cultural", region: "Alentejo", data: "2024-05-18", horaInicio: "10:00", horaFim: "12:00", descricao: "Workshop introdutório sobre técnicas de fotografia digital.", imagem: "fotografia.jpg", participantes: 121, doacoes: 1345.50, materiais: [], profissionais: [] }
     ];
 
     // Check if initiatives already exist in local storage

@@ -47,7 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 horaInicio: horaInicio,
                 horaFim: horaFim,
                 descricao: descricao,
-                imagem: imagem
+                imagem: imagem,
+                participantes: 0,
+                doacoes: 0,
             };
 
             // Retrieve the existing initiatives array from local storage or initialize it if not present
