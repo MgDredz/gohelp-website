@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const user = users.find(user => user.email === email && user.password === password);
 
             if (user) {
-                alert("Login successful!");
                 const fullName = user.firstName + ' ' + user.lastName;
                 localStorage.setItem('loggedInUser', JSON.stringify({ name: fullName, email: user.email }));
 
@@ -25,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Redirect to a specific page
                 window.location.href = 'index.html'; // This code will stop execution following the redirect
             } else {
-                alert("Invalid credentials!");
             }
         });
     } else {
