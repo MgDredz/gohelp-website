@@ -360,44 +360,7 @@
                     <div class="row">
 
                         <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Ações por tipo -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Ações - Tipo (no último mês)</h6>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="small font-weight-bold">Corridas/Maratonas <span
-                                            class="float-right">64%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 64%"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Aulas <span
-                                            class="float-right">16%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 16%"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Jogos de Futebol <span
-                                            class="float-right">8%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 8%"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Workshops <span
-                                            class="float-right">8%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 8%"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Outros <span
-                                            class="float-right">4%</span></h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 4%"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
+                        <div id="barPercentage" class="col-lg-6 mb-4"></div>
 
                         <!-- Ações a decorrer no dia de hoje -->
                         <div class="col-lg-6 mb-4">
@@ -494,7 +457,7 @@
                                             </div>
                                         </div>
                                     </div> <!-- Closing row for card decks -->
-                                    <a href="dashboardTerreno.html" class="details-link2">Mais Detalhes</a> 
+                                    <a href="dashboardTerreno.html" class="details-link2">Ver Mais</a> 
                                 </div>
                             </div>
                         </div>
@@ -552,6 +515,7 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/dashboard.js"></script>
 
     <!-- Page level plugins -->
     <script src="vendor/chart.js/Chart.min.js"></script>
