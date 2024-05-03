@@ -113,7 +113,7 @@ body {
 .dropdown-toggle {
   background-color: transparent;
   border: transparent;
-  padding: 10px;
+  padding: 5px;
   cursor: pointer;
   font-size: 16px;
 }
@@ -150,6 +150,10 @@ body {
 .img-profile{
     height:2rem;
     width:2rem
+}
+.navbar-nav .nav-item.dropdown {
+  display: inline-block;
+  position: relative;
 }
 
 hr {
