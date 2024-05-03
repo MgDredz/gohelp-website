@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ensureAdminExists(); // Check and add admin on page load
     preloadProfiles(); // Preload professional profiles
     preloadInitiatives();
+    preloadDonations();
 
     const loginButton = document.querySelector('.btn-user.btn-block');
     if (loginButton) {
@@ -73,25 +74,64 @@ function preloadProfiles() {
 function preloadInitiatives() {
     // Predefined initiatives
     const predefinedInitiatives = [
-<<<<<<< Updated upstream
         { titulo: "Corrida da Cidade", type: "Corrida/Maratona", localidade: "Centro da Cidade", region: "Centro", data: "2024-04-10", horaInicio: "09:00", horaFim: "11:00", descricao: "Uma maratona urbana para todos os níveis de corredores.", imagem: "maratona.jpg", participantes: 24, doacoes: 535.00, materiais: [], profissionais: [] },
         { titulo: "Aulas de Yoga", type: "Aulas", localidade: "Parque das Águas", region: "Lisboa", data: "2024-04-12", horaInicio: "08:00", horaFim: "10:00", descricao: "Sessão de yoga ao ar livre para promover a saúde e o bem-estar.", imagem: "yoga.jpg", participantes: 14, doacoes: 245.00, materiais: [], profissionais: [] },
         { titulo: "Jogo de Futebol Beneficente", type: "Jogos de Futebol", localidade: "Estádio Municipal", region: "Norte", data: "2024-04-15", horaInicio: "15:00", horaFim: "17:00", descricao: "Jogo de futebol para arrecadar fundos para a caridade local.", imagem: "futebol.jpg", participantes: 34, doacoes: 245.42, materiais: [], profissionais: [] },
         { titulo: "Workshop de Fotografia", type: "Workshop", localidade: "Centro Cultural", region: "Alentejo", data: "2024-04-18", horaInicio: "10:00", horaFim: "12:00", descricao: "Workshop introdutório sobre técnicas de fotografia digital.", imagem: "fotografia.jpg", participantes: 121, doacoes: 1345.50, materiais: [], profissionais: [] },
         { titulo: "Aula de Pilates", type: "Aulas", localidade: "Parque da Avenida", region: "Norte", data: "2024-04-24", horaInicio: "15:00", horaFim: "17:00", descricao: "Sessão de pilates ao ar livre para promover a saúde e o bem-estar.", imagem: "pilates.jpg", participantes: 24, doacoes: 45.00, materiais: [], profissionais: [] },
         { titulo: "Festa Solidária do Campeonato", type: "Outro", localidade: "Marquês de Pombal", region: "Centro", data: "2024-05-1", horaInicio: "17:00", horaFim: "22:00", descricao: "Venha festejar o campeonato numa comunhão desportiva e solidária", imagem: "sporting.jpg", participantes: 521, doacoes: 3285.50, materiais: [], profissionais: [] }
-=======
-        { titulo: "Corrida da Cidade", type: "Corrida/Maratona", localidade: "Centro da Cidade", region: "Centro", data: "2024-05-10", horaInicio: "09:00", horaFim: "11:00", descricao: "Uma maratona urbana para todos os níveis de corredores.", imagem: "img/2.jpg", participantes: 24, doacoes: 535.00, materiais: [], profissionais: [] },
-        { titulo: "Aulas de Yoga", type: "Aulas", localidade: "Parque das Águas", region: "Lisboa", data: "2024-05-12", horaInicio: "08:00", horaFim: "10:00", descricao: "Sessão de yoga ao ar livre para promover a saúde e o bem-estar.", imagem: "img/2.jpg", participantes: 14, doacoes: 245.00, materiais: [], profissionais: [] },
-        { titulo: "Jogo de Futebol Beneficente", type: "Jogos de Futebol", localidade: "Estádio Municipal", region: "Norte", data: "2024-05-15", horaInicio: "15:00", horaFim: "17:00", descricao: "Jogo de futebol para arrecadar fundos para a caridade local.", imagem: "img/2.jpg", participantes: 34, doacoes: 245.42, materiais: [], profissionais: [] },
-        { titulo: "Workshop de Fotografia", type: "Workshop", localidade: "Centro Cultural", region: "Alentejo", data: "2024-05-18", horaInicio: "10:00", horaFim: "12:00", descricao: "Workshop introdutório sobre técnicas de fotografia digital.", imagem: "img/2.jpg", participantes: 121, doacoes: 1345.50, materiais: [], profissionais: [] }
->>>>>>> Stashed changes
     ];
 
     // Check if initiatives already exist in local storage
     if (!localStorage.getItem('initiatives')) {
         // Store predefined initiatives in local storage
         localStorage.setItem('initiatives', JSON.stringify(predefinedInitiatives));
+        console.log("Initiatives preloaded into local storage.");
+    } else {
+        console.log("Initiatives already exist in local storage.");
+    }
+}
+
+function preloadDonations() {
+    // Predefined initiatives
+    const predefinedDonations = [
+        //online donations
+        { data:"2024-05-01", montante:38030 ,type: "Online" },
+        { data:"2024-04-25", montante:24000 ,type: "Online" },
+        { data:"2024-03-25", montante:14500 ,type: "Online" },
+        { data:"2024-02-25", montante:12554 ,type: "Online" },
+        { data:"2024-01-25", montante:14040 ,type: "Online" },
+        { data:"2023-12-25", montante:29050 ,type: "Online" },
+        { data:"2023-11-25", montante:9345 ,type: "Online" },
+        { data:"2023-10-25", montante:9775 ,type: "Online" },
+        { data:"2023-09-25", montante:11040 ,type: "Online" },
+        { data:"2023-08-25", montante:22495 ,type: "Online" },
+        { data:"2023-07-25", montante:36050 ,type: "Online" },
+        { data:"2023-06-25", montante:40775 ,type: "Online" },
+        //field donations
+        { data:"2024-05-25", montante:3800 ,type: "Field" },
+        { data:"2024-04-25", montante:2400 ,type: "Field" },
+        { data:"2024-03-25", montante:1400 ,type: "Field" },
+        { data:"2024-02-25", montante:1254 ,type: "Field" },
+        { data:"2024-01-25", montante:1440 ,type: "Field" },
+        { data:"2023-12-25", montante:2950 ,type: "Field" },
+        { data:"2023-11-25", montante:935 ,type: "Field" },
+        { data:"2023-10-25", montante:975 ,type: "Field" },
+        { data:"2023-09-25", montante:1140 ,type: "Field" },
+        { data:"2023-08-25", montante:2245 ,type: "Field" },
+        { data:"2023-07-25", montante:3050 ,type: "Field" },
+        { data:"2023-06-25", montante:4075 ,type: "Field" },
+        //sponsor donations
+        { data:"2024-05-25", montante:24000 ,type: "Sponsor" },
+        { data:"2024-04-25", montante:14000 ,type: "Sponsor" },
+        { data:"2023-07-25", montante:40000 ,type: "Sponsor" },
+        { data:"2023-06-25", montante:35000 ,type: "Sponsor" },
+    ];
+
+    // Check if initiatives already exist in local storage
+    if (!localStorage.getItem('initiatives')) {
+        // Store predefined initiatives in local storage
+        localStorage.setItem('initiatives', JSON.stringify(predefinedDonations));
         console.log("Initiatives preloaded into local storage.");
     } else {
         console.log("Initiatives already exist in local storage.");
