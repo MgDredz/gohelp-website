@@ -9820,6 +9820,12 @@ body.sidebar-toggled footer.sticky-footer{
     margin-left: 70px;
 }
 
+.GerirProfissionais-table-2{
+    margin-top: 90px;
+    margin-left: 70px;
+    width: 500px;
+}
+
 
 .tabela-events-dados td {
     border: 2px solid #B7BBBF;
@@ -9970,59 +9976,69 @@ body.sidebar-toggled footer.sticky-footer{
     margin-left: 10px; /* Por exemplo, adicione uma margem à esquerda para separar da tabela */
 }
 
-.tabela-events-dados-adicionar td {
+.GerirProfissionais-table-Profissionais-2 td {
     border: 2px solid #B7BBBF;
 }
 
-.tabela-events-dados-adicionar table {
+.GerirProfissionais-table-Profissionais-2 table {
     border-collapse: separate;
-    border-spacing: 0;
+    border-spacing: 0px;
     border: none;
 }
 
-.tabela-events-dados-adicionar {
+.GerirProfissionais-table-Profissionais-2 {
     position:relative;
     width:100%;
     padding-right: 0px;
     padding-left: 0px;
-    flex:0 0 66.66667%;
-    max-width:66.66667%;
     display: flex;              /* Faz com que os elementos filhos (plus-sign e table) sejam dispostos em linha */
     align-items: center;        /* Centraliza os elementos filhos verticalmente */
 }
 
-.tabela-events-dados-adicionar tbody{
+.GerirProfissionais-table-Profissionais-2 tbody{
     background-color: #FFFFFF;
     color: #000;
 }
   
   /* Bottom left border radius on the first cell of the last row */
-.tabela-events-dados-adicionar tbody tr:last-child td:first-child {
+.GerirProfissionais-table-Profissionais-2 tbody tr:nth-child(3) td:first-child {
     border-bottom-left-radius: 10px;
 }
   
 /* Bottom right border radius on the last cell of the last row */
-.tabela-events-dados-adicionar tbody tr:last-child td:last-child {
+.GerirProfissionais-table-Profissionais-2 tbody tr:nth-child(3) td:nth-child(3) {
     border-bottom-right-radius: 10px;
 }
 
  /* Bottom left border radius on the first cell of the last row */
-.tabela-events-dados-adicionar tbody tr:first-child td:last-child {
+.GerirProfissionais-table-Profissionais-2 tbody tr:first-child td:nth-child(3) {
     border-top-right-radius: 10px;
 }
   
 /* Bottom right border radius on the last cell of the last row */
-.tabela-events-dados-adicionar tbody tr:first-child td:first-child {
+.GerirProfissionais-table-Profissionais-2 tbody tr:first-child td:first-child {
     border-top-left-radius: 10px;
 }
 
-.tabela-events-dados-adicionar tbody td:first-child{
+.GerirProfissionais-table-Profissionais-2 tbody td:first-child{
     width: 260px;
 }
 
-.tabela-events-dados-adicionar tr td:nth-child(2){
+.GerirProfissionais-table-Profissionais-2 tr td:nth-child(2){
     text-align: center;
     width: 80px;
+}
+
+.GerirProfissionais-table-Profissionais-2 tr td:nth-child(3){
+    text-align: center;
+    width: 80px;
+}
+
+.GerirProfissionais-table-Profissionais-2 tr td:nth-child(4){
+    text-align: center;
+    width: 80px;
+    border-spacing: 20px;
+    margin-left: 20px;
 }
   
   /* Center text for the last td element in each row */
@@ -10070,6 +10086,7 @@ body.sidebar-toggled footer.sticky-footer{
 .GerirProfissionais-table{
     margin-top: 90px;
     margin-left: 70px;
+    width: 303px;
 }
 
 .GerirProfissionais-table-container {
