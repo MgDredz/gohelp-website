@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     preloadProfiles(); // Preload professional profiles
     preloadInitiatives();
     preloadDonations();
+    preloadPedidos();
 
     const loginButton = document.querySelector('.btn-user.btn-block');
     if (loginButton) {
@@ -74,7 +75,7 @@ function preloadProfiles() {
 function preloadInitiatives() {
     // Predefined initiatives
     const predefinedInitiatives = [
-        { titulo: "Corrida da Cidade", type: "Corrida/Maratona", localidade: "Centro da Cidade", region: "Centro", data: "2024-04-10", horaInicio: "09:00", horaFim: "11:00", descricao: "Uma maratona urbana para todos os níveis de corredores.", imagem: "maratona.jpg", participantes: 24, doacoes: 535.00, materiais: [], profissionais: [] },
+        { titulo: "Corrida da Cidade", type: "Corrida/Maratona", localidade: "Centro da Cidade - Braga", region: "Norte", data: "2024-04-10", horaInicio: "09:00", horaFim: "11:00", descricao: "Uma maratona urbana para todos os níveis de corredores.", imagem: "maratona.jpg", participantes: 24, doacoes: 535.00, materiais: [], profissionais: [] },
         { titulo: "Aulas de Yoga", type: "Aulas", localidade: "Parque das Águas", region: "Lisboa", data: "2024-04-12", horaInicio: "08:00", horaFim: "10:00", descricao: "Sessão de yoga ao ar livre para promover a saúde e o bem-estar.", imagem: "yoga.jpg", participantes: 14, doacoes: 245.00, materiais: [], profissionais: [] },
         { titulo: "Jogo de Futebol Beneficente", type: "Jogos de Futebol", localidade: "Estádio Municipal", region: "Norte", data: "2024-04-15", horaInicio: "15:00", horaFim: "17:00", descricao: "Jogo de futebol para arrecadar fundos para a caridade local.", imagem: "futebol.jpg", participantes: 34, doacoes: 245.42, materiais: [], profissionais: [] },
         { titulo: "Workshop de Fotografia", type: "Workshop", localidade: "Centro Cultural", region: "Alentejo", data: "2024-04-18", horaInicio: "10:00", horaFim: "12:00", descricao: "Workshop introdutório sobre técnicas de fotografia digital.", imagem: "fotografia.jpg", participantes: 121, doacoes: 1345.50, materiais: [], profissionais: [] },
@@ -93,14 +94,14 @@ function preloadInitiatives() {
 }
 
 function preloadDonations() {
-    // Predefined initiatives
+    // Predefined donations
     const predefinedDonations = [
         //online donations
-        { data:"2024-05-01", montante:38030 ,type: "Online" },
+        { data:"2024-05-01", montante:38030.5 ,type: "Online" },
         { data:"2024-04-25", montante:24000 ,type: "Online" },
         { data:"2024-03-25", montante:14500 ,type: "Online" },
         { data:"2024-02-25", montante:12554 ,type: "Online" },
-        { data:"2024-01-25", montante:14040 ,type: "Online" },
+        { data:"2024-01-25", montante:14040.5 ,type: "Online" },
         { data:"2023-12-25", montante:29050 ,type: "Online" },
         { data:"2023-11-25", montante:9345 ,type: "Online" },
         { data:"2023-10-25", montante:9775 ,type: "Online" },
@@ -110,15 +111,15 @@ function preloadDonations() {
         { data:"2023-06-25", montante:40775 ,type: "Online" },
         //field donations
         { data:"2024-05-25", montante:3800 ,type: "Field" },
-        { data:"2024-04-25", montante:2400 ,type: "Field" },
+        { data:"2024-04-25", montante:2403.5 ,type: "Field" },
         { data:"2024-03-25", montante:1400 ,type: "Field" },
         { data:"2024-02-25", montante:1254 ,type: "Field" },
         { data:"2024-01-25", montante:1440 ,type: "Field" },
         { data:"2023-12-25", montante:2950 ,type: "Field" },
-        { data:"2023-11-25", montante:935 ,type: "Field" },
-        { data:"2023-10-25", montante:975 ,type: "Field" },
+        { data:"2023-11-25", montante:935.2 ,type: "Field" },
+        { data:"2023-10-25", montante:975.5 ,type: "Field" },
         { data:"2023-09-25", montante:1140 ,type: "Field" },
-        { data:"2023-08-25", montante:2245 ,type: "Field" },
+        { data:"2023-08-25", montante:2245.5 ,type: "Field" },
         { data:"2023-07-25", montante:3050 ,type: "Field" },
         { data:"2023-06-25", montante:4075 ,type: "Field" },
         //sponsor donations
@@ -129,11 +130,34 @@ function preloadDonations() {
     ];
 
     // Check if initiatives already exist in local storage
-    if (!localStorage.getItem('initiatives')) {
+    if (!localStorage.getItem('donations')) {
         // Store predefined initiatives in local storage
-        localStorage.setItem('initiatives', JSON.stringify(predefinedDonations));
-        console.log("Initiatives preloaded into local storage.");
+        localStorage.setItem('donations', JSON.stringify(predefinedDonations));
+        console.log("Donations preloaded into local storage.");
     } else {
-        console.log("Initiatives already exist in local storage.");
+        console.log("Donations already exist in local storage.");
+    }
+}
+
+function preloadPedidos() {
+    // Predefined pedidos
+    const predefinedPedidos = [
+        { estado: "pendente" ,email: "john.doe@example.com", titulo: "Corrida do Norte", type: "Corrida/Maratona", localidade: "Avenida da Liberdade - Porto", region: "Norte", data: "2024-06-10", horaInicio: "09:00", horaFim: "11:00", descricao: "Uma maratona urbana para todos os níveis de corredores.", imagem: "maratona.jpg" },
+        { estado: "pendente" ,email: "john.doe@example.com", titulo: "Aulas de Yoga - Conti", type: "Aulas", localidade: "Parque das Águas", region: "Lisboa", data: "2024-06-12", horaInicio: "08:00", horaFim: "10:00", descricao: "Sessão de yoga ao ar livre para promover a saúde e o bem-estar.", imagem: "yoga.jpg" },
+        { estado: "pendente" ,email: "john.doe@example.com", titulo: "Jogo de Futebol Beneficente dos Alves", type: "Jogos de Futebol", localidade: "Estádio Municipal", region: "Norte", data: "2024-06-15", horaInicio: "15:00", horaFim: "17:00", descricao: "Jogo de futebol para arrecadar fundos para a caridade local." },
+        { estado: "pendente" ,email: "john.doe@example.com", titulo: "Workshop de Fotografia", type: "Workshop", localidade: "Centro Cultural", region: "Alentejo", data: "2024-06-18", horaInicio: "10:00", horaFim: "12:00", descricao: "Workshop introdutório sobre técnicas de fotografia digital.", imagem: "fotografia.jpg" },
+        { estado: "pendente" ,email: "john.doe@example.com", titulo: "Aula de Pilates", type: "Aulas", localidade: "Parque da Avenida", region: "Norte", data: "2024-06-24", horaInicio: "15:00", horaFim: "17:00", descricao: "Sessão de pilates ao ar livre para promover a saúde e o bem-estar.", imagem: "pilates.jpg" },
+        { estado: "pendente" ,email: "john.doe@example.com", titulo: "Festa de Panóias", type: "Outro", localidade: "Marquês de Pombal", region: "Centro", data: "2024-07-1", horaInicio: "17:00", horaFim: "22:00", descricao: "Panóias Solidaria", imagem: "panoias.jpg" },
+        { estado: "recusado" ,email: "john.doe@example.com", titulo: "Aula de Pilates", type: "Aulas", localidade: "Parque da Avenida", region: "Norte", data: "2024-06-24", horaInicio: "15:00", horaFim: "17:00", descricao: "Sessão de pilates ao ar livre para promover a saúde e o bem-estar.", imagem: "pilates.jpg" },
+        { estado: "aceite" ,email: "john.doe@example.com", titulo: "aceite", type: "Aulas", localidade: "Parque da Avenida", region: "Norte", data: "2024-04-24", horaInicio: "15:00", horaFim: "17:00", descricao: "Sessão de pilates ao ar livre para promover a saúde e o bem-estar.", imagem: "pilates.jpg"}
+    ];
+
+    // Check if pedidos already exist in local storage
+    if (!localStorage.getItem('pedidos')) {
+        // Store predefined pedidos in local storage
+        localStorage.setItem('pedidos', JSON.stringify(predefinedPedidos));
+        console.log("Pedidos preloaded into local storage.");
+    } else {
+        console.log("Pedidos already exist in local storage.");
     }
 }
