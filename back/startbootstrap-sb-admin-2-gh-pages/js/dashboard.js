@@ -1,8 +1,9 @@
   document.addEventListener('DOMContentLoaded', () => {
     const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
     const donations = JSON.parse(localStorage.getItem('donations')) || [];
+    const professionals = JSON.parse(localStorage.getItem('profissionais')) || [];
     barPerc(initiatives);
-    topCards(donations,initiatives);
+    topCards(donations, initiatives, professionals);
   });
   
   function barPerc(initiatives) {
@@ -82,26 +83,26 @@
     }
   }
 
-  function topCards(donations,initiatives) {
+  function topCards(donations, initiatives, professionals) {
     //card donations
     const totalSum = donations.reduce((sum, donation) => sum + donation.montante, 0);
     const formattedTotalSum = totalSum.toFixed(2);
+
     //card initiatives
     const today = new Date();
     const todayString = today.toISOString().split('T')[0];
 
-    // Filter initiatives happening today
     const todaysInitiatives = initiatives.filter(initiative => {
-        // Ensure the date is in the same format
-        const initiativeDate = initiative.data; // Assumes initiative.data is stored as a string in YYYY-MM-DD format
+        const initiativeDate = initiative.data; // Garantee its in the same format
         return initiativeDate === todayString;
     });
 
-    // Count initiatives happening today
     const todaysInitiativesCount = todaysInitiatives.length;
 
+    //card professionals
+    const totalProfessionals = professionals.length;
 
-    createCardElement(totalSum, todaysInitiativesCount)
+    createCardElement(totalSum, todaysInitiativesCount, totalProfessionals)
 
 
     function createCardElement(totalSum) {
@@ -135,7 +136,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1"  style="margin-top: -15px;">
                                                 Ações a decorrer</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"  style="margin-top: 15px;">${todaysInitiativesCount}</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">${todaysInitiativesCount}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"  style="margin-top: 15px;"></i>
@@ -152,8 +153,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1"  style="margin-top: -15px;">
-                                                Profissionais no Terreno</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">78</div>
+                                                Profissionais</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">${totalProfessionals}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-people-carry fa-2x text-gray-300"  style="margin-top: 15px;"></i>

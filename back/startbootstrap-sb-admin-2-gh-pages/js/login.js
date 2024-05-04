@@ -93,7 +93,7 @@ function preloadInitiatives() {
 }
 
 function preloadDonations() {
-    // Predefined initiatives
+    // Predefined donations
     const predefinedDonations = [
         //online donations
         { data:"2024-05-01", montante:38030.5 ,type: "Online" },
@@ -135,5 +135,26 @@ function preloadDonations() {
         console.log("Donations preloaded into local storage.");
     } else {
         console.log("Donations already exist in local storage.");
+    }
+}
+
+function preloadPedidos() {
+    // Predefined pedidos
+    const predefinedPedidos = [
+        { email: "john.doe@example.com", titulo: "Corrida da Cidade", type: "Corrida/Maratona", localidade: "Avenida da Liberdade - Braga", region: "Norte", data: "2024-06-10", horaInicio: "09:00", horaFim: "11:00", descricao: "Uma maratona urbana para todos os níveis de corredores.", imagem: "maratona.jpg" },
+        { email: "john.doe@example.com", titulo: "Aulas de Yoga - Conti", type: "Aulas", localidade: "Parque das Águas", region: "Lisboa", data: "2024-06-12", horaInicio: "08:00", horaFim: "10:00", descricao: "Sessão de yoga ao ar livre para promover a saúde e o bem-estar.", imagem: "yoga.jpg" },
+        { email: "john.doe@example.com", titulo: "Jogo de Futebol Beneficente dos Alves", type: "Jogos de Futebol", localidade: "Estádio Municipal", region: "Norte", data: "2024-06-15", horaInicio: "15:00", horaFim: "17:00", descricao: "Jogo de futebol para arrecadar fundos para a caridade local." },
+        { email: "john.doe@example.com", titulo: "Workshop de Fotografia", type: "Workshop", localidade: "Centro Cultural", region: "Alentejo", data: "2024-06-18", horaInicio: "10:00", horaFim: "12:00", descricao: "Workshop introdutório sobre técnicas de fotografia digital.", imagem: "fotografia.jpg" },
+        { email: "john.doe@example.com", titulo: "Aula de Pilates", type: "Aulas", localidade: "Parque da Avenida", region: "Norte", data: "2024-06-24", horaInicio: "15:00", horaFim: "17:00", descricao: "Sessão de pilates ao ar livre para promover a saúde e o bem-estar.", imagem: "pilates.jpg" },
+        { email: "john.doe@example.com", titulo: "Festa de Panóias", type: "Outro", localidade: "Marquês de Pombal", region: "Centro", data: "2024-07-1", horaInicio: "17:00", horaFim: "22:00", descricao: "Panóias Solidaria", imagem: "panoias.jpg" }
+    ];
+
+    // Check if pedidos already exist in local storage
+    if (!localStorage.getItem('pedidos')) {
+        // Store predefined pedidos in local storage
+        localStorage.setItem('pedidos', JSON.stringify(predefinedPedidos));
+        console.log("Pedidos preloaded into local storage.");
+    } else {
+        console.log("Pedidos already exist in local storage.");
     }
 }
