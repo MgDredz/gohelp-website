@@ -96,11 +96,11 @@ function preloadDonations() {
     // Predefined initiatives
     const predefinedDonations = [
         //online donations
-        { data:"2024-05-01", montante:38030 ,type: "Online" },
+        { data:"2024-05-01", montante:38030.5 ,type: "Online" },
         { data:"2024-04-25", montante:24000 ,type: "Online" },
         { data:"2024-03-25", montante:14500 ,type: "Online" },
         { data:"2024-02-25", montante:12554 ,type: "Online" },
-        { data:"2024-01-25", montante:14040 ,type: "Online" },
+        { data:"2024-01-25", montante:14040.5 ,type: "Online" },
         { data:"2023-12-25", montante:29050 ,type: "Online" },
         { data:"2023-11-25", montante:9345 ,type: "Online" },
         { data:"2023-10-25", montante:9775 ,type: "Online" },
@@ -110,15 +110,15 @@ function preloadDonations() {
         { data:"2023-06-25", montante:40775 ,type: "Online" },
         //field donations
         { data:"2024-05-25", montante:3800 ,type: "Field" },
-        { data:"2024-04-25", montante:2400 ,type: "Field" },
+        { data:"2024-04-25", montante:2403.5 ,type: "Field" },
         { data:"2024-03-25", montante:1400 ,type: "Field" },
         { data:"2024-02-25", montante:1254 ,type: "Field" },
         { data:"2024-01-25", montante:1440 ,type: "Field" },
         { data:"2023-12-25", montante:2950 ,type: "Field" },
-        { data:"2023-11-25", montante:935 ,type: "Field" },
-        { data:"2023-10-25", montante:975 ,type: "Field" },
+        { data:"2023-11-25", montante:935.2 ,type: "Field" },
+        { data:"2023-10-25", montante:975.5 ,type: "Field" },
         { data:"2023-09-25", montante:1140 ,type: "Field" },
-        { data:"2023-08-25", montante:2245 ,type: "Field" },
+        { data:"2023-08-25", montante:2245.5 ,type: "Field" },
         { data:"2023-07-25", montante:3050 ,type: "Field" },
         { data:"2023-06-25", montante:4075 ,type: "Field" },
         //sponsor donations
@@ -129,11 +129,11 @@ function preloadDonations() {
     ];
 
     // Check if initiatives already exist in local storage
-    if (!localStorage.getItem('initiatives')) {
+    if (!localStorage.getItem('donations')) {
         // Store predefined initiatives in local storage
-        localStorage.setItem('initiatives', JSON.stringify(predefinedDonations));
-        console.log("Initiatives preloaded into local storage.");
+        localStorage.setItem('donations', JSON.stringify(predefinedDonations));
+        console.log("Donations preloaded into local storage.");
     } else {
-        console.log("Initiatives already exist in local storage.");
+        console.log("Donations already exist in local storage.");
     }
 }
