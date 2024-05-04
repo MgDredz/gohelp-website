@@ -9983,16 +9983,15 @@ body.sidebar-toggled footer.sticky-footer{
 .GerirProfissionais-table-Profissionais-2 table {
     border-collapse: separate;
     border-spacing: 0px;
-    border: none;
+    border: none;                /* Largura do quadrado */
+    margin-top: 5px;
 }
 
 .GerirProfissionais-table-Profissionais-2 {
     position:relative;
-    width:100%;
-    padding-right: 0px;
-    padding-left: 0px;
     display: flex;              /* Faz com que os elementos filhos (plus-sign e table) sejam dispostos em linha */
     align-items: center;        /* Centraliza os elementos filhos verticalmente */
+    width: 600px;
 }
 
 .GerirProfissionais-table-Profissionais-2 tbody{
@@ -10001,12 +10000,12 @@ body.sidebar-toggled footer.sticky-footer{
 }
   
   /* Bottom left border radius on the first cell of the last row */
-.GerirProfissionais-table-Profissionais-2 tbody tr:nth-child(3) td:first-child {
+.GerirProfissionais-table-Profissionais-2 tbody tr:last-child td:first-child {
     border-bottom-left-radius: 10px;
 }
   
 /* Bottom right border radius on the last cell of the last row */
-.GerirProfissionais-table-Profissionais-2 tbody tr:nth-child(3) td:nth-child(3) {
+.GerirProfissionais-table-Profissionais-2 tbody tr:last-child td:nth-child(3) {
     border-bottom-right-radius: 10px;
 }
 
@@ -10021,7 +10020,7 @@ body.sidebar-toggled footer.sticky-footer{
 }
 
 .GerirProfissionais-table-Profissionais-2 tbody td:first-child{
-    width: 260px;
+    width: 200px;
 }
 
 .GerirProfissionais-table-Profissionais-2 tr td:nth-child(2){
@@ -10036,25 +10035,22 @@ body.sidebar-toggled footer.sticky-footer{
 
 .GerirProfissionais-table-Profissionais-2 tr td:nth-child(4){
     text-align: center;
-    width: 80px;
-    border-spacing: 20px;
-    margin-left: 20px;
+    width: 30px;
 }
   
   /* Center text for the last td element in each row */
 .plus-sign {
     display: inline-block;      /* Faz com que o elemento seja tratado como inline mas permita dimensionamento */
-    width: 39px;                /* Largura do quadrado */
+    width: 0px;                /* Largura do quadrado */
     height: 30px;               /* Altura do quadrado */
     background-color: #fff;  /* Cor de fundo do quadrado */
     color: black;               /* Cor do texto */
     font-size: 24px;            /* Tamanho do texto */
     text-align: center;         /* Centraliza o texto */
     line-height: 26px;          /* Centraliza verticalmente o texto dentro do quadrado */
-    margin-left: 10px;         /* Espaçamento à direita do quadrado */
-    margin-top: 26px; 
+    margin-left: 30px;         /* Espaçamento à direita do quadrado */
+    margin-top: 2px; 
     border: 2px solid #B7BBBF;    /* Borda do quadrado */
-    border-radius: 4px;
 }
 
 .input-style{
@@ -10157,3 +10153,77 @@ body.sidebar-toggled footer.sticky-footer{
     font-size: 20px;
     margin-left: 5px;
 }
+
+/* GEgeeg*/
+
+.CriarIniciativa-table{
+    width: 443px;
+    border-bottom: 1px solid #858796;
+    border-top: 1px solid #858796;
+    border-left: 1px solid #858796;
+    border-right: 1px solid #858796;
+}
+
+.CriarIniciativa-table-container {
+    width: 301px;
+    background: #F8F9FC;
+    margin-top: 0px;
+    border-radius: 5px;
+    overflow: hidden; /* Garante que tudo dentro do contêiner seja contido, incluindo a barra de rolagem */
+}
+
+.CriarIniciativa-table-body {
+    height: 150px; /* Altura ajustável para ativar a barra de rolagem */
+    overflow-y: auto;
+    padding-right: 20px; /* Adds padding to the right of the table, pushing the scrollbar out */
+    box-sizing: content-box; /* Ensures padding does not affect the defined width */
+}
+
+.CriarIniciativa-table-body table {
+    width: 443px;
+    border-collapse: collapse;
+    margin-left: 100px;
+}
+
+.CriarIniciativa-table-body td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #858796;
+    border-top: 1px solid #858796;
+    border-left: 1px solid #858796;
+    border-right: 1px solid #858796;
+    border-radius: 5px;
+    border-spacing: 10px;
+}
+
+.CriarIniciativa-table-body th {
+    background: #f9f9f9;
+}
+
+.CriarIniciativa-table-body::-webkit-scrollbar {
+    width: 10px; /* Largura da barra de rolagem */
+    margin-top: 10px;
+}
+
+/* Estiliza o track da barra de rolagem (parte por onde a thumb se move) */
+.CriarIniciativa-table-body::-webkit-scrollbar-track {
+    background: #ffffff; /* Cor de fundo do track, definido como branco */
+}
+
+/* Estiliza a thumb da barra de rolagem (parte móvel que você arrasta) */
+.CriarIniciativa-table-body::-webkit-scrollbar-thumb {
+    background-color: #cccccc; /* Cor da thumb */
+    border-radius: 6px; /* Borda arredondada para a thumb */
+    border: 2px solid #f0f0f0; /* Borda adicional para separar thumb do track */    
+}
+
+/* Remove as setas da barra de rolagem */
+.CriarIniciativa-table-body::-webkit-scrollbar-button {
+    display: none; /* Esconde os botões */
+}
+
+.CriarIniciativa-table-titulo{
+    font-size: 20px;
+    text-align: center;
+}
+
