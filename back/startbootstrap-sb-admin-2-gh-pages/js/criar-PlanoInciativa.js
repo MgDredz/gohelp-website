@@ -50,6 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 imagem: imagem,
                 participantes: 0,
                 doacoes: 0,
+                materiais: [],
+                profissionais: []
             };
 
             // Retrieve the existing initiatives array from local storage or initialize it if not present

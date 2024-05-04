@@ -2,6 +2,28 @@
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
+const donations = JSON.parse(localStorage.getItem('donations')) || predefinedDonations;
+
+// Initialize totals for each type of donation
+let totalOnlineDonations = 0;
+let totalFieldDonations = 0;
+let totalSponsorDonations = 0;
+
+// Calculate the total donations for each type
+donations.forEach(donation => {
+    switch (donation.type) {
+        case 'Online':
+            totalOnlineDonations += donation.montante;
+            break;
+        case 'Field':
+            totalFieldDonations += donation.montante;
+            break;
+        case 'Sponsor':
+            totalSponsorDonations += donation.montante;
+            break;
+    }
+});
+
 // Pie Chart Example
 var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
@@ -9,7 +31,7 @@ var myPieChart = new Chart(ctx, {
   data: {
     labels: ["Online", "Patrocinadores", "No Terreno"],
     datasets: [{
-      data: [800000, 300000, 150000],
+      data: [totalOnlineDonations.toFixed(2), totalSponsorDonations.toFixed(2), totalFieldDonations.toFixed(2)],
       backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
       hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",

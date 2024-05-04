@@ -110,7 +110,7 @@ function preloadDonations() {
         { data:"2023-07-25", montante:36050 ,type: "Online" },
         { data:"2023-06-25", montante:40775 ,type: "Online" },
         //field donations
-        { data:"2024-05-25", montante:3800 ,type: "Field" },
+        { data:"2024-05-01", montante:3800 ,type: "Field" },
         { data:"2024-04-25", montante:2403.5 ,type: "Field" },
         { data:"2024-03-25", montante:1400 ,type: "Field" },
         { data:"2024-02-25", montante:1254 ,type: "Field" },
@@ -123,7 +123,7 @@ function preloadDonations() {
         { data:"2023-07-25", montante:3050 ,type: "Field" },
         { data:"2023-06-25", montante:4075 ,type: "Field" },
         //sponsor donations
-        { data:"2024-05-25", montante:24000 ,type: "Sponsor" },
+        { data:"2024-05-01", montante:24000 ,type: "Sponsor" },
         { data:"2024-04-25", montante:14000 ,type: "Sponsor" },
         { data:"2023-07-25", montante:40000 ,type: "Sponsor" },
         { data:"2023-06-25", montante:35000 ,type: "Sponsor" },

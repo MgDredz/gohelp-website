@@ -84,7 +84,7 @@
     }
   }
 
-  function topCards(donations, initiatives, professionals, pedidos) {
+function topCards(donations, initiatives, professionals, pedidos) {
     //card donations
     const totalSum = donations.reduce((sum, donation) => sum + donation.montante, 0);
     const formattedTotalSum = totalSum.toFixed(2);
@@ -109,8 +109,6 @@
 
     //escrever html
     const topCards = document.getElementById('topCards');
-    const container2 = document.createElement('div');
-    container2.className = 'col-xl-3 col-md-6 mb-4'; // Assuming this class aligns with the intended style
 
     topCards.innerHTML = `
     <div class="col-xl-3 col-md-6 mb-4">
@@ -184,8 +182,91 @@
                     </div>
                 </div>
     `;
-    topCards.appendChild(container2);
-    
+    bottomCards(donations, todaysInitiatives, todaysInitiativesCount, professionals, pedidos);
+}
+
+function bottomCards(donations, todaysInitiatives, todaysInitiativesCount, professionals, pedidos) {
+    //donations
+    const totalSum = todaysInitiatives.reduce((total, todaysInitiatives) => total + todaysInitiatives.doacoes, 0);
+    const formattedTotalSum2 = totalSum.toFixed(2);
+
+    //professionals on work
+    const workProfessioanls = todaysInitiatives.reduce((total, todaysInitiatives) => total + todaysInitiatives.profissionais,length, 0);
+
+    //participants
+    const totalParticipants = todaysInitiatives.reduce((total, todaysInitiatives) => total + todaysInitiatives.participantes, 0);
+
+    //escrever html
+    const topCards = document.getElementById('bottomCards');
+
+    topCards.innerHTML = `
+        <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card2 border-left-primary shadow h-100 py-3">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="margin-top: -15px;">
+                                Ações a decorrer</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 20px;">${todaysInitiativesCount}</div>
+                        </div>
+                        <div class="col-auto">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Doaçoes Card Example -->
+        <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card2 border-left-success shadow h-100 py-3">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1" style="margin-top: -15px;">
+                                Doações</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 20px;">${formattedTotalSum2}€</div>
+                        </div>
+                        <div class="col-auto">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Funcionarios Card Example-->
+        <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card2 border-left-info shadow h-100 py-3">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1" style="margin-top: -15px;">
+                                Funcionários em Ação</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 20px;"">${workProfessioanls}</div>
+                        </div>
+                        <div class="col-auto">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dsitritos Card Example -->
+        <div class="col-xl-6 col-md-6 mb-4">
+            <div class="card2 border-left-warning shadow h-100 py-3">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1" style="margin-top: -15px;">
+                                Participantes</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 20px;">${totalParticipants}</div>
+                        </div>
+                        <div class="col-auto">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
 }
 
 
