@@ -2,8 +2,9 @@
     const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
     const donations = JSON.parse(localStorage.getItem('donations')) || [];
     const professionals = JSON.parse(localStorage.getItem('profissionais')) || [];
+    const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
     barPerc(initiatives);
-    topCards(donations, initiatives, professionals);
+    topCards(donations, initiatives, professionals, pedidos);
   });
   
   function barPerc(initiatives) {
@@ -83,7 +84,7 @@
     }
   }
 
-  function topCards(donations, initiatives, professionals) {
+  function topCards(donations, initiatives, professionals, pedidos) {
     //card donations
     const totalSum = donations.reduce((sum, donation) => sum + donation.montante, 0);
     const formattedTotalSum = totalSum.toFixed(2);
@@ -102,88 +103,89 @@
     //card professionals
     const totalProfessionals = professionals.length;
 
-    createCardElement(totalSum, todaysInitiativesCount, totalProfessionals)
+    //card pedidos
+    const pendentePedidos = pedidos.filter(pedido => pedido.estado === "pendente");
+    const pendenteCount = pendentePedidos.length;
 
+    //escrever html
+    const topCards = document.getElementById('topCards');
+    const container2 = document.createElement('div');
+    container2.className = 'col-xl-3 col-md-6 mb-4'; // Assuming this class aligns with the intended style
 
-    function createCardElement(totalSum) {
-        const topCards = document.getElementById('topCards');
-        const container2 = document.createElement('div');
-        container2.className = 'col-xl-3 col-md-6 mb-4'; // Assuming this class aligns with the intended style
-  
-        topCards.innerHTML = `
-        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"  style="margin-top: -15px;">
-                                                Doações</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"  style="margin-top: 15px;">${formattedTotalSum}€</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-euro-sign fa-2x text-gray-300"  style="margin-top: 15px;"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--  Ações a decorre Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1"  style="margin-top: -15px;">
-                                                Ações a decorrer</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">${todaysInitiativesCount}</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"  style="margin-top: 15px;"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Profissionais no Terreno Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"  style="margin-top: -15px;">
-                                                Profissionais</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">${totalProfessionals}</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-people-carry fa-2x text-gray-300"  style="margin-top: 15px;"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pedidos Card Example -->
-                     <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-warning shadow h-100 py-2">
+    topCards.innerHTML = `
+    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"  style="margin-top: -15px;">
-                                            Pedidos</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800"  style="margin-top: 15px;">17</div>
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"  style="margin-top: -15px;">
+                                            Doações</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"  style="margin-top: 15px;">${formattedTotalSum}€</div>
                                     </div>
                                     <div class="col-auto">
-                                        <i class="fas fa-comments fa-2x text-gray-300" style="margin-top: 15px;"></i>
+                                        <i class="fas fa-euro-sign fa-2x text-gray-300"  style="margin-top: 15px;"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-        `;
-        topCards.appendChild(container2);
-    }
+
+                    <!--  Ações a decorre Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1"  style="margin-top: -15px;">
+                                            Ações a decorrer</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">${todaysInitiativesCount}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar fa-2x text-gray-300"  style="margin-top: 15px;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profissionais no Terreno Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1"  style="margin-top: -15px;">
+                                            Profissionais</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">${totalProfessionals}</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-people-carry fa-2x text-gray-300"  style="margin-top: 15px;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pedidos Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"  style="margin-top: -15px;">
+                                        Pedidos</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"  style="margin-top: 15px;">${pendenteCount}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-comments fa-2x text-gray-300" style="margin-top: 15px;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    `;
+    topCards.appendChild(container2);
+    
 }
 
 

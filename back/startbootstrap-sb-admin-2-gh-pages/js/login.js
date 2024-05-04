@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     preloadProfiles(); // Preload professional profiles
     preloadInitiatives();
     preloadDonations();
+    preloadPedidos();
 
     const loginButton = document.querySelector('.btn-user.btn-block');
     if (loginButton) {
@@ -74,7 +75,7 @@ function preloadProfiles() {
 function preloadInitiatives() {
     // Predefined initiatives
     const predefinedInitiatives = [
-        { titulo: "Corrida da Cidade", type: "Corrida/Maratona", localidade: "Centro da Cidade", region: "Centro", data: "2024-04-10", horaInicio: "09:00", horaFim: "11:00", descricao: "Uma maratona urbana para todos os níveis de corredores.", imagem: "maratona.jpg", participantes: 24, doacoes: 535.00, materiais: [], profissionais: [] },
+        { titulo: "Corrida da Cidade", type: "Corrida/Maratona", localidade: "Centro da Cidade - Braga", region: "Norte", data: "2024-04-10", horaInicio: "09:00", horaFim: "11:00", descricao: "Uma maratona urbana para todos os níveis de corredores.", imagem: "maratona.jpg", participantes: 24, doacoes: 535.00, materiais: [], profissionais: [] },
         { titulo: "Aulas de Yoga", type: "Aulas", localidade: "Parque das Águas", region: "Lisboa", data: "2024-04-12", horaInicio: "08:00", horaFim: "10:00", descricao: "Sessão de yoga ao ar livre para promover a saúde e o bem-estar.", imagem: "yoga.jpg", participantes: 14, doacoes: 245.00, materiais: [], profissionais: [] },
         { titulo: "Jogo de Futebol Beneficente", type: "Jogos de Futebol", localidade: "Estádio Municipal", region: "Norte", data: "2024-04-15", horaInicio: "15:00", horaFim: "17:00", descricao: "Jogo de futebol para arrecadar fundos para a caridade local.", imagem: "futebol.jpg", participantes: 34, doacoes: 245.42, materiais: [], profissionais: [] },
         { titulo: "Workshop de Fotografia", type: "Workshop", localidade: "Centro Cultural", region: "Alentejo", data: "2024-04-18", horaInicio: "10:00", horaFim: "12:00", descricao: "Workshop introdutório sobre técnicas de fotografia digital.", imagem: "fotografia.jpg", participantes: 121, doacoes: 1345.50, materiais: [], profissionais: [] },
@@ -141,12 +142,14 @@ function preloadDonations() {
 function preloadPedidos() {
     // Predefined pedidos
     const predefinedPedidos = [
-        { email: "john.doe@example.com", titulo: "Corrida da Cidade", type: "Corrida/Maratona", localidade: "Avenida da Liberdade - Braga", region: "Norte", data: "2024-06-10", horaInicio: "09:00", horaFim: "11:00", descricao: "Uma maratona urbana para todos os níveis de corredores.", imagem: "maratona.jpg" },
-        { email: "john.doe@example.com", titulo: "Aulas de Yoga - Conti", type: "Aulas", localidade: "Parque das Águas", region: "Lisboa", data: "2024-06-12", horaInicio: "08:00", horaFim: "10:00", descricao: "Sessão de yoga ao ar livre para promover a saúde e o bem-estar.", imagem: "yoga.jpg" },
-        { email: "john.doe@example.com", titulo: "Jogo de Futebol Beneficente dos Alves", type: "Jogos de Futebol", localidade: "Estádio Municipal", region: "Norte", data: "2024-06-15", horaInicio: "15:00", horaFim: "17:00", descricao: "Jogo de futebol para arrecadar fundos para a caridade local." },
-        { email: "john.doe@example.com", titulo: "Workshop de Fotografia", type: "Workshop", localidade: "Centro Cultural", region: "Alentejo", data: "2024-06-18", horaInicio: "10:00", horaFim: "12:00", descricao: "Workshop introdutório sobre técnicas de fotografia digital.", imagem: "fotografia.jpg" },
-        { email: "john.doe@example.com", titulo: "Aula de Pilates", type: "Aulas", localidade: "Parque da Avenida", region: "Norte", data: "2024-06-24", horaInicio: "15:00", horaFim: "17:00", descricao: "Sessão de pilates ao ar livre para promover a saúde e o bem-estar.", imagem: "pilates.jpg" },
-        { email: "john.doe@example.com", titulo: "Festa de Panóias", type: "Outro", localidade: "Marquês de Pombal", region: "Centro", data: "2024-07-1", horaInicio: "17:00", horaFim: "22:00", descricao: "Panóias Solidaria", imagem: "panoias.jpg" }
+        { estado: "pendente" ,email: "john.doe@example.com", titulo: "Corrida do Norte", type: "Corrida/Maratona", localidade: "Avenida da Liberdade - Porto", region: "Norte", data: "2024-06-10", horaInicio: "09:00", horaFim: "11:00", descricao: "Uma maratona urbana para todos os níveis de corredores.", imagem: "maratona.jpg" },
+        { estado: "pendente" ,email: "john.doe@example.com", titulo: "Aulas de Yoga - Conti", type: "Aulas", localidade: "Parque das Águas", region: "Lisboa", data: "2024-06-12", horaInicio: "08:00", horaFim: "10:00", descricao: "Sessão de yoga ao ar livre para promover a saúde e o bem-estar.", imagem: "yoga.jpg" },
+        { estado: "pendente" ,email: "john.doe@example.com", titulo: "Jogo de Futebol Beneficente dos Alves", type: "Jogos de Futebol", localidade: "Estádio Municipal", region: "Norte", data: "2024-06-15", horaInicio: "15:00", horaFim: "17:00", descricao: "Jogo de futebol para arrecadar fundos para a caridade local." },
+        { estado: "pendente" ,email: "john.doe@example.com", titulo: "Workshop de Fotografia", type: "Workshop", localidade: "Centro Cultural", region: "Alentejo", data: "2024-06-18", horaInicio: "10:00", horaFim: "12:00", descricao: "Workshop introdutório sobre técnicas de fotografia digital.", imagem: "fotografia.jpg" },
+        { estado: "pendente" ,email: "john.doe@example.com", titulo: "Aula de Pilates", type: "Aulas", localidade: "Parque da Avenida", region: "Norte", data: "2024-06-24", horaInicio: "15:00", horaFim: "17:00", descricao: "Sessão de pilates ao ar livre para promover a saúde e o bem-estar.", imagem: "pilates.jpg" },
+        { estado: "pendente" ,email: "john.doe@example.com", titulo: "Festa de Panóias", type: "Outro", localidade: "Marquês de Pombal", region: "Centro", data: "2024-07-1", horaInicio: "17:00", horaFim: "22:00", descricao: "Panóias Solidaria", imagem: "panoias.jpg" },
+        { estado: "recusado" ,email: "john.doe@example.com", titulo: "Aula de Pilates", type: "Aulas", localidade: "Parque da Avenida", region: "Norte", data: "2024-06-24", horaInicio: "15:00", horaFim: "17:00", descricao: "Sessão de pilates ao ar livre para promover a saúde e o bem-estar.", imagem: "pilates.jpg" },
+        { estado: "aceite" ,email: "john.doe@example.com", titulo: "aceite", type: "Aulas", localidade: "Parque da Avenida", region: "Norte", data: "2024-04-24", horaInicio: "15:00", horaFim: "17:00", descricao: "Sessão de pilates ao ar livre para promover a saúde e o bem-estar.", imagem: "pilates.jpg"}
     ];
 
     // Check if pedidos already exist in local storage
