@@ -10157,15 +10157,19 @@ body.sidebar-toggled footer.sticky-footer{
 /* GEgeeg*/
 
 .CriarIniciativa-table{
-    width: 443px;
+    width: 303px;
     border-bottom: 1px solid #858796;
     border-top: 1px solid #858796;
     border-left: 1px solid #858796;
     border-right: 1px solid #858796;
+    border-radius: 6px;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin-left: 70px;
 }
 
 .CriarIniciativa-table-container {
-    width: 301px;
+    width: 290px;
     background: #F8F9FC;
     margin-top: 0px;
     border-radius: 5px;
@@ -10177,13 +10181,19 @@ body.sidebar-toggled footer.sticky-footer{
     overflow-y: auto;
     padding-right: 20px; /* Adds padding to the right of the table, pushing the scrollbar out */
     box-sizing: content-box; /* Ensures padding does not affect the defined width */
+    
 }
 
+
+
+
 .CriarIniciativa-table-body table {
-    width: 443px;
-    border-collapse: collapse;
-    margin-left: 100px;
+    width: 240px;
+    text-align: center;
+    margin-left: 20px;
+    
 }
+
 
 .CriarIniciativa-table-body td {
     padding: 8px;
