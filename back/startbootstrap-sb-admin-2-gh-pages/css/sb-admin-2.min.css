@@ -9628,7 +9628,7 @@ body.sidebar-toggled footer.sticky-footer{
   
 .tab-button {
     background-color: inherit;
-    flex-grow: 1; /* Faz cada aba crescer igualmente para preencher o espaço */
+    width: 1000px; /* Faz cada aba crescer igualmente para preencher o espaço */
     border: none;
     outline: none;
     cursor: pointer;

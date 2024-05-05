@@ -22,6 +22,49 @@ function openTab(tabName) {
     window.onclick = carregarQuantidades;
   };
 
+// Get the `id` parameter from the URL
+const urlParams = new URLSearchParams(window.location.search);
+const initiativeId = parseInt(urlParams.get('id'));
+
+// Retrieve initiatives from local storage
+const initiatives = JSON.parse(localStorage.getItem('initiatives'));
+
+// Find the initiative by ID
+const initiative = initiatives.find(init => init.id === initiativeId);
+
+
+
+//escrever
+const localidade = document.getElementById('localidade');
+  localidade.innerHTML = `
+  ${initiative.localidade}
+  `;
+
+const data = document.getElementById('data');
+  data.innerHTML = `
+  ${initiative.data}
+  `;
+
+const titulo = document.getElementById('titulo');
+  titulo.innerHTML = `
+  ${initiative.titulo}
+  `;
+
+const tituloB = document.getElementById('tituloBold');
+  tituloB.innerHTML = `
+  ${initiative.titulo}
+  `;
+
+
+
+
+
+
+
+
+
+
+
   /*
  // Seleciona todos os botões de adição e subtração
  const plusButtons = document.querySelectorAll('.plus-btn');

@@ -61,32 +61,33 @@ function openTab(tabName) {
 }
 
 function createInitiativeElement(initiative) {
-  const container = document.createElement('div');
-  container.className = 'event-button'; // Assuming this class aligns with the intended style
+    const container = document.createElement('div');
+    container.className = 'event-button'; // Assuming this class aligns with the intended style
 
-  const formattedDate = new Date(initiative.data).toLocaleDateString('pt-PT', { weekday: 'short', day: '2-digit', month: 'short' });
+    const formattedDate = new Date(initiative.data).toLocaleDateString('pt-PT', { weekday: 'short', day: '2-digit', month: 'short' });
 
-  container.innerHTML = `
-      <a href="Gerir-Iniciativa-Individual.html">
-          <div class="event-container">
-              <img src="${initiative.imagem}" alt="Event Image" style="width: 100%; height: auto;" /> <!-- Set the src attribute with the image data -->
-              <div class="event-date">${formattedDate}</div>
-              <div class="event-location">${initiative.localidade}</div>
-              <h3 class="event-Titel">${initiative.titulo}</h3>
-              <p>${initiative.descricao}</p>
-          </div>
-      </a>
-      <div class="row">
-          <div class="event-inscricoes">
-              <span class="numero-evento-inscricoes">${initiative.participantes}</span> <!-- Default value, update based on your data -->
-              <span class="texto-evento">Inscrições</span>
-          </div>
-          <div class="event-angariacoes">
-              <span class="numero-evento-euros">${initiative.doacoes} €</span> <!-- Default value, update based on your data -->
-              <span class="texto-evento">Angariados</span>
-          </div>
-      </div>
-  `;
+    const initiativeUrl = `Gerir-Iniciativa-Individual.html?id=${initiative.id}`;
+    container.innerHTML = `
+    <a href="${initiativeUrl}">
+        <div class="event-container">
+            <img src="${initiative.imagem}" alt="Event Image" style="width: 100%; height: auto;" /> <!-- Set the src attribute with the image data -->
+            <div class="event-date">${formattedDate}</div>
+            <div class="event-location">${initiative.localidade}</div>
+            <h3 class="event-Titel">${initiative.titulo}</h3>
+            <p>${initiative.descricao}</p>
+        </div>
+    </a>
+    <div class="row">
+        <div class="event-inscricoes">
+            <span class="numero-evento-inscricoes">${initiative.participantes}</span> <!-- Default value, update based on your data -->
+            <span class="texto-evento">Inscrições</span>
+        </div>
+        <div class="event-angariacoes">
+            <span class="numero-evento-euros">${initiative.doacoes} €</span> <!-- Default value, update based on your data -->
+            <span class="texto-evento">Angariados</span>
+        </div>
+    </div>
+`;
 
   return container;
 }
