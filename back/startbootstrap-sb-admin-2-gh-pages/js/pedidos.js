@@ -72,8 +72,8 @@ function showDetails(id) {
                 <p><strong>Título:</strong> ${pedido.titulo}</p>
                 <p><strong>Hora Início:</strong> ${pedido.horaInicio}</p>
                 <p><strong>Hora Fim:</strong> ${pedido.horaFim}</p>
-                <p><strong>Email:</strong> ${pedido.email}</p>
                 <p><strong>Descrição:</strong> ${pedido.descricao}</p>
+                <p><strong>Email:</strong> ${pedido.email}</p>
             </div>
             <div class="col-md-6">
                 <img src="${pedido.imagem}" class="img-fluid" alt="Evento">
@@ -85,15 +85,7 @@ function showDetails(id) {
 }
 
 function approveRequest(id) {
-    const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
-    const index = pedidos.findIndex(item => item.id === id);
-
-    if (index !== -1) {
-        pedidos[index].estado = 'aceite'; // Set status to "aceite"
-        localStorage.setItem('pedidos', JSON.stringify(pedidos));
-        displayRequests(); // Refresh the requests display
-        displayOpenRequestsCount(); // Update the count of open requests
-    }
+    window.location.href = `criar-iniciativa.html?id=${id}`;
 }
 
 function rejectRequest(id) {
