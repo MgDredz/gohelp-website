@@ -72,8 +72,8 @@ function showDetails(id) {
                 <p><strong>Título:</strong> ${pedido.titulo}</p>
                 <p><strong>Hora Início:</strong> ${pedido.horaInicio}</p>
                 <p><strong>Hora Fim:</strong> ${pedido.horaFim}</p>
-                <p><strong>Email:</strong> ${pedido.email}</p>
                 <p><strong>Descrição:</strong> ${pedido.descricao}</p>
+                <p><strong>Email:</strong> ${pedido.email}</p>
             </div>
             <div class="col-md-6">
                 <img src="${pedido.imagem}" class="img-fluid" alt="Evento">
