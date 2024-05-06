@@ -182,10 +182,10 @@ function topCards(donations, initiatives, professionals, pedidos) {
                     </div>
                 </div>
     `;
-    bottomCards(donations, todaysInitiatives, todaysInitiativesCount, professionals, pedidos);
+    bottomCards(todaysInitiatives, todaysInitiativesCount);
 }
 
-function bottomCards(donations, todaysInitiatives, todaysInitiativesCount, professionals, pedidos) {
+function bottomCards(todaysInitiatives, todaysInitiativesCount) {
     //donations
     const totalSum = todaysInitiatives.reduce((total, todaysInitiatives) => total + todaysInitiatives.doacoes, 0);
     const formattedTotalSum2 = totalSum.toFixed(2);
