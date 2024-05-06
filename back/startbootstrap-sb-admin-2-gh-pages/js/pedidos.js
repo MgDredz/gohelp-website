@@ -1,121 +1,128 @@
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
+    displayInitiatives();
+    displayOpenRequestsCount();
+
     const storedUser = JSON.parse(localStorage.getItem('loggedInUser'));
     if (storedUser && storedUser.name) {
         document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = storedUser.name;
     }
-    const itemsPerPage = 5;
-    let currentPage = 1;
-    const listItems = document.querySelectorAll('.list-group-item');
-    const totalPages = Math.ceil(listItems.length / itemsPerPage);
-  
-    function showPage(page) {
-      const start = (page - 1) * itemsPerPage;
-      const end = start + itemsPerPage;
-      listItems.forEach((item, index) => {
-        if (index >= start && index < end) {
-          item.style.display = 'block';
-        } else {
-          item.style.display = 'none';
-        }
-      });
-    }
-  
-    // Add event listeners for each page link
-    document.querySelectorAll('.page-link').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const page = Number(this.textContent);
-        if (!isNaN(page)) {
-          currentPage = page;
-          showPage(currentPage);
-        }
-      });
-    });
-  
-    // Add event listener for the "Previous" button
-    const prevButton = document.querySelector('.page-link-previous');
-    if (prevButton) {
-      prevButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (currentPage > 1) {
-          currentPage--;
-          showPage(currentPage);
-        }
-      });
-    } else {
-      console.log('Previous button not found');
-    }
-  
-    // Add event listener for the "Next" button
-    const nextButton = document.querySelector('.page-link-next');
-    if (nextButton) {
-      nextButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (currentPage < totalPages) {
-          currentPage++;
-          showPage(currentPage);
-        }
-      });
-    } else {
-      console.log('Next button not found');
-    }
-  
-    // Initially display the first page
-    showPage(currentPage);
-  });
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    // Get all the list-group-item elements
-    var activities = document.querySelectorAll('.list-group-item');
-    
-    // Count the number of these elements
-    var count = activities.length;
-
-    // Find the paragraph element that contains the text "x Pedidos em Aberto"
-    var headerText = document.querySelector('.h3.mb-2.text-gray-800');
-    
-    // Update the text with the actual number of activities
-    if (headerText) {
-        headerText.textContent = count + ' Pedidos em Aberto';
-    }
 });
 
-function showDetails() {
-  // Here you would get the details from somewhere. 
-  // For demonstration, we'll hardcode an example entry:
-  var eventDetails = {
-    localidade: "Mire de Tibães, Braga",
-    data: "12/04/2024",
-    titulo: "Corrida do Mosteiro",
-    duracao: "5 horas",
-    nome: "Junta Freguesia de Mire de Tibães",
-    email: "juntamiretibaes@gmail.com",
-    telemovel: "969999999",
-    descricao: "Junte-se a nós numa corrida noturna pelas históricas ruas de Mire de Tibães, iluminando caminhos com esperança e união pela caridade.",
-    imagem: "path/to/image.jpg" // You'll replace this with the actual path to your image.
-  };
+function displayInitiatives(page = 1) {
+    const itemsPerPage = 5;
+    const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
+    const listGroup = document.querySelector('.list-group');
 
-  var modalBody = document.querySelector('#detailsModal .modal-body');
-  modalBody.innerHTML = `
-    <div class="row">
-      <div class="col-md-6">
-        <!-- Event Details -->
-        <p><strong>Localidade:</strong> ${eventDetails.localidade}</p>
-        <p><strong>Data:</strong> ${eventDetails.data}</p>
-        <p><strong>Título:</strong> ${eventDetails.titulo}</p>
-        <p><strong>Duração:</strong> ${eventDetails.duracao}</p>
-        <p><strong>Nome:</strong> ${eventDetails.nome}</p>
-        <p><strong>Email:</strong> ${eventDetails.email}</p>
-        <p><strong>Nº Telemóvel:</strong> ${eventDetails.telemovel}</p>
-        <p><strong>Descrição:</strong> ${eventDetails.descricao}</p>
-      </div>
-      <div class="col-md-6">
-        <!-- Event Image -->
-        <img src="${eventDetails.imagem}" class="img-fluid" alt="Evento">
-      </div>
-    </div>
-  `;
+    // Calculate pagination
+    const totalPages = Math.ceil(initiatives.length / itemsPerPage);
+    const start = (page - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
 
-  // Show the modal
-  $('#detailsModal').modal('show');
+    // Clear existing content
+    listGroup.innerHTML = '';
+
+    initiatives.slice(start, end).forEach(initiative => {
+        const initiativeElement = createInitiativeElement(initiative);
+        listGroup.appendChild(initiativeElement);
+    });
+
+    updatePagination(totalPages, page);
+}
+
+function createInitiativeElement(initiative) {
+    const listItem = document.createElement('div');
+    listItem.className = 'list-group-item list-group-item-action flex-column align-items-start mb-2';
+    listItem.setAttribute('data-id', initiative.id);
+
+    listItem.innerHTML = `
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">${initiative.titulo}</h5>
+            <small class="text-muted">
+                <a href="#" class="details-link2" data-toggle="modal" onclick="showDetails(${initiative.id})">Mais Detalhes</a>
+            </small>
+        </div>
+        <p class="mb-2"></p>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-dark">Em Análise</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-success">Aprovar</button>
+        </div>
+        <div class="btn-group" role="group">    
+            <button type="button" class="btn btn-danger">Rejeitar</button>
+        </div>
+    `;
+
+    return listItem;
+}
+
+function showDetails(id) {
+    const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
+    const initiative = initiatives.find(item => item.id === id);
+
+    if (!initiative) return;
+
+    const modalBody = document.querySelector('#detailsModal .modal-body');
+    modalBody.innerHTML = `
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Localidade:</strong> ${initiative.localidade}</p>
+                <p><strong>Data:</strong> ${initiative.data}</p>
+                <p><strong>Título:</strong> ${initiative.titulo}</p>
+                <p><strong>Hora Início:</strong> ${initiative.horaInicio}</p>
+                <p><strong>Hora Fim:</strong> ${initiative.horaFim}</p>
+                <p><strong>Descrição:</strong> ${initiative.descricao}</p>
+            </div>
+            <div class="col-md-6">
+                <img src="${initiative.imagem}" class="img-fluid" alt="Evento">
+            </div>
+        </div>
+    `;
+
+    $('#detailsModal').modal('show');
+}
+
+function updatePagination(totalPages, currentPage) {
+    const pagination = document.querySelector('.pagination');
+    pagination.innerHTML = '';
+
+    // Add "Previous" button
+    const prevItem = document.createElement('li');
+    prevItem.className = 'page-item';
+    prevItem.innerHTML = `<a class="page-link page-link-previous" href="#">Previous</a>`;
+    prevItem.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (currentPage > 1) displayInitiatives(currentPage - 1);
+    });
+    pagination.appendChild(prevItem);
+
+    // Add page numbers
+    for (let i = 1; i <= totalPages; i++) {
+        const pageItem = document.createElement('li');
+        pageItem.className = 'page-item' + (i === currentPage ? ' active' : '');
+        pageItem.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+        pageItem.addEventListener('click', (e) => {
+            e.preventDefault();
+            displayInitiatives(i);
+        });
+        pagination.appendChild(pageItem);
+    }
+
+    // Add "Next" button
+    const nextItem = document.createElement('li');
+    nextItem.className = 'page-item';
+    nextItem.innerHTML = `<a class="page-link page-link-next" href="#">Next</a>`;
+    nextItem.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (currentPage < totalPages) displayInitiatives(currentPage + 1);
+    });
+    pagination.appendChild(nextItem);
+}
+
+function displayOpenRequestsCount() {
+    const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
+    const headerText = document.querySelector('.h3.mb-2.text-gray-800');
+    if (headerText) {
+        headerText.textContent = `${initiatives.length} Pedidos em Aberto`;
+    }
 }
