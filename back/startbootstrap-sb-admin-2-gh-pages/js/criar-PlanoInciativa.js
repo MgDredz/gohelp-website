@@ -9,15 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return urlParams.get(name);
     }
 
-    // Get the id from the URL
     const id = getQueryParameter('id');
 
-    // Fetch the request data using the id
     const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
     const pedido = pedidos.find(p => p.id == id);
 
     if (pedido) {
-        // Fill the form fields with the request data
         document.getElementById('titulo').value = pedido.titulo;
         document.getElementById('type').value = pedido.type;
         document.getElementById('localidade').value = pedido.localidade;
@@ -28,13 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('descricao').value = pedido.descricao;
     }
 
-    
-
     const form = document.getElementById('inscricaoForm');
     form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
+        event.preventDefault();
 
-        // Get form elements
         const titulo = document.getElementById('titulo').value.trim();
         const type = document.getElementById('type').value.trim();
         const localidade = document.getElementById('localidade').value.trim();
@@ -45,15 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const descricao = document.getElementById('descricao').value.trim();
         const imagemFile = document.getElementById('imagem').files[0];
 
-        // Message elements
         const successMessage = document.getElementById('submitSuccessMessage');
         const errorMessage = document.getElementById('submitErrorMessage');
 
-        // Hide previous messages
         successMessage.classList.add('d-none');
         errorMessage.classList.add('d-none');
 
-        // Simple validation check
         if (!titulo || !type || !localidade || !region || !data || !horaInicio || !horaFim || !descricao || !imagemFile) {
             errorMessage.classList.remove('d-none');
             return;
@@ -63,8 +54,16 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.onload = function(e) {
             const imagem = e.target.result;
 
-            // Create initiative object
+            const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
+
+            let newId = 1;
+            if (initiatives.length > 0) {
+                const maxId = Math.max(...initiatives.map(i => i.id || 0));
+                newId = maxId + 1;
+            }
+
             const initiative = {
+                id: newId,
                 titulo: titulo,
                 type: type,
                 localidade: localidade,
@@ -80,27 +79,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 profissionais: []
             };
 
-            // Retrieve the existing initiatives array from local storage or initialize it if not present
-            const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
-
-            // Add the new initiative to the array
             initiatives.push(initiative);
-
-            // Save the updated array back to local storage
             localStorage.setItem('initiatives', JSON.stringify(initiatives));
 
             const index = pedidos.findIndex(p => p.id == id);
             if (index !== -1) {
-            pedidos[index].estado = 'aceite';
-            localStorage.setItem('pedidos', JSON.stringify(pedidos));
+                pedidos[index].estado = 'aceite';
+                localStorage.setItem('pedidos', JSON.stringify(pedidos));
             }
 
-            // Show success message and hide error message
             successMessage.classList.remove('d-none');
             errorMessage.classList.add('d-none');
-
-            // Optionally, reset the form after a successful submission
-            form.reset(); // Resets the form after submission
+            form.reset();
         };
 
         reader.readAsDataURL(imagemFile);
