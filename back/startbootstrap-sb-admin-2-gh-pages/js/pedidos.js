@@ -85,15 +85,7 @@ function showDetails(id) {
 }
 
 function approveRequest(id) {
-    const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
-    const index = pedidos.findIndex(item => item.id === id);
-
-    if (index !== -1) {
-        pedidos[index].estado = 'aceite'; // Set status to "aceite"
-        localStorage.setItem('pedidos', JSON.stringify(pedidos));
-        displayRequests(); // Refresh the requests display
-        displayOpenRequestsCount(); // Update the count of open requests
-    }
+    window.location.href = `criar-iniciativa.html?id=${id}`;
 }
 
 function rejectRequest(id) {

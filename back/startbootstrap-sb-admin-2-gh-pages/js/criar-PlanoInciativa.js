@@ -4,6 +4,32 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = storedUser.name;
     }
 
+    function getQueryParameter(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+
+    // Get the id from the URL
+    const id = getQueryParameter('id');
+
+    // Fetch the request data using the id
+    const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+    const pedido = pedidos.find(p => p.id == id);
+
+    if (pedido) {
+        // Fill the form fields with the request data
+        document.getElementById('titulo').value = pedido.titulo;
+        document.getElementById('type').value = pedido.type;
+        document.getElementById('localidade').value = pedido.localidade;
+        document.getElementById('region').value = pedido.region;
+        document.getElementById('data').value = pedido.data;
+        document.getElementById('horaInicio').value = pedido.horaInicio;
+        document.getElementById('horaFim').value = pedido.horaFim;
+        document.getElementById('descricao').value = pedido.descricao;
+    }
+
+    
+
     const form = document.getElementById('inscricaoForm');
     form.addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent default form submission
@@ -62,6 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Save the updated array back to local storage
             localStorage.setItem('initiatives', JSON.stringify(initiatives));
+
+            const index = pedidos.findIndex(p => p.id == id);
+            if (index !== -1) {
+            pedidos[index].estado = 'aceite';
+            localStorage.setItem('pedidos', JSON.stringify(pedidos));
+            }
 
             // Show success message and hide error message
             successMessage.classList.remove('d-none');
