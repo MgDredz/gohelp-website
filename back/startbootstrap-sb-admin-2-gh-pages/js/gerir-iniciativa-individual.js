@@ -55,11 +55,30 @@ const tituloB = document.getElementById('tituloBold');
   ${initiative.titulo}
   `;
 
+const doacoes = document.getElementById('doacoes');
+  doacoes.innerHTML = `
+  ${initiative.doacoes}
+  `;
 
+  const participantes = document.getElementById('participantes');
+  participantes.innerHTML = `
+  ${initiative.participantes}
+  `;
 
+  const descricao = document.getElementById('descricao');
+  descricao.innerHTML = `
+  ${initiative.descricao}
+  `;
 
+  const horaInicio = document.getElementById('horaInicio');
+  horaInicio.innerHTML = `
+  ${initiative.horaInicio}
+  `;
 
-
+  const horaFim = document.getElementById('horaFim');
+  horaFim.innerHTML = `
+  ${initiative.horaFim}
+  `;
 
 
 
