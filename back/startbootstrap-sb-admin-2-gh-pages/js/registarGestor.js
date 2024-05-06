@@ -48,17 +48,3 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 // Function to load data from local storage when the page loads
-window.onload = function loadData() {
-    if (localStorage.getItem('name')) {
-        document.querySelector('#name').value = localStorage.getItem('name');
-    }
-    if (localStorage.getItem('email')) {
-        document.querySelector('#email').value = localStorage.getItem('email');
-    }
-    if (localStorage.getItem('phone')) {
-        document.querySelector('#phone').value = localStorage.getItem('phone');
-    }
-    if (localStorage.getItem('region')) {
-        document.querySelector('#region').value = localStorage.getItem('region');
-    }
-};

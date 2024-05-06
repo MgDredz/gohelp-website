@@ -33,6 +33,7 @@ function openTab(tabName) {
 
   function displayInitiatives() {
     const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
+    const reversedInitiatives = initiatives.reverse();
     const realizadasContainer = document.getElementById('Realizadas');
     const aDecorrerContainer = document.getElementById('ADecorrer');
     const aRealizarContainer = document.getElementById('ARealizar');
@@ -45,7 +46,7 @@ function openTab(tabName) {
     const currentDate = new Date();
     currentDate.setHours(0, 0, 0, 0); // Reset time part for accurate comparison
 
-    initiatives.forEach(initiative => {
+    reversedInitiatives.forEach(initiative => {
         const eventDate = new Date(initiative.data);
         eventDate.setHours(0, 0, 0, 0); // Reset time part for accurate comparison
         const initiativeElement = createInitiativeElement(initiative);
@@ -70,7 +71,7 @@ function createInitiativeElement(initiative) {
     container.innerHTML = `
     <a href="${initiativeUrl}">
         <div class="event-container">
-            <img src="${initiative.imagem}" alt="Event Image" style="width: 100%; height: auto;" /> <!-- Set the src attribute with the image data -->
+            <img src="${initiative.imagem}" alt="Event Image" class="event-image" /> <!-- Set the src attribute with the image data -->
             <div class="event-date">${formattedDate}</div>
             <div class="event-location">${initiative.localidade}</div>
             <h3 class="event-Titel">${initiative.titulo}</h3>
