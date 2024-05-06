@@ -4078,13 +4078,13 @@ input[type=button].btn-block,input[type=reset].btn-block,input[type=submit].btn-
     padding:.5rem .75rem;
     margin-left:-1px;
     line-height:1.25;
-    color:#4e73df;
+    color: #3a3b45;
     background-color:#fff;
     border:1px solid #dddfeb
 }
 .page-link:hover{
     z-index:2;
-    color:#224abe;
+    color:#3a3b45;
     text-decoration:none;
     background-color:#eaecf4;
     border-color:#dddfeb
@@ -4106,8 +4106,8 @@ input[type=button].btn-block,input[type=reset].btn-block,input[type=submit].btn-
 .page-item.active .page-link{
     z-index:3;
     color:#fff;
-    background-color:#4e73df;
-    border-color:#4e73df
+    background-color:#858796;
+    border-color:#858796
 }
 .page-item.disabled .page-link{
     color:#858796;
