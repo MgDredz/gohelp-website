@@ -1,29 +1,80 @@
 function storeFormData() {
-    const form = document.getElementById('inscricaoForm');
-    
-    const localidade = form.querySelector('#localidade').value.trim();
-    const data = form.querySelector('#data').value.trim();
-    const titulo = form.querySelector('#titulo').value.trim();
-    const duracao = form.querySelector('#duracao').value.trim();
-    const descricao = form.querySelector('#descricao').value.trim();
+  const form = document.getElementById('inscricaoForm');
+  
+  const localidade = form.querySelector('#localidade').value.trim();
+  const data = form.querySelector('#data').value.trim();
+  const titulo = form.querySelector('#titulo').value.trim();
+  const type = form.querySelector('#type').value.trim(); // New
+  const region = form.querySelector('#region').value.trim(); // New
+  const horaInicio = form.querySelector('#horaInicio').value.trim(); // New
+  const horaFim = form.querySelector('#horaFim').value.trim(); // New
+  const descricao = form.querySelector('#descricao').value.trim();
+  
+  // Retrieve the logged-in user's email from local storage
+  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+  const email = loggedInUser ? loggedInUser.email : ''; // Default to an empty string if not found
 
-    // Storing file data is tricky because Local Storage cannot directly store files.
-    // Instead, you can convert the file to a Base64 string and store it, but this has limits.
-    const fileInput = form.querySelector('#imagem');
-    if (fileInput.files.length > 0) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const fileData = e.target.result; // Base64 string
-            localStorage.setItem('imagem', fileData);
-        };
-        reader.readAsDataURL(fileInput.files[0]); // Convert file to Base64
+  // Validate the date (at least the next day)
+  const today = new Date();
+  const inputDate = new Date(data);
+  if (inputDate <= today.setDate(today.getDate() + 1)) {
+      alert("Data já ultrapassada.");
+      return;
+  }
+
+  // Validate time: horaFim should be after horaInicio
+  const [horaInicioHour, horaInicioMinute] = horaInicio.split(':').map(Number);
+  const [horaFimHour, horaFimMinute] = horaFim.split(':').map(Number);
+  const isHoraFimAfter = (horaFimHour > horaInicioHour) || (horaFimHour === horaInicioHour && horaFimMinute > horaInicioMinute);
+
+  if (!isHoraFimAfter) {
+      alert("Hora Fim deve ser depois de Hora Ínicio.");
+      return;
+  }
+
+  let imagem = "";
+  const fileInput = form.querySelector('#imagem');
+  if (fileInput.files.length > 0) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+          imagem = e.target.result; // Base64 string
+          savePedido(); // Save pedido once image has been read
+      };
+      reader.readAsDataURL(fileInput.files[0]); // Convert file to Base64
+  } else {
+      savePedido(); // Save pedido even without an image
+  }
+
+  function savePedido() {
+    let pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+    const newId = pedidos.length ? Math.max(...pedidos.map(p => p.id)) + 1 : 1;
+    const newPedido = {
+        id: newId,
+        estado: "pendente",
+        email,
+        titulo,
+        type,
+        localidade,
+        region,
+        data,
+        horaInicio,
+        horaFim,
+        descricao,
+        imagem
+    };
+    pedidos.push(newPedido);
+    localStorage.setItem('pedidos', JSON.stringify(pedidos));
+
+    const successMessage = document.getElementById('submitSuccessMessage');
+    const errorMessage = document.getElementById('submitErrorMessage');
+    if (localidade && data && titulo && descricao) {
+        successMessage.classList.remove('d-none');
+        errorMessage.classList.add('d-none');
+    } else {
+        successMessage.classList.add('d-none');
+        errorMessage.classList.remove('d-none');
     }
-
-    localStorage.setItem('localidade', localidade);
-    localStorage.setItem('data', data);
-    localStorage.setItem('titulo', titulo);
-    localStorage.setItem('duracao', duracao);
-    localStorage.setItem('descricao', descricao);
+}
 
     // Display success or error message
     const successMessage = document.getElementById('submitSuccessMessage');

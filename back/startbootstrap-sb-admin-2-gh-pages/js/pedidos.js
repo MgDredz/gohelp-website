@@ -67,12 +67,14 @@ function showDetails(id) {
     modalBody.innerHTML = `
         <div class="row">
             <div class="col-md-6">
-                <p><strong>Localidade:</strong> ${pedido.localidade}</p>
-                <p><strong>Data:</strong> ${pedido.data}</p>
                 <p><strong>Título:</strong> ${pedido.titulo}</p>
+                <p><strong>Descrição:</strong> ${pedido.descricao}</p>
+                <p><strong>Tipo:</strong> ${pedido.type}</p>
+                <p><strong>Morada:</strong> ${pedido.localidade}</p>
+                <p><strong>Região:</strong> ${pedido.region}</p>
+                <p><strong>Data:</strong> ${pedido.data}</p>
                 <p><strong>Hora Início:</strong> ${pedido.horaInicio}</p>
                 <p><strong>Hora Fim:</strong> ${pedido.horaFim}</p>
-                <p><strong>Descrição:</strong> ${pedido.descricao}</p>
                 <p><strong>Email:</strong> ${pedido.email}</p>
             </div>
             <div class="col-md-6">
