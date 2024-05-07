@@ -292,33 +292,22 @@
                         <div class="form-group">
                             <textarea class="form-control-4" id="descricao" placeholder="Descrição *" maxlength="350" required></textarea>
                         </div>
-                        <div class="label CriarIniciativa-table-titulo">Profissionais</div>
-                        <div class="CriarIniciativa-table">                                          
-                            <div class="CriarIniciativa-table-container">
-                                <div class="CriarIniciativa-table-body" id="tableBody">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th class="table-events-header">Nome</th>
-                                                <th class="table-events-header">Qtd</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr><td>11111</td><td>11111</td></tr>
-                                            <tr><td>11111</td><td>11111</td></tr>
-                                            <tr><td>11111</td><td>11111</td></tr>
-                                            <tr><td>11111</td><td>11111</td></tr>
-                                            <tr><td>11111</td><td>11111</td></tr>
-                                            <tr><td>11111</td><td>11111</td></tr>
-                                            <tr><td>11111</td><td>11111</td></tr>
-                                            <tr><td>11111</td><td>11111</td></tr>
-                                            <tr><td>11111</td><td>11111</td></tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                        <div class="row-cols-md-2">
+                            <div class="label CriarIniciativa-table-titulo">Profissionais</div>
+                            <div class="profissionais-table-container">
+                                <table class="profissionais-table">
+                                <thead>
+                                    <tr>
+                                    <th>Função</th>
+                                    <th>Qtd</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableBody">
+                                    <!-- Rows will be dynamically added here -->
+                                </tbody>
+                                </table>
                             </div>
                         </div>
-                        <br></br>
                         <br></br>
                         <button class="btn btn-primary btn-xl text-uppercase">Submeter</button>
                     </div>

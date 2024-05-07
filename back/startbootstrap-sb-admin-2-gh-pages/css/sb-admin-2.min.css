@@ -10252,3 +10252,29 @@ body.sidebar-toggled footer.sticky-footer{
     text-align: center;
 }
 
+.profissionais-table-container {
+    border: 1px solid #858796;
+    padding: 10px;
+    background-color: #fdfdfe;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  .profissionais-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+ .profissionais-table td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+
+  .profissionais-table th {
+    text-align: center; 
+  }
+
+  .qtd-input {
+    width: 50px; /* Adjust the width value as needed */
+}

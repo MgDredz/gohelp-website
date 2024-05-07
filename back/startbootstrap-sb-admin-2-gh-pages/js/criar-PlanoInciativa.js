@@ -25,6 +25,37 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('descricao').value = pedido.descricao;
     }
 
+    // Update the Profissionais table with predefined professions
+    function updateProfissionaisTable() {
+        const professions = ["Ajudante", "Advogado", "Gestor de Seguros"];
+        const tableBody = document.getElementById('tableBody');
+        tableBody.innerHTML = ''; // Clear existing rows
+    
+        professions.forEach(prof => {
+            const row = document.createElement('tr');
+    
+            const funcaoCell = document.createElement('td');
+            funcaoCell.textContent = prof; // Use profession directly from the array
+            row.appendChild(funcaoCell);
+    
+            const qtdCell = document.createElement('td');
+            const qtdInput = document.createElement('input');
+            qtdInput.type = 'number';
+            qtdInput.value = 0; // Default value, modify as necessary
+            qtdInput.min = 0;
+            qtdInput.classList.add('qtd-input'); // Add custom class here
+            qtdInput.addEventListener('input', () => {
+                // Handle quantity input change, e.g., update local storage or other logic
+            });
+            qtdCell.appendChild(qtdInput);
+            row.appendChild(qtdCell);
+    
+            tableBody.appendChild(row);
+        });
+    }
+
+    updateProfissionaisTable(); // Call the function to update the table
+
     const form = document.getElementById('inscricaoForm');
     form.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -87,15 +118,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 errorMessage.classList.remove('d-none');
                 return;
             }
-        } else if (region === 'Centro' || region === 'Alentejo') {
+        } else if (region === 'Centro' || region === 'Algarve') {
             if (sameDayInitiatives.length >= 2 || sameDayInitiatives.some(initiative => initiative.type === type)) {
                 errorMessage.textContent = 'Não pode haver mais de 2 iniciativas na mesma data ou já existe uma iniciativa com o mesmo tipo.';
                 errorMessage.classList.remove('d-none');
                 return;
             }
-        } else if (region === 'Algarve') {
+        } else if (region === 'Alentejo') {
             if (sameDayInitiatives.length >= 1) {
-                errorMessage.textContent = 'Não pode haver mais de 1 iniciativa na mesma data no Algarve.';
+                errorMessage.textContent = 'Não pode haver mais de 1 iniciativa na mesma data no Alentejo.';
                 errorMessage.classList.remove('d-none');
                 return;
             }
@@ -145,4 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.readAsDataURL(imagemFile);
     });
 });
+
+
 
