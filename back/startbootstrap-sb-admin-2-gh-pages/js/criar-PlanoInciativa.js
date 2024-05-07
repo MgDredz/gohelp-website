@@ -57,9 +57,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateProfissionaisTable(); // Call the function to update the table
 
+    document.getElementById('data').addEventListener('change', function() {
+        this.setCustomValidity(''); // Clear any custom message set previously
+        validateDate(); // Optionally, re-validate right away
+    });
+
+    document.getElementById('horaInicio').addEventListener('change', function() {
+        this.setCustomValidity('');
+        validateTime(); // Optionally, re-validate right away
+    });
+    
+    document.getElementById('horaFim').addEventListener('change', function() {
+        this.setCustomValidity('');
+        validateTime(); // Optionally, re-validate right away
+    });
+
     const form = document.getElementById('inscricaoForm');
     form.addEventListener('submit', function(event) {
         event.preventDefault();
+        if (!validateDate() || !validateTime()) {
+            return;
+        }
 
         const titulo = document.getElementById('titulo').value.trim();
         const type = document.getElementById('type').value.trim();
@@ -83,29 +101,13 @@ document.addEventListener('DOMContentLoaded', () => {
         horaInicioInput.setCustomValidity('');
         horaFimInput.setCustomValidity('');
 
-        // Date validation: Ensure the date is at least one day in the future
         const selectedDate = new Date(data);
         const today = new Date();
-        today.setDate(today.getDate() + 1); // Add one day
+        today.setHours(0, 0, 0, 0); // Reset time to the start of the day for accurate comparison
+        selectedDate.setHours(0, 0, 0, 0); // Ensure time is set to start of the day
 
         if (!titulo || !type || !localidade || !region || !data || !horaInicio || !horaFim || !descricao || !imagemFile) {
             errorMessage.classList.remove('d-none');
-            return;
-        }
-
-        if (selectedDate < today) {
-            dateInput.setCustomValidity('Data já ultrapassada');
-            dateInput.reportValidity();
-            return;
-        }
-
-        // Time validation: Ensure horaFim is after horaInicio
-        const horaInicioDate = new Date(`1970-01-01T${horaInicio}:00`);
-        const horaFimDate = new Date(`1970-01-01T${horaFim}:00`);
-
-        if (horaFimDate <= horaInicioDate) {
-            horaFimInput.setCustomValidity('Hora de Fim deve ser depois de Hora de Início');
-            horaFimInput.reportValidity(); // Show validation message
             return;
         }
 
@@ -176,6 +178,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
         reader.readAsDataURL(imagemFile);
     });
+
+    function validateDate() {
+        const data = document.getElementById('data').value;
+        const dateInput = document.getElementById('data');
+        const selectedDate = new Date(data);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        if (selectedDate <= today) {
+            dateInput.setCustomValidity('Data já ultrapassada');
+            dateInput.reportValidity();
+            return false;
+        } else {
+            dateInput.setCustomValidity('');
+            return true;
+        }
+    }
+
+    function validateTime() {
+        const horaInicioInput = document.getElementById('horaInicio');
+        const horaFimInput = document.getElementById('horaFim');
+        const horaInicio = horaInicioInput.value;
+        const horaFim = horaFimInput.value;
+    
+        // Convert times to date objects for comparison
+        const startTime = new Date(`1970-01-01T${horaInicio}:00`);
+        const endTime = new Date(`1970-01-01T${horaFim}:00`);
+    
+        if (endTime <= startTime) {
+            horaFimInput.setCustomValidity('Hora de Fim deve ser depois de Hora de Início');
+            horaFimInput.reportValidity();
+            return false;
+        } else {
+            horaInicioInput.setCustomValidity('');
+            horaFimInput.setCustomValidity('');
+            return true;
+        }
+    }
 });
 
 
