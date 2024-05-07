@@ -19,6 +19,7 @@ function loadInitiatives() {
     }
 
     const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
+    const reversedInitiatives = initiatives.reverse();
     const pastContainer = document.getElementById('past').querySelector('#eventos');
     const currentContainer = document.getElementById('current').querySelector('#eventos');
     const futureContainer = document.getElementById('future').querySelector('#eventos');
@@ -29,7 +30,7 @@ function loadInitiatives() {
 
     const currentDate = new Date();
 
-    initiatives.forEach(initiative => {
+    reversedInitiatives.forEach(initiative => {
         // Combine date and hour for accurate comparison
         const startDate = new Date(`${initiative.data}T${initiative.horaInicio}`);
         const endDate = new Date(`${initiative.data}T${initiative.horaFim}`);
