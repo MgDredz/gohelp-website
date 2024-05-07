@@ -20,16 +20,25 @@ document.getElementById("myButton").addEventListener("click", function(event) {
             email: email,
             phone: phone,
             region: region,
+            profession: "Gestor_Terreno" // Explicitly setting the role for clarity
         };
 
-        // Retrieve the existing array of form data from local storage or initialize it if not present
+        // Retrieve the existing array of gestor data from local storage or initialize it if not present
         const gestores = JSON.parse(localStorage.getItem('gestores_terreno')) || [];
-
-        // Add the new gestor data to the array
         gestores.push(gestor);
-
-        // Save the updated array back to local storage
         localStorage.setItem('gestores_terreno', JSON.stringify(gestores));
+
+        // Additionally, add to general users array
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const newUser = {
+            firstName: name.split(' ')[0],
+            lastName: name.split(' ').slice(1).join(' ') || '',
+            email: email,
+            password: "password", // Note: Storing passwords in local storage is not recommended
+            profession: "gestor_terreno"
+        };
+        users.push(newUser);
+        localStorage.setItem('users', JSON.stringify(users)); // Save updated users array in local storage
 
         // Optionally clear all inputs after successful registration
         form.querySelectorAll('input').forEach(input => {
@@ -41,7 +50,8 @@ document.getElementById("myButton").addEventListener("click", function(event) {
 // Load user information on DOMContentLoaded if available
 document.addEventListener('DOMContentLoaded', () => {
     const storedUser = JSON.parse(localStorage.getItem('loggedInUser'));
-    if (storedUser && storedUser.name) {
-        document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = storedUser.name;
+    if (storedUser && storedUser.name && storedUser.role) {
+        const displayName = `${storedUser.name} (${storedUser.role})`;
+        document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = displayName;
     }
 });
