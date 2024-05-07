@@ -19,7 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
             firstName: firstName,
             lastName: lastName,
             email: email,
-            password: password // Note: Storing passwords in local storage is not recommended for security reasons
+            password: password ,// Note: Storing passwords in local storage is not recommended for security reasons
+            profession: "",
         };
 
         // Retrieve existing users from local storage or initialize empty array if none exist

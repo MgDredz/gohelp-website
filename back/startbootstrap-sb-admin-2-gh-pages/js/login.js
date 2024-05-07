@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (user) {
                 const fullName = user.firstName + ' ' + user.lastName;
-                localStorage.setItem('loggedInUser', JSON.stringify({ name: fullName, email: user.email }));
+                localStorage.setItem('loggedInUser', JSON.stringify({ name: fullName, email: user.email, role: user.profession }));
 
                 // Prepopulate professional profiles if not already done
                 preloadProfiles();
@@ -38,7 +38,8 @@ function ensureAdminExists() {
         firstName: "Admin",
         lastName: "",
         email: "admin@gmail.com",
-        password: "adminpass", // Storing passwords in local storage is insecure
+        password: "adminpass", 
+        profession: "Admin",
         isAdmin: true
     };
 

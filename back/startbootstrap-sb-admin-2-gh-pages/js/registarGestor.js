@@ -8,43 +8,40 @@ document.getElementById("myButton").addEventListener("click", function(event) {
 
     // Validate required fields
     if (!name || !email || !phone || !region) {
-        // Show error message
-        const errorMessage = document.getElementById('errorMessage');
-        errorMessage.classList.remove('d-none');
-        const successMessage = document.getElementById('successMessage');
-        successMessage.classList.add('d-none');
+        document.getElementById('errorMessage').classList.remove('d-none');
+        document.getElementById('successMessage').classList.add('d-none');
     } else {
-        // Hide error message
-        const errorMessage = document.getElementById('errorMessage');
-        errorMessage.classList.add('d-none');
+        document.getElementById('errorMessage').classList.add('d-none');
+        document.getElementById('successMessage').classList.remove('d-none');
 
-        // Display success message
-        const successMessage = document.getElementById('successMessage');
-        successMessage.classList.remove('d-none');
+        // Form data as an object with role set to "gestor_terreno"
+        const gestor = {
+            name: name,
+            email: email,
+            phone: phone,
+            region: region,
+        };
 
-        // Save data to local storage
-        localStorage.setItem('name', name);
-        localStorage.setItem('email', email);
-        localStorage.setItem('phone', phone);
-        localStorage.setItem('region', region);
+        // Retrieve the existing array of form data from local storage or initialize it if not present
+        const gestores = JSON.parse(localStorage.getItem('gestores_terreno')) || [];
 
-        // Clear all text inputs and file input
-        form.querySelectorAll('input[type=text], input[type=email], input[type=tel], input[type=reg], input[type=file]').forEach(input => {
+        // Add the new gestor data to the array
+        gestores.push(gestor);
+
+        // Save the updated array back to local storage
+        localStorage.setItem('gestores_terreno', JSON.stringify(gestores));
+
+        // Optionally clear all inputs after successful registration
+        form.querySelectorAll('input').forEach(input => {
             input.value = '';
-        });
-
-        // Reset radio buttons
-        form.querySelectorAll('input[type=radio]').forEach(radio => {
-            radio.checked = false;
         });
     }
 });
 
+// Load user information on DOMContentLoaded if available
 document.addEventListener('DOMContentLoaded', () => {
     const storedUser = JSON.parse(localStorage.getItem('loggedInUser'));
     if (storedUser && storedUser.name) {
         document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = storedUser.name;
     }
-  });
-
-// Function to load data from local storage when the page loads
+});

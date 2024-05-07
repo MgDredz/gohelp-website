@@ -9044,12 +9044,12 @@ a:focus{
 }
 
 .bg-login-image{
-    background:url('../assets/logo_2.png');
+    background:url('../img/logo_2.png');
     background-position:center;
     background-size:cover
 }
 .bg-register-image{
-    background:url('../assets/logo_2.png');
+    background:url('../img/logo_2.png');
     background-position:center;
     background-size:cover
 }
