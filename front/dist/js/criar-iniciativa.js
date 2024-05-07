@@ -75,17 +75,6 @@ function storeFormData() {
         errorMessage.classList.remove('d-none');
     }
 }
-
-    // Display success or error message
-    const successMessage = document.getElementById('submitSuccessMessage');
-    const errorMessage = document.getElementById('submitErrorMessage');
-    if (localidade && data && titulo && duracao && descricao) {
-        successMessage.classList.remove('d-none');
-        errorMessage.classList.add('d-none');
-    } else {
-        successMessage.classList.add('d-none');
-        errorMessage.classList.remove('d-none');
-    }
 }
 
 function updateStyle(selectElement) {
