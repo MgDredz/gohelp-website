@@ -41,20 +41,69 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const successMessage = document.getElementById('submitSuccessMessage');
         const errorMessage = document.getElementById('submitErrorMessage');
+        const dateInput = document.getElementById('data');
+        const horaInicioInput = document.getElementById('horaInicio');
+        const horaFimInput = document.getElementById('horaFim');
 
         successMessage.classList.add('d-none');
         errorMessage.classList.add('d-none');
+        dateInput.setCustomValidity('');
+        horaInicioInput.setCustomValidity('');
+        horaFimInput.setCustomValidity('');
+
+        // Date validation: Ensure the date is at least one day in the future
+        const selectedDate = new Date(data);
+        const today = new Date();
+        today.setDate(today.getDate() + 1); // Add one day
 
         if (!titulo || !type || !localidade || !region || !data || !horaInicio || !horaFim || !descricao || !imagemFile) {
             errorMessage.classList.remove('d-none');
             return;
         }
 
+        if (selectedDate < today) {
+            dateInput.setCustomValidity('Data já ultrapassada');
+            dateInput.reportValidity();
+            return;
+        }
+
+        // Time validation: Ensure horaFim is after horaInicio
+        const horaInicioDate = new Date(`1970-01-01T${horaInicio}:00`);
+        const horaFimDate = new Date(`1970-01-01T${horaFim}:00`);
+
+        if (horaFimDate <= horaInicioDate) {
+            horaFimInput.setCustomValidity('Hora de Fim deve ser depois de Hora de Início');
+            horaFimInput.reportValidity(); // Show validation message
+            return;
+        }
+
+        // Validate based on region-specific rules
+        const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
+        const sameDayInitiatives = initiatives.filter(initiative => initiative.data === data && initiative.region === region);
+
+        if (region === 'Norte' || region === 'Lisboa') {
+            if (sameDayInitiatives.length >= 3 || sameDayInitiatives.some(initiative => initiative.type === type)) {
+                errorMessage.textContent = 'Não pode haver mais de 3 iniciativas na mesma data ou já existe uma iniciativa com o mesmo tipo.';
+                errorMessage.classList.remove('d-none');
+                return;
+            }
+        } else if (region === 'Centro' || region === 'Alentejo') {
+            if (sameDayInitiatives.length >= 2 || sameDayInitiatives.some(initiative => initiative.type === type)) {
+                errorMessage.textContent = 'Não pode haver mais de 2 iniciativas na mesma data ou já existe uma iniciativa com o mesmo tipo.';
+                errorMessage.classList.remove('d-none');
+                return;
+            }
+        } else if (region === 'Algarve') {
+            if (sameDayInitiatives.length >= 1) {
+                errorMessage.textContent = 'Não pode haver mais de 1 iniciativa na mesma data no Algarve.';
+                errorMessage.classList.remove('d-none');
+                return;
+            }
+        }
+
         const reader = new FileReader();
         reader.onload = function(e) {
             const imagem = e.target.result;
-
-            const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
 
             let newId = 1;
             if (initiatives.length > 0) {
@@ -96,3 +145,4 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.readAsDataURL(imagemFile);
     });
 });
+
