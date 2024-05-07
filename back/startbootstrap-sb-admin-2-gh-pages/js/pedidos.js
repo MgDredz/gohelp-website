@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    displayRequests();
+    displayOpenRequestsCount();
     const storedUser = JSON.parse(localStorage.getItem('loggedInUser'));
     if (storedUser && storedUser.name && storedUser.role) {
         const displayName = `${storedUser.name} (${storedUser.role})`;
