@@ -281,11 +281,22 @@
                                 <input class="form-control-4" id="horaFim" type="time" required />
                             </div>
                         </div>
+                        <div class="form-group">
+                            <!-- Title input-->
+                            <input class="form-control-4" id="participantes" type="text" placeholder="Nº Max. Participantes *" data-sb-validations="required" />
+                            <div class="invalid-feedback" data-sb-feedback="phone:required">Insira o nº máximo de participantes.</div>
+                        </div>
+                        <!-- Imagem input-->
                         <div class="form-group" style="position: relative;">
-                            <!-- Imagem input-->
                             <input class="form-control-4" id="imagem" type="file" placeholder="Imagem *" data-sb-validations="required" />
                             <div class="invalid-feedback" data-sb-feedback="name:required">Insira uma imagem.</div>
-                          </div>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control-4" id="gestorDropdown" required>
+                                <option value="" selected disabled hidden>Gestor *</option>
+                            </select>
+                            <div class="invalid-feedback">Please select a gestor.</div>
+                        </div>
                     </div>
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
@@ -325,7 +336,7 @@
                 <!---->
                 <!-- This is what your users will see when there is-->
                 <!-- an error submitting the form-->
-                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Erro ao enviar a mensagem!</div></div>
+                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Erro ao criar Evento! Causas possiveis: Falta de Imagem ou erro ao introduzir nº de participantes.</div></div>
             </form>
         </div>
                 <!-- /.container-fluid -->

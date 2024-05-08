@@ -5,6 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = displayName;
     }
 
+    const gestores = JSON.parse(localStorage.getItem('gestores')) || [];
+    const dropdown = document.getElementById('gestorDropdown');
+
+    // Populate the dropdown with gestor names
+    gestores.forEach(gestor => {
+        const option = document.createElement('option');
+        option.value = gestor.email; // setting email as value, can change as required
+        option.textContent = gestor.name;
+        dropdown.appendChild(option);
+    });
+
     function getQueryParameter(name) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(name);
@@ -86,6 +97,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = document.getElementById('data').value;
         const horaInicio = document.getElementById('horaInicio').value;
         const horaFim = document.getElementById('horaFim').value;
+        const participantesValue = document.getElementById('participantes').value.trim();
+        const participantes = parseInt(participantesValue, 10);
+        const gestor = document.getElementById('gestorDropdown').value.trim();
         const descricao = document.getElementById('descricao').value.trim();
         const imagemFile = document.getElementById('imagem').files[0];
 
@@ -106,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         today.setHours(0, 0, 0, 0); // Reset time to the start of the day for accurate comparison
         selectedDate.setHours(0, 0, 0, 0); // Ensure time is set to start of the day
 
-        if (!titulo || !type || !localidade || !region || !data || !horaInicio || !horaFim || !descricao || !imagemFile) {
+        if (!titulo || !type || !localidade || !region || !data || !horaInicio || !horaFim || !participantes|| !descricao || !imagemFile) {
             errorMessage.classList.remove('d-none');
             return;
         }
@@ -159,7 +173,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 participantes: 0,
                 doacoes: 0,
                 materiais: [],
-                profissionais: []
+                profissionais: [],
+                gestor: gestor,
+                participantesmax: participantes
             };
 
             initiatives.push(initiative);
