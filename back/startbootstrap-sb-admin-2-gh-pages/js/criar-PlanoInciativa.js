@@ -202,7 +202,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
-        if (selectedDate <= today) {
+        // Calculate the next day from today
+        const nextDay = new Date(today);
+        nextDay.setDate(today.getDate() + 1);
+
+        if (selectedDate <= nextDay) {
             dateInput.setCustomValidity('Data já ultrapassada');
             dateInput.reportValidity();
             return false;
