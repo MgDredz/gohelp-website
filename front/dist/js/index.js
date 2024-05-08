@@ -20,7 +20,6 @@ window.addEventListener('DOMContentLoaded', event => {
         } else {
             navbarCollapsible.classList.add('navbar-shrink')
         }
-
     };
 
     // Shrink the navbar 
@@ -50,10 +49,10 @@ window.addEventListener('DOMContentLoaded', event => {
             }
         });
     });
-
 });
 
-   function updateModal(modalId, eventName, place, description) {
+
+function updateModal(modalId, eventName, place, description) {
     document.querySelector(modalId + ' .modal-body h2').innerText = eventName;
     document.querySelector(modalId + ' .item-intro').innerText = place;
     document.querySelector(modalId + ' .item-description').innerText = description;
@@ -67,3 +66,4 @@ function onSignIn(googleUser) {
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
+

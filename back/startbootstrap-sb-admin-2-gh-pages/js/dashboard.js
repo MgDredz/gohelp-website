@@ -2,9 +2,10 @@
     const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
     const donations = JSON.parse(localStorage.getItem('donations')) || [];
     const professionals = JSON.parse(localStorage.getItem('profissionais')) || [];
+    const gestores = JSON.parse(localStorage.getItem('gestores')) || [];
     const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
     barPerc(initiatives);
-    topCards(donations, initiatives, professionals, pedidos);
+    topCards(donations, initiatives, professionals, gestores, pedidos);
   });
   
   function barPerc(initiatives) {
@@ -84,10 +85,11 @@
     }
   }
 
-function topCards(donations, initiatives, professionals, pedidos) {
+function topCards(donations, initiatives, professionals, gestores, pedidos) {
     //card donations
     const totalSum = donations.reduce((sum, donation) => sum + donation.montante, 0);
     const formattedTotalSum = totalSum.toFixed(2);
+    const formattedTotalSum2 = new Intl.NumberFormat('en-US').format(formattedTotalSum);
 
     //card initiatives
     const today = new Date();
@@ -101,8 +103,9 @@ function topCards(donations, initiatives, professionals, pedidos) {
     const todaysInitiativesCount = todaysInitiatives.length;
 
     //card professionals
-    const totalProfessionals = professionals.length;
-
+    const professionalsCount = professionals.length;
+    const gestorCount = gestores.length;
+    const totalProfessionals = professionalsCount+gestorCount
     //card pedidos
     const pendentePedidos = pedidos.filter(pedido => pedido.estado === "pendente");
     const pendenteCount = pendentePedidos.length;
@@ -112,75 +115,75 @@ function topCards(donations, initiatives, professionals, pedidos) {
 
     topCards.innerHTML = `
     <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-primary shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"  style="margin-top: -15px;">
-                                            Doações</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800"  style="margin-top: 15px;">${formattedTotalSum}€</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-euro-sign fa-2x text-gray-300"  style="margin-top: 15px;"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"  style="margin-top: -15px;">
+                            Doações</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"  style="margin-top: 15px;">${formattedTotalSum2}€</div>
                     </div>
-
-                    <!--  Ações a decorre Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-success shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1"  style="margin-top: -15px;">
-                                            Ações a decorrer</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">${todaysInitiativesCount}</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-calendar fa-2x text-gray-300"  style="margin-top: 15px;"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Profissionais no Terreno Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-info shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1"  style="margin-top: -15px;">
-                                            Profissionais</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">${totalProfessionals}</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-people-carry fa-2x text-gray-300"  style="margin-top: 15px;"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Pedidos Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-left-warning shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"  style="margin-top: -15px;">
-                                        Pedidos</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800"  style="margin-top: 15px;">${pendenteCount}</div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-comments fa-2x text-gray-300" style="margin-top: 15px;"></i>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-auto">
+                        <i class="fas fa-euro-sign fa-2x text-gray-300"  style="margin-top: 15px;"></i>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  Ações a decorre Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1"  style="margin-top: -15px;">
+                            Ações a decorrer</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">${todaysInitiativesCount}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-calendar fa-2x text-gray-300"  style="margin-top: 15px;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profissionais no Terreno Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1"  style="margin-top: -15px;">
+                            Profissionais</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">${totalProfessionals}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-people-carry fa-2x text-gray-300"  style="margin-top: 15px;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pedidos Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"  style="margin-top: -15px;">
+                        Pedidos</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"  style="margin-top: 15px;">${pendenteCount}</div>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-comments fa-2x text-gray-300" style="margin-top: 15px;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     `;
     bottomCards(todaysInitiatives, todaysInitiativesCount);
 }
@@ -188,7 +191,8 @@ function topCards(donations, initiatives, professionals, pedidos) {
 function bottomCards(todaysInitiatives, todaysInitiativesCount) {
     //donations
     const totalSum = todaysInitiatives.reduce((total, todaysInitiatives) => total + todaysInitiatives.doacoes, 0);
-    const formattedTotalSum2 = totalSum.toFixed(2);
+    const formattedTotalSum3 = totalSum.toFixed(2);
+    const formattedTotalSum4 = new Intl.NumberFormat('en-US').format(formattedTotalSum3);
 
     //professionals on work
     const workProfessioanls = todaysInitiatives.reduce((total, todaysInitiatives) => total + todaysInitiatives.profissionais,length, 0);
@@ -224,7 +228,7 @@ function bottomCards(todaysInitiatives, todaysInitiativesCount) {
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1" style="margin-top: -15px;">
                                 Doações</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 20px;">${formattedTotalSum2}€</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 20px;">${formattedTotalSum4}€</div>
                         </div>
                         <div class="col-auto">
                         </div>

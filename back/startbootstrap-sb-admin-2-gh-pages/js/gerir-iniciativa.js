@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const displayName = `${storedUser.name} (${storedUser.role})`;
         document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = displayName;
     }
+    displayInitiatives();
 });
 
 function openTab(tabName) {
