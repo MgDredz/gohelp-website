@@ -6,29 +6,35 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>GoHelp</title>
-        <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="./assets/logo.png" />
-        <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
-        <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="index.html"><img src="./assets/logo_final.png" alt="..." target="_blank"/></a>
-                
+                <a class="navbar-brand" href="index.html"><img src="./assets/logo_final.png" alt="Logo" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <button class="dropdown-toggle"><img class="img-profile rounded-circle" src="assets/img/undraw_profile_1.svg"></button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="#">Activity Log</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="login.html">Logout</a>
+                        </div>
+                    </ul>
+                </div>
             </div>
         </nav>
-        <!-- HeaderInscrição-->
         <header class="headergeral">
-            <div class="container">
-                <div class="headergeral-subheading">INSCRIÇÃO</div>
-            </div>
+            <div class="headergeral-subheading">INSCRIÇÃO</div>
         </header>
         <!-- Inscrição-->
         <section class="page-section" id="inscricao">
@@ -64,31 +70,7 @@
                         </div>
                         <div class="col-md-2"></div>
                         <div class="col-md-4">
-                            <section id="eventos2">
-                                <div class="event-container">
-                                    <img src="assets/img/portfolio/1.jpg" alt="Event Image">
-                                    <div class="event-date">Dom 12 Abr</div>
-                                    <div class="event-location">Mire de Tibães, Braga</div>
-                                    <h3>CORRIDA DO MOSTEIRO</h3>
-                                    <p>Junte-se a nós numa corrida noturna pelas históricas ruas de Mire de Tibães, iluminando caminhos com esperança e união pela caridade.</p>
-                                </div>
-                    
-                                <div class="event-container">
-                                    <img src="assets/img/portfolio/2.jpg" alt="Event Image">
-                                    <div class="event-date">Sab 15 Mai</div>
-                                    <div class="event-location">Estádio Dr. Magalhães Pessoa, Leiria</div>
-                                    <h3>CORRIDA DO ADEPTO</h3>
-                                    <p>Vista as cores da sua equipa e venha fazer parte deste evento energizante, unindo os fãs de futebol  numa corrida de pura paixão pelas ruas de Leiria. </p>
-                                </div>
-                    
-                                <div class="event-container">
-                                    <img src="assets/img/portfolio/3.jpg" alt="Event Image">
-                                    <div class="event-date">Sex 22 Jul</div>
-                                    <div class="event-location">Campolide, Lisboa</div>
-                                    <h3>CORRIDA SOCIAL DE CAMPOLIDE</h3>
-                                    <p>Junte-se a nós numa corrida matinal pelas ruas de liboa, iluminando caminhos com esperança e união pela caridade.</p>
-                                </div>
-                            </section>
+                            <section id="eventos2"></section>
                         </div>
                     </div>
                     <!-- Submit success message-->
@@ -121,19 +103,12 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const urlParams = new URLSearchParams(window.location.search);
-                const eventoId = urlParams.get('evento');
-                const eventos = document.querySelectorAll('.event-container');
-                eventos.forEach((ev, idx) => {
-                    if (eventoId !== (idx + 1).toString()) {
-                        ev.style.display = 'none';
-                    }
-                });
-            });
-            </script>
+        <script src="js/iniciativas.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script src="js/index.js"></script>
+        <script src="js/index2.js"></script>
+    
     <!-- Footer-->
     <footer class="footer py-lg-4">
         <div class="container">

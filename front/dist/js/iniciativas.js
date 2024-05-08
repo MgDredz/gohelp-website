@@ -62,11 +62,18 @@ function createInitiativeElement(initiative) {
         <div class="event-location">${initiative.localidade}</div>
         <h3>${initiative.titulo}</h3>
         <p>${initiative.descricao}</p>
-        <a href="inscricao.html?evento=${initiative.id}" class="register-button">INSCREVER</a>
     `;
 
+    // Adicionar o botão "INSCREVER" apenas para as iniciativas futuras
+    const currentDate = new Date();
+    const startDate = new Date(`${initiative.data}T${initiative.horaInicio}`);
+    if (startDate > currentDate) {
+        container.innerHTML += `<br><a href="inscricao.html?evento=${initiative.id}" class="register-button">INSCREVER</a>`;
+    }
+    
     return container;
 }
+
 
 let activeRegions = [];
 
