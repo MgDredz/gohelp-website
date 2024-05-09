@@ -6,14 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadInitiatives();
 });
 
-// Load initiatives from local storage
 function loadInitiatives() {
-    // Example predefined initiatives if not already in local storage
-    const predefinedInitiatives = [
-        { id: 1, titulo: "Caminhada da Saúde", type: "Corrida/Maratona", localidade: "Parque da Cidade", region: "Norte", data: "2023-06-01", horaInicio: "08:00", horaFim: "10:00", descricao: "Caminhada para promover a saúde e o bem-estar.", imagem: "caminhada.jpg" },
-        // Add more initiatives here...
-    ];
-
     if (!localStorage.getItem('initiatives')) {
         localStorage.setItem('initiatives', JSON.stringify(predefinedInitiatives));
     }
@@ -29,9 +22,9 @@ function loadInitiatives() {
     futureContainer.innerHTML = '';
 
     const currentDate = new Date();
+    let currentHasInitiatives = false;
 
     reversedInitiatives.forEach(initiative => {
-        // Combine date and hour for accurate comparison
         const startDate = new Date(`${initiative.data}T${initiative.horaInicio}`);
         const endDate = new Date(`${initiative.data}T${initiative.horaFim}`);
         const initiativeElement = createInitiativeElement(initiative);
@@ -40,12 +33,16 @@ function loadInitiatives() {
             pastContainer.appendChild(initiativeElement);
         } else if (startDate <= currentDate && currentDate <= endDate) {
             currentContainer.appendChild(initiativeElement);
+            currentHasInitiatives = true;
         } else {
             futureContainer.appendChild(initiativeElement);
         }
     });
 
-    // Apply filters after loading the initiatives
+    if (!currentHasInitiatives) {
+        currentContainer.innerHTML = '<br><br/><p class="no-initiatives">Nenhuma iniciativa a decorrer neste momento.</p><br><br/>';
+    }
+
     applyFilters();
 }
 
