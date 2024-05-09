@@ -88,6 +88,15 @@ function preloadGestores() {
     ];
 
 
+    // Check if profiles already exist in local storage
+    if (!localStorage.getItem('gestores')) {
+        // Store predefined profiles in local storage
+        localStorage.setItem('gestores', JSON.stringify(predefinedGestor));
+        console.log("Gestor profiles preloaded into local storage.");
+    } else {
+        console.log("Gestor profiles already exist in local storage.");
+    }
+
     if (!users.some(user => user.email === predefinedGestor.email)) {
         users.push(predefinedGestor);
         localStorage.setItem('users', JSON.stringify(users));
@@ -98,14 +107,7 @@ function preloadGestores() {
 
 
 
-    // Check if profiles already exist in local storage
-    if (!localStorage.getItem('gestores')) {
-        // Store predefined profiles in local storage
-        localStorage.setItem('gestores', JSON.stringify(predefinedGestor));
-        console.log("Gestor profiles preloaded into local storage.");
-    } else {
-        console.log("Gestor profiles already exist in local storage.");
-    }
+    
 }
 
 function preloadInitiatives() {

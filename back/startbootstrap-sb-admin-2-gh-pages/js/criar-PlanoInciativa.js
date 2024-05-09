@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     gestores.forEach(gestor => {
         const option = document.createElement('option');
         option.value = gestor.email; // setting email as value, can change as required
-        option.textContent = gestor.name;
+        option.textContent = gestor.firstName;
         dropdown.appendChild(option);
     });
 
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         today.setHours(0, 0, 0, 0); // Reset time to the start of the day for accurate comparison
         selectedDate.setHours(0, 0, 0, 0); // Ensure time is set to start of the day
 
-        if (!titulo || !type || !localidade || !region || !data || !horaInicio || !horaFim || !participantes|| !descricao || gestor || !imagemFile) {
+        if (!titulo || !type || !localidade || !region || !data || !horaInicio || !horaFim || !participantes|| !descricao || !gestor || !imagemFile) {
             errorMessage.classList.remove('d-none');
             return;
         }
