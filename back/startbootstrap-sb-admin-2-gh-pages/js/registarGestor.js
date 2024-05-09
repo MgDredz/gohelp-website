@@ -20,6 +20,7 @@ document.getElementById("submitBtn").addEventListener("click", function(event) {
             email: email,
             phone: phone,
             region: region,
+            profession: "Gestor_Terreno"
         };
 
         // Retrieve the existing array of gestor data from local storage or initialize it if not present
@@ -33,6 +34,7 @@ document.getElementById("submitBtn").addEventListener("click", function(event) {
             lastName: name.split(' ').slice(1).join(' ') || '',
             email: email,
             password: "password", 
+            profession: "Gestor_Terreno"
         };
         users.push(newUser);
         localStorage.setItem('users', JSON.stringify(users)); // Save updated users array in local storage

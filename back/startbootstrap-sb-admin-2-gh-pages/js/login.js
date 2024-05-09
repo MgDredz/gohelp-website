@@ -84,8 +84,19 @@ function preloadProfiles() {
 function preloadGestores() {
     // Predefined professional profiles
     const predefinedGestor = [
-        { name: "Souges Thor", email: "s.thor@example.com", phone: "121212121", region: "Lisboa"}
+        {firstName: "Souges",  lastName: "Thor",  email: "s.thor@example.com",  password: "gestorpass", profession: "Gestor", isAdmin: false}
     ];
+
+
+    if (!users.some(user => user.email === predefinedGestor.email)) {
+        users.push(predefinedGestor);
+        localStorage.setItem('users', JSON.stringify(users));
+        console.log("Admin named 'Admin' added to local storage.");
+    } else {
+        console.log("Admin named 'Admin' already exists in local storage.");
+    }
+
+
 
     // Check if profiles already exist in local storage
     if (!localStorage.getItem('gestores')) {
