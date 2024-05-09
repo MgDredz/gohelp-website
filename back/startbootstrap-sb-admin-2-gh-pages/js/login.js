@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     ensureAdminExists(); // Check and add admin on page load
-    preloadProfiles(); // Preload professional profiles
-    preloadGestores();
-    preloadInitiatives();
-    preloadDonations();
-    preloadPedidos();
+    preloadProfiles();
+                preloadInitiatives();
+                preloadDonations();
+                preloadPedidos();
+                preloadGestores();
+                preloadUsers();
+
 
     const loginButton = document.querySelector('.btn-user.btn-block');
     if (loginButton) {
@@ -22,8 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('loggedInUser', JSON.stringify({ name: fullName, email: user.email, role: user.profession }));
 
                 // Prepopulate professional profiles if not already done
-                preloadProfiles();
-
                 // Redirect to a specific page
                 window.location.href = 'index.html'; // This code will stop execution following the redirect
             } else {
@@ -86,17 +86,7 @@ function preloadGestores() {
     const predefinedGestor = [
         {firstName: "Souges",  lastName: "Thor",  email: "s.thor@example.com",  password: "gestorpass", profession: "Gestor", isAdmin: false}
     ];
-
-
-    if (!users.some(user => user.email === predefinedGestor.email)) {
-        users.push(predefinedGestor);
-        localStorage.setItem('users', JSON.stringify(users));
-        console.log("Admin named 'Admin' added to local storage.");
-    } else {
-        console.log("Admin named 'Admin' already exists in local storage.");
-    }
-
-
+    
 
     // Check if profiles already exist in local storage
     if (!localStorage.getItem('gestores')) {
@@ -230,4 +220,32 @@ function preloadPedidos() {
     } else {
         console.log("Pedidos already exist in local storage.");
     }
+}
+
+function preloadUsers() {
+    // Predefined user profiles with the required details
+    const predefinedUsers = [
+        { firstName: "Jane", lastName: "Smith", email: "jane.smith@example.com", profession: "Advogado", isAdmin: false, password:"gohelp" },
+        { firstName: "Alice", lastName: "Johnson", email: "alice.johnson@example.com", profession: "Gestor de Seguros", isAdmin: false, password:"gohelp" },
+        { firstName: "João", lastName: "Sousa", email: "joao.souza@example.com", profession: "Advogado", isAdmin: false, password:"gohelp" },
+        { firstName: "Ana", lastName: "Luisa", email: "ana.luisa@example.com", profession: "Gestor de Seguros", isAdmin: false, password:"gohelp" },
+        { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha@example.com", profession: "Advogado", isAdmin: false, password:"gohelp" },
+        { firstName: "Joana", lastName: "Marques", email: "joana.marques@example.com", profession: "Gestor de Seguros", isAdmin: false, password:"gohelp" },
+        { firstName: "Bruno", lastName: "Brown", email: "bruno.brown@example.com", profession: "Ajudante", isAdmin: false, password:"gohelp" },
+        { firstName: "Pedro", lastName: "Alves", email: "pedro.alves@example.com", profession: "Ajudante", isAdmin: false, password:"gohelp" },
+        { firstName: "Rosa", lastName: "Silva", email: "rosa.silva@example.com", profession: "Ajudante", isAdmin: false, password:"gohelp" },
+        { firstName: "Tiago", lastName: "Carlos", email: "tiago.carlos@example.com", profession: "Ajudante", isAdmin: false, password:"gohelp" },
+        { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha@example.com", profession: "Ajudante", isAdmin: false, password:"gohelp" },
+        { firstName: "Souges", lastName: "Thor", email: "s.thor@example.com", password: "gestorpass", profession: "Gestor", isAdmin: false, password:"gohelp" }
+    ];
+
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    predefinedUsers.forEach(predefinedUser => {
+        if (!users.some(user => user.email === predefinedUser.email)) {
+            users.push(predefinedUser);
+        }
+    });
+
+    localStorage.setItem('users', JSON.stringify(users));
+    console.log("Users updated in local storage.");
 }
