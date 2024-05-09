@@ -74,6 +74,7 @@ function storeFormData() {
         successMessage.classList.add('d-none');
         errorMessage.classList.remove('d-none');
     }
+    form.reset();
 }
 }
 

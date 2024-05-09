@@ -20,7 +20,6 @@ document.getElementById("submitBtn").addEventListener("click", function(event) {
             email: email,
             phone: phone,
             region: region,
-            profession: "Gestor_Terreno" // Explicitly setting the role for clarity
         };
 
         // Retrieve the existing array of gestor data from local storage or initialize it if not present
@@ -33,8 +32,7 @@ document.getElementById("submitBtn").addEventListener("click", function(event) {
             firstName: name.split(' ')[0],
             lastName: name.split(' ').slice(1).join(' ') || '',
             email: email,
-            password: "password", // Note: Storing passwords in local storage is not recommended
-            profession: "Gestor_Terreno"
+            password: "password", 
         };
         users.push(newUser);
         localStorage.setItem('users', JSON.stringify(users)); // Save updated users array in local storage
