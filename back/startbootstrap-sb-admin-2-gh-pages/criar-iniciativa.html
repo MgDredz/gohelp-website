@@ -299,24 +299,53 @@
                         </div>
                     </div>
                     <div class="col-md-1"></div>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <textarea class="form-control-4" id="descricao" placeholder="Descrição *" maxlength="350" required></textarea>
                         </div>
-                        <div class="row-cols-md-2">
-                            <div class="label CriarIniciativa-table-titulo">Profissionais</div>
-                            <div class="profissionais-table-container">
-                                <table class="profissionais-table">
-                                <thead>
-                                    <tr>
-                                    <th>Função</th>
-                                    <th>Qtd</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tableBody">
-                                    <!-- Rows will be dynamically added here -->
-                                </tbody>
-                                </table>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="row-cols-md-1">
+                                    <div class="label CriarIniciativa-table-titulo">Profissionais</div>
+                                    <div class="profissionais-table-container">
+                                        <table class="profissionais-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Função</th>
+                                                    <th>Qtd</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tableBody">
+                                                <!-- Rows will be dynamically added here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="row-cols-md-1">
+                                    <div class="label CriarIniciativa-table-titulo">Materiais</div>
+                                    <div class="materiais-table-container">
+                                        <table class="materiais-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Material</th>
+                                                    <th>Qtd</th>
+                                                    <th>+/-</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="materiaisTableBody">
+                                                <!-- Rows for materiais will be dynamically added here -->
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="2"></td>
+                                                    <td><button id="addMaterialBtn" class="btn btn-primary">+</button></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <br></br>

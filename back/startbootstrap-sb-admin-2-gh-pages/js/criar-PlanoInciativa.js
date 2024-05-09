@@ -37,27 +37,26 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('descricao').value = pedido.descricao;
     }
 
-    // Update the Profissionais table with predefined professions
     function updateProfissionaisTable() {
         const professions = ["Ajudante", "Advogado", "Gestor de Seguros"];
         const tableBody = document.getElementById('tableBody');
-        tableBody.innerHTML = ''; // Clear existing rows
+        tableBody.innerHTML = '';
     
-        professions.forEach(prof => {
+        professions.forEach((prof, index) => {
             const row = document.createElement('tr');
-    
             const funcaoCell = document.createElement('td');
-            funcaoCell.textContent = prof; // Use profession directly from the array
+            funcaoCell.textContent = prof;
             row.appendChild(funcaoCell);
     
             const qtdCell = document.createElement('td');
             const qtdInput = document.createElement('input');
             qtdInput.type = 'number';
-            qtdInput.value = 0; // Default value, modify as necessary
+            qtdInput.id = `profQuantity${index}`;
+            qtdInput.value = 0;
             qtdInput.min = 0;
-            qtdInput.classList.add('qtd-input'); // Add custom class here
-            qtdInput.addEventListener('input', () => {
-                // Handle quantity input change, e.g., update local storage or other logic
+            qtdInput.classList.add('prof-quantity');
+            qtdInput.addEventListener('input', function() {
+                this.setCustomValidity(''); // Clear validity on user input
             });
             qtdCell.appendChild(qtdInput);
             row.appendChild(qtdCell);
@@ -68,6 +67,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateProfissionaisTable(); // Call the function to update the table
 
+    const addMaterialButton = document.getElementById('addMaterialBtn');
+    const materiaisTableBody = document.getElementById('materiaisTableBody');
+
+    addMaterialButton.addEventListener('click', () => {
+        const row = document.createElement('tr');
+        const materialCell = document.createElement('td');
+        const materialInput = document.createElement('input');
+        materialInput.type = 'text';
+        materialInput.className = 'form-control material-name';
+        materialCell.appendChild(materialInput);
+
+        const quantityCell = document.createElement('td');
+        const quantityInput = document.createElement('input');
+        quantityInput.type = 'number';
+        quantityInput.className = 'form-control material-quantity';
+        quantityInput.min = 1;
+        quantityCell.appendChild(quantityInput);
+
+        const removeBtnCell = document.createElement('td');
+        const removeButton = document.createElement('button');
+        removeButton.textContent = '-';
+        removeButton.className = 'btn btn-danger remove-btn';
+        removeBtnCell.appendChild(removeButton);
+
+        row.appendChild(materialCell);
+        row.appendChild(quantityCell);
+        row.appendChild(removeBtnCell);
+
+        materiaisTableBody.appendChild(row);
+
+        // Listener to clear/set custom validity based on both fields
+        function validateMaterialRow() {
+            const nameValid = materialInput.value.trim() !== '';
+            const quantityValid = parseInt(quantityInput.value, 10) >= 1;
+            
+            materialInput.setCustomValidity(nameValid ? '' : 'O nome do material não pode estar vazio');
+            quantityInput.setCustomValidity(quantityValid ? '' : 'Quantidade deve ser igual ou superior a 1');
+
+            if(nameValid && quantityValid) {
+                materialInput.setCustomValidity('');
+                quantityInput.setCustomValidity('');
+            }
+        }
+
+        // Attach listeners
+        materialInput.addEventListener('input', validateMaterialRow);
+        quantityInput.addEventListener('input', validateMaterialRow);
+
+        removeButton.addEventListener('click', () => {
+            row.parentNode.removeChild(row);
+        });
+    });
+    
     document.getElementById('data').addEventListener('change', function() {
         this.setCustomValidity(''); // Clear any custom message set previously
         validateDate(); // Optionally, re-validate right away
@@ -86,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('inscricaoForm');
     form.addEventListener('submit', function(event) {
         event.preventDefault();
-        if (!validateDate() || !validateTime()) {
+        if (!validateDate() || !validateTime() || !validateTables()) {
             return;
         }
 
@@ -236,7 +288,42 @@ document.addEventListener('DOMContentLoaded', () => {
             return true;
         }
     }
+
+    function validateTables() {
+        const profInputs = document.querySelectorAll('.prof-quantity');
+        let valid = true;
+    
+        // Validate Profissionais quantities
+        profInputs.forEach(input => {
+            if (parseInt(input.value, 10) < 1) {
+                input.setCustomValidity('Quantidade deve ser igual ou superior a 1');
+                valid = false;
+            } else {
+                input.setCustomValidity(''); // Clear the custom validity message
+            }
+        });
+    
+        // Validate Materiais quantities and names
+        const materialRows = document.querySelectorAll('#materiaisTableBody tr');
+        materialRows.forEach(row => {
+            const materialNameInput = row.querySelector('.material-name');
+            const quantityInput = row.querySelector('.material-quantity');
+    
+            if (materialNameInput.value.trim() === '') {
+                materialNameInput.setCustomValidity('O nome do material não pode estar vazio');
+                valid = false;
+            } else {
+                materialNameInput.setCustomValidity(''); // Clear the custom validity message for material name
+            }
+    
+            if (parseInt(quantityInput.value, 10) < 1) {
+                quantityInput.setCustomValidity('Quantidade deve ser igual ou superior a 1');
+                valid = false;
+            } else {
+                quantityInput.setCustomValidity(''); // Clear the custom validity message for quantity
+            }
+        });
+    
+        return valid;
+    }
 });
-
-
-
