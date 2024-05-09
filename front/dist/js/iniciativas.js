@@ -68,7 +68,8 @@ function createInitiativeElement(initiative) {
     const currentDate = new Date();
     const startDate = new Date(`${initiative.data}T${initiative.horaInicio}`);
     if (startDate > currentDate) {
-        container.innerHTML += `<br><a href="inscricao.html?evento=${initiative.id}" class="register-button">INSCREVER</a>`;
+        let detailsUrl = `inscricao.html?titulo=${encodeURIComponent(initiative.titulo)}&localidade=${encodeURIComponent(initiative.localidade)}&data=${encodeURIComponent(initiative.data)}&descricao=${encodeURIComponent(initiative.descricao)}&imagem=${encodeURIComponent(initiative.imagem)}&participantes=${encodeURIComponent(initiative.participantes)}&participantesMax=${encodeURIComponent(initiative.participantesmax)}`;
+        container.innerHTML += `<br><a href="${detailsUrl}" class="register-button">INSCREVER</a>`;
     }
     
     return container;
