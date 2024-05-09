@@ -1,4 +1,4 @@
-document.getElementById("submitBtn").addEventListener("click", function(event) {
+document.getElementById("myButton").addEventListener("click", function(event) {
     event.preventDefault(); // Prevent form submission
     const form = document.getElementById('inscricaoForm');
     const name = form.querySelector('#name').value.trim();
