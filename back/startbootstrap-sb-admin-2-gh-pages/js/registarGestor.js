@@ -1,4 +1,4 @@
-document.getElementById("myButton").addEventListener("click", function(event) {
+document.getElementById("submitBtn").addEventListener("click", function(event) {
     event.preventDefault(); // Prevent form submission
     const form = document.getElementById('inscricaoForm');
     const name = form.querySelector('#name').value.trim();
@@ -24,10 +24,9 @@ document.getElementById("myButton").addEventListener("click", function(event) {
         };
 
         // Retrieve the existing array of gestor data from local storage or initialize it if not present
-        const gestores = JSON.parse(localStorage.getItem('gestores_terreno')) || [];
+        const gestores = JSON.parse(localStorage.getItem('gestores')) || [];
         gestores.push(gestor);
-        localStorage.setItem('gestores_terreno', JSON.stringify(gestores));
-
+        localStorage.setItem('gestores', JSON.stringify(gestores));
         // Additionally, add to general users array
         const users = JSON.parse(localStorage.getItem('users')) || [];
         const newUser = {
@@ -35,7 +34,7 @@ document.getElementById("myButton").addEventListener("click", function(event) {
             lastName: name.split(' ').slice(1).join(' ') || '',
             email: email,
             password: "password", // Note: Storing passwords in local storage is not recommended
-            profession: "gestor_terreno"
+            profession: "Gestor_Terreno"
         };
         users.push(newUser);
         localStorage.setItem('users', JSON.stringify(users)); // Save updated users array in local storage
@@ -55,3 +54,4 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = displayName;
     }
 });
+
