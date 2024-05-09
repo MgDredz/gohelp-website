@@ -86,7 +86,10 @@ function preloadGestores() {
     const predefinedGestor = [
         {firstName: "Souges",  lastName: "Thor",  email: "s.thor@example.com",  password: "gestorpass", profession: "Gestor", isAdmin: false}
     ];
+<<<<<<< HEAD
     
+=======
+
 
     // Check if profiles already exist in local storage
     if (!localStorage.getItem('gestores')) {
@@ -96,6 +99,19 @@ function preloadGestores() {
     } else {
         console.log("Gestor profiles already exist in local storage.");
     }
+
+    if (!users.some(user => user.email === predefinedGestor.email)) {
+        users.push(predefinedGestor);
+        localStorage.setItem('users', JSON.stringify(users));
+        console.log("Admin named 'Admin' added to local storage.");
+    } else {
+        console.log("Admin named 'Admin' already exists in local storage.");
+    }
+
+
+>>>>>>> cfc5a33ac4d29e87e6b29853e51cf3dd22ecfaf8
+
+    
 }
 
 function preloadInitiatives() {
