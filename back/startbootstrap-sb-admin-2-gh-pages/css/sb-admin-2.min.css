@@ -4291,7 +4291,8 @@ a.badge-dark.focus,a.badge-dark:focus{
     padding:.75rem 1.25rem;
     margin-bottom:1rem;
     border:1px solid transparent;
-    border-radius:.35rem
+    border-radius:.35rem;
+    margin-top:20px
 }
 .alert-heading{
     color:inherit
@@ -4368,7 +4369,7 @@ a.badge-dark.focus,a.badge-dark:focus{
 .alert-danger{
     color:#78261f;
     background-color:#fadbd8;
-    border-color:#f8ccc8
+    border-color:#f8ccc8;
 }
 .alert-danger hr{
     border-top-color:#f5b7b1
