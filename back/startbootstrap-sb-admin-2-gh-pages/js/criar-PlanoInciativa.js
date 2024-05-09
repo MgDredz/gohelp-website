@@ -155,6 +155,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const descricao = document.getElementById('descricao').value.trim();
         const imagemFile = document.getElementById('imagem').files[0];
 
+        // Collect and format "profissionais" data
+        const profissionaisData = [];
+        document.querySelectorAll('#tableBody tr').forEach(row => {
+            const funcao = row.cells[0].textContent;
+            const qtd = parseInt(row.cells[1].querySelector('input').value, 10);
+            if (qtd > 0) { // Only add if quantity is more than zero
+                profissionaisData.push({ funcao, qtd });
+            }
+        });
+
+        // Collect and format "materiais" data
+        const materiaisData = [];
+        document.querySelectorAll('#materiaisTableBody tr').forEach(row => {
+            const material = row.cells[0].querySelector('input').value.trim();
+            const qtd = parseInt(row.cells[1].querySelector('input').value, 10);
+            if (material && qtd > 0) { // Only add if material name is not empty and quantity is more than zero
+                materiaisData.push({ material, qtd });
+            }
+        });
+
         const successMessage = document.getElementById('submitSuccessMessage');
         const errorMessage = document.getElementById('submitErrorMessage');
         const dateInput = document.getElementById('data');
@@ -224,8 +244,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 imagem: imagem,
                 participantes: 0,
                 doacoes: 0,
-                materiais: [],
-                profissionais: [],
+                materiais: materiaisData,
+                profissionais: profissionaisData,
                 gestor: gestor,
                 participantesmax: participantes
             };
