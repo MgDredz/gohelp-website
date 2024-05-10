@@ -23,10 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const fullName = user.firstName + ' ' + user.lastName;
                 localStorage.setItem('loggedInUser', JSON.stringify({ name: fullName, email: user.email, role: user.profession }));
 
-                // Prepopulate professional profiles if not already done
-                // Redirect to a specific page
-                window.location.href = 'index.html'; // This code will stop execution following the redirect
+                // Redirect based on user type
+                const redirectPage = user.isAdmin ? 'index.html' : 'dashboardTerreno.html';
+                window.location.href = redirectPage;
             } else {
+                // Optionally handle login failure case here
             }
         });
     } else {
