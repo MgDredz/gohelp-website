@@ -11713,6 +11713,54 @@ header.headergeral .headergeral-heading {
   }
 }
 
+header.doacoes{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  text-align: center;
+
+  background-color: #212529;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+}
+header.doacoes .headergeral-doacoes {
+  font-size: 1.5rem;
+  font-style: normal;
+  line-height: 1.5rem;
+  margin-bottom: 5px;
+  font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color:white;
+}
+header.doacoes.headergeral-doacoes {
+  font-size: 3.25rem;
+  font-weight: 700;
+  line-height: 0.25rem;
+  margin-bottom: 0.5rem;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color:white;
+}
+
+@media (min-width: 768px) {
+  header.doacoes {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  header.doacoes .doacoes-subheading {
+    font-size: 2.25rem;
+    font-style: normal;
+    line-height: 2.25rem;
+    margin-bottom: 0.5rem;
+    color:white
+  }
+  header.doacoes .doacoes-heading {
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 4.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
 section#inscricao form#inscricaoForm .form-group {
   margin-bottom: 1.5rem;
 }
