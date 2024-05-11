@@ -12111,3 +12111,38 @@ h3{
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
+
+.pedido {
+  background-color: #f0f0f0;
+  padding: 30px;
+  margin: 5px;
+  margin-left: 550px;       
+  border-radius: 5px;     
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);  
+  width: 850px;           
+}
+
+.pedido-estado {
+  padding: 3px 8px;
+  border-radius: 5px;
+  color: white; /* Texto branco para melhor contraste */
+  font-weight: bold; /* Texto em negrito */
+  display: inline-block; /* Garante que o container se ajuste ao tamanho do texto */
+  margin: 2px; /* Espaçamento ao redor para evitar que os elementos fiquem muito próximos */
+}
+
+.pedido-estado.pendente {
+  background-color: #FFC800;
+  color: black; /* Cor do texto preto para melhor leitura sobre fundo amarelo */
+}
+
+.pedido-estado.recusado {
+  background-color: #E74A3B;
+  color: black;
+}
+
+.pedido-estado.aceite {
+  background-color: green;
+  color: black;
+}
+

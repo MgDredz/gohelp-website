@@ -6,12 +6,14 @@ document.addEventListener('DOMContentLoaded', function() {
     preloadDonations();
     preloadPedidos();
     preloadGestores();
-    preloadUsers();
+    
 
     // Defina a aba inicial ativa e exiba seus conteúdos
     changeTab('em_espera', document.querySelector('.tab-button[data-tab="em_espera"]'));
 });
 
+const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+const email = loggedInUser ? loggedInUser.email : '';
 
 function loadPedidos() {
     if (!localStorage.getItem('pedidos')) {
@@ -19,6 +21,7 @@ function loadPedidos() {
     }
 
     const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+    const email = loggedInUser ? loggedInUser.email : '';
     const containerTodosPedidos = document.getElementById('eventosTodosPedidos');
     const containerRecusadas = document.getElementById('eventosRecusadas');
     const containerEmEspera = document.getElementById('eventosEmEspera');
@@ -29,7 +32,7 @@ function loadPedidos() {
     containerAceites.innerHTML = '';    // Limpa conteúdo anterior
     containerTodosPedidos.innerHTML = '';  // Limpa conteúdo anterior
 
-    pedidos.forEach(pedido => {
+    pedidos.filter(pedido => pedido.email === email).forEach(pedido => {
         containerTodosPedidos.appendChild(createPedidoElement(pedido));
         if (pedido.estado === "recusado") {
             containerRecusadas.appendChild(createPedidoElement(pedido));
@@ -45,9 +48,14 @@ function loadPedidos() {
 function createPedidoElement(pedido) {
     const element = document.createElement('div');
     element.className = 'pedido';
-    element.innerHTML = `<h3>${pedido.titulo}</h3>`;
+    element.innerHTML = `
+        <h3 style="margin-bottom: 0;">${pedido.titulo}</h3>
+        <div class="pedido-estado ${pedido.estado}">${pedido.estado}</div>`;  // Classe adicional baseada no estado
     return element;
 }
+
+
+
 
 
 
