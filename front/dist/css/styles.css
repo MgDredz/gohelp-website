@@ -11174,11 +11174,7 @@ p {
   visibility: hidden;
 }
 
-@media (min-width: 768px) {
-  section {
-    padding: 9rem 0;
-  }
-}
+
 .btn-xl {
   padding: 1.25rem 2.5rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -12114,8 +12110,8 @@ h3{
 
 .pedido {
   background-color: #f0f0f0;
-  padding: 30px;
-  margin: 5px;
+  padding: 20px;
+  margin: 15px;
   margin-left: 550px;       
   border-radius: 5px;     
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);  
@@ -12129,6 +12125,7 @@ h3{
   font-weight: bold; /* Texto em negrito */
   display: inline-block; /* Garante que o container se ajuste ao tamanho do texto */
   margin: 2px; /* Espaçamento ao redor para evitar que os elementos fiquem muito próximos */
+  width: 85px;
 }
 
 .pedido-estado.pendente {
@@ -12137,12 +12134,28 @@ h3{
 }
 
 .pedido-estado.recusado {
-  background-color: #E74A3B;
+  background-color: #F50000;
   color: black;
 }
 
 .pedido-estado.aceite {
-  background-color: green;
+  background-color: #00FA55;
   color: black;
+  text-align: center;
+}
+
+.content-section {
+  width: auto;      /* Ocupa 100% da largura do contêiner pai */
+  min-height: 300px; /* Altura mínima para manter a usabilidade */
+  width: 90vw;
+  flex: 1;          /* Todos os filhos flex têm a mesma proporção */
+  padding: auto;
+}
+
+.container-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 701px;
 }
 
