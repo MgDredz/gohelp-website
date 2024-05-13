@@ -33,8 +33,8 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <img src="img/logo_final.png" alt="..." width="150" height="35"/>
-                
+                <img src="img/logo_final.png" alt="..." width="150" height="35" />
+
             </a>
 
             <!-- Divider -->
@@ -84,7 +84,7 @@
                 <a class="nav-link collapsed" href="gerir-iniciativa.html">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Gerir</span>
-                </a>                
+                </a>
             </li>
 
             <!-- Nav Item - Charts -->
@@ -104,7 +104,7 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-            
+
         </ul>
         <!-- End of Sidebar -->
 
@@ -116,8 +116,8 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                <h1 id= tituloBold class="text-Black-Bold"></h1>    
-                
+                    <h1 id=tituloBold class="text-Black-Bold"></h1>
+
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
@@ -207,8 +207,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -243,143 +242,148 @@
 
                     <div class="tab-menu">
                         <button class="tab-button active" data-tab="Dados" onclick="openTab('Dados')">Dados</button>
-                        <button class="tab-button" data-tab="AlocarProfissionnais" onclick="openTab('AlocarProfissionnais')">Alocar Profissionnais</button>
-                        <button class="tab-button" data-tab="GerirMateriais" onclick="openTab('GerirMateriais')">Gerir Materiais</button>
+                        <button class="tab-button" data-tab="AlocarProfissionnais"
+                            onclick="openTab('AlocarProfissionnais')">Alocar Profissionnais</button>
+                        <button class="tab-button" data-tab="GerirMateriais" onclick="openTab('GerirMateriais')">Gerir
+                            Materiais</button>
                     </div>
-                    
+
                     <!-- Dados -->
                     <div id="Dados" class="tab-content" style="display:none">
-                        <div class="container row">                                                            
-                                    <div class="col-md-4 conteiner-output-event-dados">
-                                          <div class="field">
-                                            <div class="label">Localidade</div>
-                                            <div id=localidade class="output"></div>
-                                          </div>
-                                          <div class="field">
-                                            <div class="label">Data</div>
-                                            <div id=data class="output"> 
-                                                <img src="assets\calendario.png" class="date-event-dados"/>
+                        <div class="container-fluid">
+
+                            <div class="container"></div>
+                            <div class="container">
+                                <form id="inscricaoForm" data-sb-form-api-token="API_TOKEN"
+                                    onsubmit="storeFormData(); return false;">
+                                    <div class="row align-items-stretch mb-5">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <!-- Title input-->
+                                                <div class="label">Título</div>
+                                                <input class="form-control-4" id="titulo" type="text"
+                                                    placeholder="Título *" data-sb-validations="required" />
+                                                <div class="invalid-feedback" data-sb-feedback="phone:required">Insira
+                                                    um título.</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <!-- Type dropdown -->
+                                                <div class="label">Tipo</div>
+                                                <select class="form-control-4" id="type" required>
+                                                    <option value="" selected disabled hidden>Tipo *</option>
+                                                    <option value="Corrida/Maratona">Corrida/Maratona</option>
+                                                    <option value="Aulas">Aulas</option>
+                                                    <option value="Jogos de Futebol">Jogos de Futebol</option>
+                                                    <option value="Workshop">Workshop</option>
+                                                    <option value="Outro">Outro</option>
+                                                </select>
+                                                <div class="invalid-feedback">Insira a localidade.</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <!-- Localidade input-->
+                                                <div class="label">Morada</div>
+                                                <input class="form-control-4" id="localidade" type="text"
+                                                    placeholder="Morada *" data-sb-validations="required" />
+                                                <div class="invalid-feedback" data-sb-feedback="name:required">Insira a
+                                                    localidade.</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <!-- Region dropdown -->
+                                                <div class="label">Região</div>
+                                                <select class="form-control-4" id="region" required>
+                                                    <option value="" selected disabled hidden>Região *</option>
+                                                    <option value="Norte">Norte</option>
+                                                    <option value="Centro">Centro</option>
+                                                    <option value="Lisboa">Lisboa</option>
+                                                    <option value="Alentejo">Alentejo</option>
+                                                    <option value="Algarve">Algarve</option>
+                                                </select>
+                                                <div class="invalid-feedback">Insira a localidade.</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <!-- Data input-->
+                                                <div class="label">Data</div>
+                                                <input type="date" class="form-control-4" id="data" required>
+                                            </div>
+                                            <div class="form-group"
+                                                style="display: flex; justify-content: center; gap: 20px;">
+                                                <!-- Starting Hour input -->
+                                                <div style="flex: 1; text-align: center;">
+                                                    <div class="label">Hora de Início</div>
+                                                    <input class="form-control-4" id="horaInicio" type="time"
+                                                        required />
+                                                </div>
+                                                <!-- Finishing Hour input -->
+                                                <div style="flex: 1; text-align: center;">
+                                                    <div class="label">Hora de Fim</div>
+                                                    <input class="form-control-4" id="horaFim" type="time" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <!-- Gestor input-->
+                                                <div class="label">Gestor</div>
+                                                <input class="form-control-4 readonly-field" id="gestor" type="text" placeholder="Gestor *" readonly>
+                                                <div class="invalid-feedback" data-sb-feedback="name:required">Insira um
+                                                    gestor.</div>
+                                            </div>
+                                            <div class="field">
+                                                <div class="label">Inscritos</div>
+                                                <div id=participantes class="output-2"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <!-- Dinheiro input-->
+                                                <div class="label">Dinheiro já angariado</div>
+                                                <input class="form-control-4 readonly-field" id="doacoes" type="text" placeholder="Dinheiro já angariado *" readonly>
+                                                <div class="invalid-feedback" data-sb-feedback="name:required">Insira a
+                                                    localidade.</div>
                                             </div>
                                         </div>
-                                          <div class="field">
-                                            <div class="label">Título</div>
-                                            <div id=titulo class="output">
-                                                Corrida do mosteiro
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="label">Descrição</div>
+                                                <textarea class="form-control-4" id="descricao"
+                                                    placeholder="Descrição *" maxlength="350" required></textarea>
                                             </div>
-                                          </div>
-                                          <div class="row Hora-GerirInciatica-Dados">
-                                            <div class="field ">
-                                                <div class="label">Hora Inicio</div>
-                                                <div id=horaInicio class="output-3"></div>
-                                            </div>    
-                                            <div class="field Hora">
-                                                <div class="label">Hora Fim</div>
-                                                <div id=horaFim class="output-3"></div>
-                                            </div>    
-                                          </div>
-                                          <div class="field">
-                                            <div class="label">Inscritos</div>
-                                            <div id=participantes class="output-2"></div>
-                                          </div>
-                                          <div class="field">
-                                            <div class="label">Dinheiro já angariado</div>
-                                            <div id=doacoes class="output-2"></div>
-                                          </div>
-                                    </div>
-                                    
-                                    <div class="col-md-5 conteiner-output-event-dados-2">
-                                        <div class="field">
-                                            <div class="label">Título</div>
-                                            <div id=descricao class="output-descricao"></div>
+                                            <div class="form-group">
+                                                
+                                                <!-- Imagem input-->
+                                                <div class="label">Imagem</div>
+                                                <img id="displayImage" src="" alt="Iniciativa Image" class="img-fluid">
+                                            </div>
                                             <br></br>
+                                            <button class="btn btn-primary btn-xl text-uppercase">Submeter</button>
                                         </div>
-                                        <div class="tabela-events-dados">
-                                            <table>
-                                                <thead>
-                                                    <tr>
-                                                        <th class="table-events-header">Profissionais</th>
-                                                        <th class="table-events-header event-tabela-subtitulo">Atribuídos</th>
-                                                        <th class="table-events-header event-tabela-subtitulo">Necessários</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Distribuidor de águas</td>
-                                                        <td>7</td>
-                                                        <td>
-                                                            <div class="buttons-events-gerirmateriais">
-                                                                <button class="minus-btn">-</button>
-                                                                <span class="quantity">4</span>
-                                                                <button class="plus-btn">+</button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Advogado</td>
-                                                        <td>1</td>
-                                                        <td>
-                                                            <div class="buttons-events-gerirmateriais">
-                                                                <button class="minus-btn">-</button>
-                                                                <span class="quantity">4</span>
-                                                                <button class="plus-btn">+</button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Enfermeiros</td>
-                                                        <td>1</td>
-                                                        <td>
-                                                            <div class="buttons-events-gerirmateriais">
-                                                                <button class="minus-btn">-</button>
-                                                                <span class="quantity">4</span>
-                                                                <button class="plus-btn">+</button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Organizadores de inscrição</td>
-                                                        <td>6</td>
-                                                        <td>
-                                                            <div class="buttons-events-gerirmateriais">
-                                                                <button class="minus-btn">-</button>
-                                                                <span class="quantity">4</span>
-                                                                <button class="plus-btn">+</button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Organizador do percurso</td>
-                                                        <td>5</td>
-                                                        <td>
-                                                            <div class="buttons-events-gerirmateriais">
-                                                                <button class="minus-btn">-</button>
-                                                                <span class="quantity">4</span>
-                                                                <button class="plus-btn">+</button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Distribuidor de sandes</td>
-                                                        <td>8</td>
-                                                        <td>
-                                                            <div class="tabela-buttons-events-dados">
-                                                                <button class="minus-btn">-</button>
-                                                                <span class="quantity">4</span>
-                                                                <button class="plus-btn">+</button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                    </div>
+                                    <!-- Submit success message-->
+                                    <!---->
+                                    <!-- This is what your users will see when the form-->
+                                    <!-- has successfully submitted-->
+                                    <div class="d-none" id="submitSuccessMessage">
+                                        <div class="text-center text-bg-secondary mb-3">
+                                            <div class="fw-bolder">Plano de iniciativa criado com sucesso!</div>
                                         </div>
-                                    </div>                                
+                                    </div>
+                                    <!-- Submit error message-->
+                                    <!---->
+                                    <!-- This is what your users will see when there is-->
+                                    <!-- an error submitting the form-->
+                                    <div class="d-none" id="submitErrorMessage">
+                                        <div class="text-center text-danger mb-3">Erro ao criar Evento! Causa possivel:
+                                            Nenhuma imagem carregada.</div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.container-fluid -->
+
+                            <br>
                         </div>
                     </div>
 
                     <!-- Alocar Profissionnais -->
-                    <div id="AlocarProfissionnais" class="tab-content">                       
-                        <div class="row"> 
-                            <div class="GerirProfissionais-table">                                
+                    <div id="AlocarProfissionnais" class="tab-content">
+                        <div class="row">
+                            <div class="GerirProfissionais-table">
                                 <div class="label GerirProfissionais-table-titulo">Profissionais</div>
                                 <div class="GerirProfissionais-table-container">
                                     <table>
@@ -396,21 +400,51 @@
                                     <div class="GerirProfissionais-table-body" id="tableBody">
                                         <table>
                                             <tbody>
-                                                <tr><td>Pedro Fernandes Martins</td></tr>
-                                                <tr><td>João Miguel Ferreira</td></tr>
-                                                <tr><td>Ana Clara Gomes Silva</td></tr>
-                                                <tr><td>Francisco José de Almeida</td></tr>
-                                                <tr><td>Sofia Gabriela Rocha</td></tr>
-                                                <tr><td>Rodrigo Antônio Carvalho</td></tr>
-                                                <tr><td>Beatriz Helena Vieira</td></tr>
-                                                <tr><td>Luís Eduardo Martins</td></tr>
-                                                <tr><td>Camila Fernanda Barbosa</td></tr>
-                                                <tr><td>Rafael Gustavo Pereira</td></tr>
-                                                <tr><td>Rafael Gustavo Pereira</td></tr>
-                                                <tr><td>Rafael Gustavo Pereira</td></tr>
-                                                <tr><td>Rafael Gustavo Pereira</td></tr>
-                                                <tr><td>Rafael Gustavo Pereira</td></tr>
-                                                <tr><td>Rafael Gustavo Pereira</td></tr>
+                                                <tr>
+                                                    <td>Pedro Fernandes Martins</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>João Miguel Ferreira</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Ana Clara Gomes Silva</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Francisco José de Almeida</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Sofia Gabriela Rocha</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Rodrigo Antônio Carvalho</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Beatriz Helena Vieira</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Luís Eduardo Martins</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Camila Fernanda Barbosa</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Rafael Gustavo Pereira</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Rafael Gustavo Pereira</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Rafael Gustavo Pereira</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Rafael Gustavo Pereira</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Rafael Gustavo Pereira</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Rafael Gustavo Pereira</td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -443,173 +477,31 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>   
+                        </div>
                     </div> <!-- Este conteúdo de aba será exibido inicialmente -->
-                      
+
                     <!-- GerirMateriais -->
                     <div id="GerirMateriais" class="tab-content" style="display:none">
-                        <div class="col-md-9 conteiner-output-event-dados-2">
-                            <div class="tabela-events-GerirMateriais">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th class="table-events-header">Materiais</th>
-                                            <th class="table-events-header event-tabela-subtitulo">Necessários</th>
-                                            <th class="table-events-header event-tabela-subtitulo">Em posse</th>
-                                            <th class="table-events-header event-tabela-subtitulo">No local</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Bola de Fútebol</td>
-                                            <td>
-                                                <div class="buttons-events-gerirmateriais">
-                                                    <button class="minus-btn" onclick="decrementar('item1')">-</button>
-                                                    <span id="quantidade-item1" class="quantity" >4</span>
-                                                    <button class="plus-btn" onclick="incrementar('item1')">+</button>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="buttons-events-gerirmateriais">
-                                                    <button class="minus-btn">-</button>
-                                                    <span class="quantity">4</span>
-                                                    <button class="plus-btn">+</button>
-                                                </div></td>
-                                            <td>
-                                                <div class="buttons-events-gerirmateriais">
-                                                    <button class="minus-btn">-</button>
-                                                    <span class="quantity">4</span>
-                                                    <button class="plus-btn">+</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Apito</td>
-                                            <td>
-                                                <div class="buttons-events-gerirmateriais">
-                                                    <button class="minus-btn">-</button>
-                                                    <span class="quantity">2</span>
-                                                    <button class="plus-btn">+</button>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="buttons-events-gerirmateriais">
-                                                    <button class="minus-btn">-</button>
-                                                    <span class="quantity">4</span>
-                                                    <button class="plus-btn">+</button>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="buttons-events-gerirmateriais">
-                                                    <button class="minus-btn">-</button>
-                                                    <span class="quantity">4</span>
-                                                    <button class="plus-btn">+</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cones</td>
-                                            <td>
-                                                <div class="buttons-events-gerirmateriais">
-                                                    <button class="minus-btn">-</button>
-                                                    <span class="quantity">16</span>
-                                                    <button class="plus-btn">+</button>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="buttons-events-gerirmateriais">
-                                                    <button class="minus-btn">-</button>
-                                                    <span class="quantity">4</span>
-                                                    <button class="plus-btn">+</button>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="buttons-events-gerirmateriais">
-                                                    <button class="minus-btn">-</button>
-                                                    <span class="quantity">4</span>
-                                                    <button class="plus-btn">+</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Colete</td>
-                                            <td>
-                                                <div class="buttons-events-gerirmateriais">
-                                                    <button class="minus-btn">-</button>
-                                                    <span class="quantity">36</span>
-                                                    <button class="plus-btn">+</button>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="buttons-events-gerirmateriais">
-                                                    <button class="minus-btn">-</button>
-                                                    <span class="quantity">4</span>
-                                                    <button class="plus-btn">+</button>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="buttons-events-gerirmateriais">
-                                                    <button class="minus-btn">-</button>
-                                                    <span class="quantity">4</span>
-                                                    <button class="plus-btn">+</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Garrafa de Água</td>
-                                            <td>
-                                                <div class="buttons-events-gerirmateriais">
-                                                    <button class="minus-btn">-</button>
-                                                    <span class="quantity">54</span>
-                                                    <button class="plus-btn">+</button>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="buttons-events-gerirmateriais">
-                                                    <button class="minus-btn">-</button>
-                                                    <span class="quantity">4</span>
-                                                    <button class="plus-btn">+</button>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="buttons-events-gerirmateriais">
-                                                    <button class="minus-btn">-</button>
-                                                    <span class="quantity">4</span>
-                                                    <button class="plus-btn">+</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cones</td>
-                                            <td>
-                                                <div class="buttons-events-gerirmateriais">
-                                                    <button class="minus-btn">-</button>
-                                                    <span class="quantity">4</span>
-                                                    <button class="plus-btn">+</button>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="buttons-events-gerirmateriais">
-                                                    <button class="minus-btn">-</button>
-                                                    <span class="quantity">4</span>
-                                                    <button class="plus-btn">+</button>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="buttons-events-gerirmateriais">
-                                                    <button class="minus-btn">-</button>
-                                                    <span class="quantity">4</span>
-                                                    <button class="plus-btn">+</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="label CriarIniciativa-table-titulo">Materiais</div>
+                                <div class="materiais-table-container2">
+                                    <table class="materiais-table2">
+                                        <thead>
+                                            <tr>
+                                                <th>Material</th>
+                                                <th>Necessário</th>
+                                                <th>Em Posse</th>
+                                                <th>Custo Unitário</th>
+                                                <th>Custo Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="materiaisTableBody">
+                                            <!-- Rows for materiais will be dynamically added here -->
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-
-                        </div>    
+                        </div>
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
 

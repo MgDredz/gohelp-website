@@ -10305,3 +10305,40 @@ body.sidebar-toggled footer.sticky-footer{
   .materiais-table th {
     text-align: center; 
   }
+
+  .materiais-table-container2 {
+    border: 1px solid #858796;
+    padding: 10px;
+    background-color: #fdfdfe;
+    border-radius: 5px;
+    width: 90%;
+    overflow-y: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .materiais-table2 {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+ .materiais-table2 td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+
+  .materiais-table2 th {
+    text-align: center; 
+  }
+
+  #tituloBold {
+    white-space: nowrap;   /* Prevents the text from wrapping */
+    text-overflow: ellipsis; /* Adds an ellipsis if the text overflows */
+    max-width: 100%;       /* Adjust this as needed */
+  }
+
+.readonly-field {
+    background-color:transparent;
+    border: none;       
+}
