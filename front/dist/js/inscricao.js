@@ -1,35 +1,39 @@
 document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
-    const titulo = decodeURIComponent(urlParams.get('titulo') || '');
-    const localidade = decodeURIComponent(urlParams.get('localidade') || '');
-    const data = decodeURIComponent(urlParams.get('data') || '');
-    const descricao = decodeURIComponent(urlParams.get('descricao') || '');
-    const imagem = decodeURIComponent(urlParams.get('imagem') || '');
-    const participantes = decodeURIComponent(urlParams.get('participantes') || '0');
-    const participantesMax = decodeURIComponent(urlParams.get('participantesMax') || '0');
+    if (urlParams.has('titulo')) {
+        displayInitiativeDetailsFromURL(); // Carrega detalhes com base nos parâmetros da URL
+    } else if (urlParams.has('evento')) {
+        loadInitiativeDetailsById(); // Carrega detalhes com base no ID
+    }
 
-    const eventoContainer = document.querySelector('.event-container');
-    eventoContainer.innerHTML = `
-        <img src="${imagem}" alt="Event Image">
-        <div class="event-date">${data}</div>
-        <div class="event-location">${localidade}</div>
-        <h3>${titulo}</h3>
-        <p>${descricao}</p>
-        <p><strong>Participantes: </strong>${participantes}/${participantesMax}</p>
-    `;
+    const form = document.getElementById('inscricaoForm');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        if (validateForm()) {
+            handleFormSubmission(); // Trata a submissão do formulário
+        }
+    });
 });
 
+function displayInitiativeDetailsFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const titulo = decodeURIComponent(urlParams.get('titulo'));
+    const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
+    const initiative = initiatives.find(init => init.titulo === titulo);
 
-document.addEventListener('DOMContentLoaded', function() {
-    loadInitiativeDetails(); // Chamada da função renomeada
-});
+    displayInitiativeDetails(initiative);
+}
 
-function loadInitiativeDetails() {
+function loadInitiativeDetailsById() {
     const urlParams = new URLSearchParams(window.location.search);
     const eventoId = urlParams.get('evento');
     const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
     const initiative = initiatives.find(init => init.id.toString() === eventoId);
 
+    displayInitiativeDetails(initiative);
+}
+
+function displayInitiativeDetails(initiative) {
     if (initiative) {
         const eventoContainer = document.querySelector('.event-container');
         eventoContainer.innerHTML = `
@@ -38,11 +42,56 @@ function loadInitiativeDetails() {
             <div class="event-location">${initiative.localidade}</div>
             <h3>${initiative.titulo}</h3>
             <p>${initiative.descricao}</p>
-            <div><strong>Participantes: </strong>${initiative.participantes}/${initiative.participantesmax}</div>
-
+            <div><strong>Participantes: </strong>${initiative.participantes.length}/${initiative.participantesmax}</div>
         `;
     } else {
         console.log("Iniciativa não encontrada.");
     }
 }
 
+function validateForm() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+
+    if (!name || !email || !phone) {
+        alert('Por favor, preencha todos os campos.');
+        return false;
+    }
+    return true;
+}
+
+function handleFormSubmission() {
+    const email = document.getElementById('email').value.trim();
+    const urlParams = new URLSearchParams(window.location.search);
+    const titulo = urlParams.get('titulo');
+    const eventoId = urlParams.get('evento');
+    const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
+    const initiative = initiatives.find(init => titulo ? init.titulo === titulo : init.id.toString() === eventoId);
+
+    if (!initiative) {
+        alert('Evento não encontrado.');
+        return;
+    }
+
+    // Verifica se o e-mail já está presente no array de participantes da iniciativa
+    if (initiative.participantes.includes(email)) {
+        alert('Este e-mail já foi utilizado para se inscrever neste evento.');
+        return;
+    }
+
+    if (initiative.participantes.length >= initiative.participantesmax) {
+        alert('Número máximo de participantes atingido.');
+        return;
+    }
+
+    initiative.participantes.push(email);
+    localStorage.setItem('initiatives', JSON.stringify(initiatives));
+    updateParticipantsDisplay(initiative);
+    new bootstrap.Modal(document.getElementById('confirmationModal')).show(); // Exibir o modal de confirmação
+}
+
+function updateParticipantsDisplay(initiative) {
+    const eventoContainer = document.querySelector('.event-container');
+    eventoContainer.querySelector('div:last-child').innerHTML = `<strong>Participantes: </strong>${initiative.participantes.length}/${initiative.participantesmax}`;
+}
