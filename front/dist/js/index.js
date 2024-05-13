@@ -51,7 +51,6 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 });
 
-
 function updateModal(modalId, eventName, place, description) {
     document.querySelector(modalId + ' .modal-body h2').innerText = eventName;
     document.querySelector(modalId + ' .item-intro').innerText = place;

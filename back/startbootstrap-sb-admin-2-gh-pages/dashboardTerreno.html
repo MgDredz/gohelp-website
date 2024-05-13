@@ -49,32 +49,14 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Iniciativas
-            </div>
+            
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="gerir-iniciativa.html">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Gerir</span>
+                    <span>Gerir Iniciativas</span>
                 </a>                
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="criar-iniciativa.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Criar Plano</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="pedidos.html">
-                    <i class="far fa-check-square fa-lg"></i>
-                    <span>Pedidos</span></a>
             </li>
 
             <!-- Divider -->
@@ -198,90 +180,14 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard no  Terreno</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
 
                     <!-- Content Row -->
-                    <div class="row">
+                    <div id=topCards class="row"> </div>
 
-                        
-                        <!-- Doações Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"  style="margin-top: -15px;">
-                                                Doações</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"  style="margin-top: 15px;">1,250,000€</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-euro-sign fa-2x text-gray-300"  style="margin-top: 15px;"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--  Ações a decorre Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1"  style="margin-top: -15px;">
-                                                Ações a decorrer</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"  style="margin-top: 15px;">24</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"  style="margin-top: 15px;"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Profissionais no Terreno Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"  style="margin-top: -15px;">
-                                                Profissionais no Terreno</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">78</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-people-carry fa-2x text-gray-300"  style="margin-top: 15px;"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pedidos Card Example -->
-                     <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-warning shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"  style="margin-top: -15px;">
-                                            Pedidos</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800"  style="margin-top: 15px;">17</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-comments fa-2x text-gray-300" style="margin-top: 15px;"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    </div>
-
-                      
                     <!-- Content Row -->
 
                     <div class="row">
@@ -292,7 +198,7 @@
                                 <!-- Card Header-->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Doações</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Doações/Iniciativas</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -335,44 +241,7 @@
                     <div class="row">
 
                         <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Ações por tipo -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Ações - Tipo (no último mês)</h6>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="small font-weight-bold">Corridas/Maratonas <span
-                                            class="float-right">64%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 64%"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Aulas <span
-                                            class="float-right">16%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 16%"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Jogos de Futebol <span
-                                            class="float-right">8%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 8%"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Workshops <span
-                                            class="float-right">8%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 8%"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Outros <span
-                                            class="float-right">4%</span></h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 4%"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
+                        <div id="barPercentage" class="col-lg-6 mb-4"></div>
 
                         <!-- Ações a decorrer no dia de hoje -->
                         <div class="col-lg-6 mb-4">
@@ -383,93 +252,8 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="row">
-                                        <!-- Açoes a decorrer Card Example -->
-                                        <div class="col-xl-6 col-md-6 mb-4">
-                                            <div class="card2 border-left-primary shadow h-100 py-3">
-                                                <div class="card-body">
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="margin-top: -15px;">
-                                                                Ações a decorrer</div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 20px;">24</div>
-                                                        </div>
-                                                        <div class="col-auto">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Doaçoes Card Example -->
-                                        <div class="col-xl-6 col-md-6 mb-4">
-                                            <div class="card2 border-left-success shadow h-100 py-3">
-                                                <div class="card-body">
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1" style="margin-top: -15px;">
-                                                                Doações</div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 20px;">1,200,000€</div>
-                                                        </div>
-                                                        <div class="col-auto">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Funcionarios Card Example-->
-                                        <div class="col-xl-4 col-md-6 mb-4">
-                                            <div class="card2 border-left-info shadow h-100 py-3">
-                                                <div class="card-body">
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1" style="margin-top: -15px;">
-                                                                Funcionários no Terreno</div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">34</div>
-                                                        </div>
-                                                        <div class="col-auto">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Dsitritos Card Example -->
-                                        <div class="col-xl-4 col-md-6 mb-4">
-                                            <div class="card2 border-left-warning shadow h-100 py-3">
-                                                <div class="card-body">
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1" style="margin-top: -15px;">
-                                                                Distritos Presentes</div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">12</div>
-                                                        </div>
-                                                        <div class="col-auto">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Teste Card Example -->
-                                        <div class="col-xl-4 col-md-6 mb-4">
-                                            <div class="card2 border-left-danger shadow h-100 py-3">
-                                                <div class="card-body">
-                                                    <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1" style="margin-top: -15px;">
-                                                                Teste com 2 linhas</div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">123</div>
-                                                        </div>
-                                                        <div class="col-auto">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> <!-- Closing row for card decks -->
-                                    <a href="dashboardTerreno.html" class="details-link2">Mais Detalhes</a> 
+                                    <div id=bottomCards class="row"></div> <!-- Closing row for card decks -->
+                                    <a href="dashboardTerreno.html" class="m-0 font-weight-bold text-primary details-link2">Ver Mais</a> 
                                 </div>
                             </div>
                         </div>
@@ -517,7 +301,7 @@
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
+    <!--   core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -527,14 +311,15 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/dashboard2.js"></script>
 
     <!-- Page level plugins -->
     <script src="vendor/chart.js/Chart.min.js"></script>
     
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="js/demo/chart-area-demo2.js"></script>
+    <script src="js/demo/chart-pie-demo2.js"></script>
 
 </body>
 

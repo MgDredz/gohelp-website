@@ -40,8 +40,6 @@ const initiatives = JSON.parse(localStorage.getItem('initiatives'));
 // Find the initiative by ID
 const initiative = initiatives.find(init => init.id === initiativeId);
 
-
-
 //escrever
 const localidade = document.getElementById('localidade');
   localidade.innerHTML = `
