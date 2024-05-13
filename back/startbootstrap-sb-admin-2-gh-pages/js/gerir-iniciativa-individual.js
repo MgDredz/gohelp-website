@@ -34,23 +34,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-    if (initiative && initiative.materiais) {
-        const tableBody = document.getElementById('materiaisTableBody');
-        initiative.materiais.forEach(item => {
-            let row = tableBody.insertRow();
-            let cell1 = row.insertCell(0);
-            let cell2 = row.insertCell(1);
-            let cell3 = row.insertCell(2);
-            let cell4 = row.insertCell(3);
-            let cell5 = row.insertCell(4);
-            cell1.textContent = item.material;
-            cell2.textContent = item.qtd;
-            cell3.textContent = '';
-            cell4.textContent = '';
-            cell5.textContent = '';
-        });
-    }
+  if (initiative && initiative.materiais) {
+    const tableBody = document.getElementById('materiaisTableBody');
+    initiative.materiais.forEach(item => {
+        let row = tableBody.insertRow();
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        let cell3 = row.insertCell(2);
+        let cell4 = row.insertCell(3);
+        let cell5 = row.insertCell(4);
+
+        cell1.textContent = item.material;
+        cell2.textContent = item.qtd;
+        cell3.innerHTML = '<input type="number" class="em-posse" value="0" min="0" onchange="updateTotal(this)">';
+        cell4.innerHTML = '<input type="number" class="custo-unitario" value="0" min="0" onchange="updateTotal(this)"> €';
+        cell5.innerHTML = '0 €'; // Initial value with € symbol
+    });
+}
 });
+
+function updateTotal(element) {
+  const row = element.parentNode.parentNode; // Access the row of the changed input
+  const emPosse = row.cells[2].querySelector('.em-posse').value; // Get the value of Em Posse
+  const custoUnitario = row.cells[3].querySelector('.custo-unitario').value; // Get the value of Custo Unitário
+  const custoTotalCell = row.cells[4]; // The cell where Custo Total is displayed
+
+  const custoTotal = emPosse * custoUnitario; // Calculate Custo Total
+  custoTotalCell.innerHTML = custoTotal.toFixed(2) + ' €'; // Update the Custo Total cell with € symbol
+
+  updateGrandTotal(); // Call function to update the grand total
+}
+
+function updateGrandTotal() {
+  const rows = document.getElementById('materiaisTableBody').rows;
+  let grandTotal = 0;
+  Array.from(rows).forEach(row => {
+      const totalCellValue = row.cells[4].textContent.replace(' €', ''); // Remove the Euro symbol to perform calculation
+      grandTotal += parseFloat(totalCellValue);
+  });
+  document.getElementById('totalCusto').textContent = `Total: €${grandTotal.toFixed(2)}`;
+}
 
 function openTab(tabName) {
   // Esconde todos os conteúdos de abas

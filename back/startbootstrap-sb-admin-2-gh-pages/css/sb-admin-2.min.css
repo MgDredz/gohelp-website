@@ -10332,6 +10332,31 @@ body.sidebar-toggled footer.sticky-footer{
     text-align: center; 
   }
 
+  .materiais-table2 .custo-unitario {
+    width: calc(100% - 24px); /* Adjust width to make room for the € symbol */
+    display: inline-block; /* Ensures the input behaves inline */
+    }
+
+    .materiais-table2 {
+        width: 100%; /* Set the table width to fill the container */
+        table-layout: fixed; /* Use fixed layout for the table */
+    }
+    
+    .materiais-table2 th, .materiais-table2 td {
+        width: 20%; /* Ensures all columns have the same width */
+    }
+
+    .materiais-table2 td input[type="number"] {
+        text-align: right; /* Right-align text only in input fields within table cells */
+    }
+
+    #totalCusto {
+        font-size: 16px;
+        margin-top: 10px;
+        font-weight: bold;
+        margin-left: 65px;
+    }
+
   #tituloBold {
     white-space: nowrap;   /* Prevents the text from wrapping */
     text-overflow: ellipsis; /* Adds an ellipsis if the text overflows */
