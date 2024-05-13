@@ -12150,6 +12150,7 @@ h3{
   width: 90vw;
   flex: 1;          /* Todos os filhos flex têm a mesma proporção */
   padding: auto;
+  margin: auto;
 }
 
 .container-flex {
