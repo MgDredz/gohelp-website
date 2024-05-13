@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     preloadPedidos();
     preloadGestores();
     preloadUsers();
+    preloadFrontUsers();
 
 
     const loginButton = document.querySelector('.btn-user.btn-block');
@@ -249,4 +250,31 @@ function preloadUsers() {
 
     localStorage.setItem('users', JSON.stringify(users));
     console.log("Users updated in local storage.");
+}
+
+function preloadFrontUsers() {
+    // Predefined user profiles with the required details
+    const predefinedFrontUsers = [
+        { firstName: "Carlos", lastName: "Joao", email: "carlosjoao@example.com", isAdmin: false, password: "gohelp" },
+        { firstName: "Alice", lastName: "Vieira", email: "alice.vieira@example.com", isAdmin: false, password: "gohelp" },
+        { firstName: "João", lastName: "Sousa", email: "joao.sousa@example.com", isAdmin: false, password: "gohelp" },
+        { firstName: "Ana", lastName: "Maria", email: "ana.maria@example.com", isAdmin: false, password: "gohelp" },
+        { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha01@example.com", isAdmin: false, password: "gohelp" },
+        { firstName: "Joana", lastName: "Oliveira", email: "joana.oliveira@example.com", isAdmin: false, password: "gohelp" },
+        { firstName: "Bruno", lastName: "Carvalho", email: "bruno.carvalho@example.com", isAdmin: false, password: "gohelp" },
+        { firstName: "Pedro", lastName: "Alves", email: "pedro.alves@example.com", isAdmin: false, password: "gohelp" },
+        { firstName: "Rosa", lastName: "Silva", email: "rosa.silva@example.com", isAdmin: false, password: "gohelp" },
+        { firstName: "Tiago", lastName: "Carlos", email: "tiago.carlos@example.com", isAdmin: false, password: "gohelp" },
+        { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha02@example.com", isAdmin: false, password: "gohelp" },
+    ];
+
+    const frontUsers = JSON.parse(localStorage.getItem('FrontUsers')) || [];
+    predefinedFrontUsers.forEach(user => {
+        if (!frontUsers.some(existingUser => existingUser.email === user.email)) {
+            frontUsers.push(user);
+        }
+    });
+
+    localStorage.setItem('FrontUsers', JSON.stringify(frontUsers));
+    console.log("FrontUsers updated in local storage.");
 }
