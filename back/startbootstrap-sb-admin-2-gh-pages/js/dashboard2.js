@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    const loggedInUserEmail = loggedInUser.email;
     const rawInitiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
-
     // Filter the initiatives to get only those managed by "s.thor@example.com"
-    const initiatives = rawInitiatives.filter(initiative => initiative.gestor === "s.thor@example.com");
+    const initiatives = rawInitiatives.filter(initiative => initiative.gestor === loggedInUserEmail);
 
     const donations = JSON.parse(localStorage.getItem('donations')) || [];
     const professionals = JSON.parse(localStorage.getItem('profissionais')) || [];
@@ -90,10 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 function topCards(donations, initiatives, professionals, gestores, pedidos) {
-    //card donations
-    const totalSum = donations.reduce((sum, donation) => sum + donation.montante, 0);
-    const formattedTotalSum = totalSum.toFixed(2);
-    const formattedTotalSum2 = new Intl.NumberFormat('en-US').format(formattedTotalSum);
 
     //card initiatives
     const today = new Date();
@@ -105,6 +102,16 @@ function topCards(donations, initiatives, professionals, gestores, pedidos) {
     });
 
     const todaysInitiativesCount = todaysInitiatives.length;
+
+    //card initiatives next 30 days
+    const thirtyDaysLater = new Date();
+    thirtyDaysLater.setDate(today.getDate() + 30);
+
+    // Count the initiatives within the next 30 days
+    const initiativesNext30DaysCount = initiatives.filter(initiative => {
+        const initiativeDate = new Date(initiative.data);
+        return initiativeDate >= today && initiativeDate <= thirtyDaysLater;
+}).length;
 
     //card professionals
     const professionalsCount = professionals.length;
@@ -124,11 +131,8 @@ function topCards(donations, initiatives, professionals, gestores, pedidos) {
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"  style="margin-top: -15px;">
-                            Doações</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"  style="margin-top: 15px;">${formattedTotalSum2}€</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-euro-sign fa-2x text-gray-300"  style="margin-top: 15px;"></i>
+                        Ações a decorrer</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"  style="margin-top: 15px;">${todaysInitiativesCount}</div>
                     </div>
                 </div>
             </div>
@@ -142,11 +146,8 @@ function topCards(donations, initiatives, professionals, gestores, pedidos) {
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1"  style="margin-top: -15px;">
-                            Ações a decorrer</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">${todaysInitiativesCount}</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-calendar fa-2x text-gray-300"  style="margin-top: 15px;"></i>
+                            Ações no próximo mês</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">${initiativesNext30DaysCount}</div>
                     </div>
                 </div>
             </div>
@@ -163,9 +164,6 @@ function topCards(donations, initiatives, professionals, gestores, pedidos) {
                             Profissionais</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">${totalProfessionals}</div>
                     </div>
-                    <div class="col-auto">
-                        <i class="fas fa-people-carry fa-2x text-gray-300"  style="margin-top: 15px;"></i>
-                    </div>
                 </div>
             </div>
         </div>
@@ -180,9 +178,6 @@ function topCards(donations, initiatives, professionals, gestores, pedidos) {
                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"  style="margin-top: -15px;">
                         Pedidos</div>
                     <div class="h5 mb-0 font-weight-bold text-gray-800"  style="margin-top: 15px;">${pendenteCount}</div>
-                </div>
-                <div class="col-auto">
-                    <i class="fas fa-comments fa-2x text-gray-300" style="margin-top: 15px;"></i>
                 </div>
             </div>
         </div>
