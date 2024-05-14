@@ -79,7 +79,7 @@ function createInitiativeElement(initiative) {
     </a>
     <div class="row">
         <div class="event-inscricoes">
-            <span class="numero-evento-inscricoes">${initiative.participantes}</span> <!-- Default value, update based on your data -->
+            <span class="numero-evento-inscricoes">${initiative.participantes.length}</span> <!-- Default value, update based on your data -->
             <span class="texto-evento">Inscrições</span>
         </div>
         <div class="event-angariacoes">

@@ -1,13 +1,13 @@
+function getQueryParameter(name) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(name);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const storedUser = JSON.parse(localStorage.getItem('loggedInUser'));
   if (storedUser && storedUser.name && storedUser.role) {
-    const displayName = `${storedUser.name} (${storedUser.role})`;
-    document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = displayName;
-  }
-
-  function getQueryParameter(name) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(name);
+      const displayName = `${storedUser.name} (${storedUser.role})`;
+      document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = displayName;
   }
 
   const id = getQueryParameter('id');
@@ -16,27 +16,35 @@ document.addEventListener('DOMContentLoaded', () => {
   const initiative = initiatives.find(i => i.id == id);
 
   if (initiative) {
-    document.getElementById('titulo').value = initiative.titulo;
-    document.getElementById('type').value = initiative.type;
-    document.getElementById('localidade').value = initiative.localidade;
-    document.getElementById('region').value = initiative.region;
-    document.getElementById('data').value = initiative.data;
-    document.getElementById('horaInicio').value = initiative.horaInicio;
-    document.getElementById('horaFim').value = initiative.horaFim;
-    document.getElementById('descricao').value = initiative.descricao;
-    document.getElementById('gestor').value = initiative.gestor;
-    document.getElementById('doacoes').value = initiative.doacoes;
-    
-    const imagem = document.getElementById('imagem');
-    const displayImage = document.getElementById('displayImage');
-    if (initiative.imagem) {
-      displayImage.src = initiative.imagem;
-    }
+      document.getElementById('titulo').value = initiative.titulo;
+      document.getElementById('type').value = initiative.type;
+      document.getElementById('localidade').value = initiative.localidade;
+      document.getElementById('region').value = initiative.region;
+      document.getElementById('data').value = initiative.data;
+      document.getElementById('horaInicio').value = initiative.horaInicio;
+      document.getElementById('horaFim').value = initiative.horaFim;
+      document.getElementById('descricao').value = initiative.descricao;
+      document.getElementById('gestor').value = initiative.gestor;
+      document.getElementById('doacoes').value = initiative.doacoes;
+      document.getElementById('maxparticipantesindividual').value = initiative.participantesmax;
+
+      const participantesLength = initiative.participantes.length;
+      document.getElementById('participantesindividual').value = participantesLength;
+
+      const displayImage = document.getElementById('displayImage');
+      if (initiative.imagem) {
+          displayImage.src = initiative.imagem;
+      }
+
+      const tituloBold = document.getElementById('tituloBold');
+      if (tituloBold) {
+          tituloBold.textContent = initiative.titulo;
+      }
   }
 
   if (initiative && initiative.materiais) {
     const tableBody = document.getElementById('materiaisTableBody');
-    initiative.materiais.forEach(item => {
+    initiative.materiais.forEach((item, index) => {
         let row = tableBody.insertRow();
         let cell1 = row.insertCell(0);
         let cell2 = row.insertCell(1);
@@ -46,195 +54,224 @@ document.addEventListener('DOMContentLoaded', () => {
 
         cell1.textContent = item.material;
         cell2.textContent = item.qtd;
-        cell3.innerHTML = '<input type="number" class="em-posse" value="0" min="0" onchange="updateTotal(this)">';
-        cell4.innerHTML = '<input type="number" class="custo-unitario" value="0" min="0" onchange="updateTotal(this)"> €';
-        cell5.innerHTML = '0 €'; // Initial value with € symbol
+        cell3.innerHTML = `<input type="number" class="em-posse" value="${item.emPosse || 0}" min="0" onchange="updateMaterial(${index}, 'emPosse', this.value)">`;
+        cell4.innerHTML = `<input type="number" class="custo-unitario" value="${item.custoUnitario || 0}" min="0" onchange="updateMaterial(${index}, 'custoUnitario', this.value)"> €`;
+        cell5.innerHTML = `${(item.emPosse * item.custoUnitario).toFixed(2)} €`; // Initial value with € symbol
     });
-}
+
+    updateGrandTotal();
+  }
 });
 
-function updateTotal(element) {
-  const row = element.parentNode.parentNode; // Access the row of the changed input
-  const emPosse = row.cells[2].querySelector('.em-posse').value; // Get the value of Em Posse
-  const custoUnitario = row.cells[3].querySelector('.custo-unitario').value; // Get the value of Custo Unitário
-  const custoTotalCell = row.cells[4]; // The cell where Custo Total is displayed
+function updateMaterial(index, field, value) {
+  const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
+  const id = getQueryParameter('id');
+  const initiative = initiatives.find(i => i.id == id);
 
-  const custoTotal = emPosse * custoUnitario; // Calculate Custo Total
-  custoTotalCell.innerHTML = custoTotal.toFixed(2) + ' €'; // Update the Custo Total cell with € symbol
+  if (initiative && initiative.materiais) {
+    if (field === 'emPosse' || field === 'custoUnitario') {
+      initiative.materiais[index][field] = parseFloat(value) || 0;
+      initiative.materiais[index].total = initiative.materiais[index].emPosse * initiative.materiais[index].custoUnitario;
+    }
 
-  updateGrandTotal(); // Call function to update the grand total
+    localStorage.setItem('initiatives', JSON.stringify(initiatives));
+    updateGrandTotal();
+  }
 }
 
 function updateGrandTotal() {
-  const rows = document.getElementById('materiaisTableBody').rows;
+  const id = getQueryParameter('id');
+  const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
+  const initiative = initiatives.find(i => i.id == id);
+
+  const tableBody = document.getElementById('materiaisTableBody');
+  const rows = tableBody.rows;
   let grandTotal = 0;
-  Array.from(rows).forEach(row => {
-      const totalCellValue = row.cells[4].textContent.replace(' €', ''); // Remove the Euro symbol to perform calculation
-      grandTotal += parseFloat(totalCellValue);
-  });
+
+  for (let i = 0; i < rows.length; i++) {
+    const emPosse = parseFloat(rows[i].cells[2].querySelector('.em-posse').value) || 0;
+    const custoUnitario = parseFloat(rows[i].cells[3].querySelector('.custo-unitario').value) || 0;
+    const custoTotal = emPosse * custoUnitario;
+
+    rows[i].cells[4].textContent = `${custoTotal.toFixed(2)} €`; // Update the Custo Total cell with € symbol
+    grandTotal += custoTotal;
+  }
+
   document.getElementById('totalCusto').textContent = `Total: €${grandTotal.toFixed(2)}`;
 }
 
 function openTab(tabName) {
-  // Esconde todos os conteúdos de abas
   var tabcontents = document.querySelectorAll(".tab-content");
   tabcontents.forEach(function (tabcontent) {
-    tabcontent.style.display = "none";
+      tabcontent.style.display = "none";
   });
 
-  // Remove 'active' de todos os botões
   var tabbuttons = document.querySelectorAll(".tab-button");
   tabbuttons.forEach(function (tabbutton) {
-    tabbutton.classList.remove("active");
+      tabbutton.classList.remove("active");
   });
 
-  // Mostra a aba específica e adiciona 'active' ao botão correspondente
   document.getElementById(tabName).style.display = "block";
-  document.querySelector(".tab-button[data-tab='" + tabName + "']").classList.add("active");
+  document.querySelector(".tab-button[data-tab='" + tabName + "']").classList.add('active');
 }
 
-// Garante que o script rode após o carregamento completo do DOM
 window.onload = function () {
   openTab('Dados');
-  window.onclick = carregarQuantidades;
 };
 
-// Get the `id` parameter from the URL
-const urlParams = new URLSearchParams(window.location.search);
-const initiativeId = parseInt(urlParams.get('id'));
-
-// Retrieve initiatives from local storage
-const initiatives = JSON.parse(localStorage.getItem('initiatives'));
-
-// Find the initiative by ID
-const initiative = initiatives.find(init => init.id === initiativeId);
-
-//escrever
-const localidade = document.getElementById('localidade');
-localidade.innerHTML = `
-  ${initiative.localidade}
-  `;
-
-const data = document.getElementById('data');
-data.innerHTML = `
-  ${initiative.data}
-  `;
-
-const titulo = document.getElementById('titulo');
-titulo.innerHTML = `
-  ${initiative.titulo}
-  `;
-
-const tituloB = document.getElementById('tituloBold');
-tituloB.innerHTML = `
-  ${initiative.titulo}
-  `;
-
-const doacoes = document.getElementById('doacoes');
-doacoes.innerHTML = `
-  ${initiative.doacoes}
-  `;
-
-const participantes = document.getElementById('participantes');
-participantes.innerHTML = `
-  ${initiative.participantes}
-  `;
-
-const descricao = document.getElementById('descricao');
-descricao.innerHTML = `
-  ${initiative.descricao}
-  `;
-
-const horaInicio = document.getElementById('horaInicio');
-horaInicio.innerHTML = `
-  ${initiative.horaInicio}
-  `;
-
-const horaFim = document.getElementById('horaFim');
-horaFim.innerHTML = `
-  ${initiative.horaFim}
-  `;
-
-const tipo = document.getElementById('tipo');
-tipo.innerHTML = `
-  ${initiative.type}
-  `;
-
-const region = document.getElementById('region');
-region.innerHTML = `
-  ${initiative.region}
-  `;
-
-const gestor = document.getElementById('gestor');
-gestor.innerHTML = `
-  ${initiative.gestor}
-  `;
-
-const imagem = document.getElementById('imagem');
-imagem.innerHTML = `
-  <img src="${initiative.imagem}">
-  `;
-
-/*
-// Seleciona todos os botões de adição e subtração
-const plusButtons = document.querySelectorAll('.plus-btn');
-const minusButtons = document.querySelectorAll('.minus-btn');
-
-// Adiciona um ouvinte de evento para cada botão de adição
-plusButtons.forEach(button => {
- button.addEventListener('click', function() {
-   const quantitySpan = button.previousElementSibling;
-   let quantity = parseInt(quantitySpan.textContent);
-   quantity++;
-   quantitySpan.textContent = quantity;
- });
+document.getElementById('data').addEventListener('change', function() {
+  this.setCustomValidity('');
+  validateDate();
 });
 
-// Adiciona um ouvinte de evento para cada botão de subtração
-minusButtons.forEach(button => {
- button.addEventListener('click', function() {
-   const quantitySpan = button.nextElementSibling;
-   let quantity = parseInt(quantitySpan.textContent);
-   if (quantity > 0) {
-     quantity--;
-     quantitySpan.textContent = quantity;
-   }
- });
+document.getElementById('horaInicio').addEventListener('change', function() {
+  this.setCustomValidity('');
+  validateTime();
 });
-*/
-function incrementar(itemId) {
-  var quantidade = parseInt(localStorage.getItem(itemId) || "0") + 1;
-  localStorage.setItem(itemId, quantidade);
-  document.getElementById('quantidade-' + itemId).textContent = quantidade;
-}
 
-// Função para decrementar a quantidade
-function decrementar(itemId) {
-  var quantidade = parseInt(localStorage.getItem(itemId) || "0") - 1;
-  if (quantidade < 0) quantidade = 0; // Evita números negativos
-  localStorage.setItem(itemId, quantidade);
-  document.getElementById('quantidade-' + itemId).textContent = quantidade;
-}
+document.getElementById('horaFim').addEventListener('change', function() {
+  this.setCustomValidity('');
+  validateTime();
+});
 
-// Função para carregar as quantidades salvadas ao abrir a página
-function carregarQuantidades() {
-  // Substitua 'item1' pelo ID de seus itens
-  var ids = ['item1', 'item2', 'item3']; // Adicione todos os IDs dos seus itens aqui
-  ids.forEach(function (itemId) {
-    var quantidade = localStorage.getItem(itemId) || "0"; // Pega o valor do local storage ou 0 se não houver nada salvo
-    document.getElementById('quantidade-' + itemId).textContent = quantidade;
+const form = document.getElementById('inscricaoForm');
+let changedFields = new Set();
+
+['titulo', 'type', 'localidade', 'region', 'data', 'horaInicio', 'horaFim', 'descricao'].forEach(id => {
+  const element = document.getElementById(id);
+  element.addEventListener('change', () => {
+      changedFields.add(id);
   });
+});
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+  console.log('Form submission initiated.');
+
+  let valid = true;
+  let invalidFields = [];
+
+  if (changedFields.has('data') && !validateDate()) {
+      invalidFields.push('data');
+      valid = false;
+  }
+
+  if ((changedFields.has('horaInicio') || changedFields.has('horaFim')) && !validateTime()) {
+      invalidFields.push('horaInicio', 'horaFim');
+      valid = false;
+  }
+
+  if (!valid) {
+      invalidFields.forEach(id => {
+          document.getElementById(id).reportValidity();
+      });
+      return;
+  }
+
+  const id = getQueryParameter('id');
+  const titulo = document.getElementById('titulo').value.trim();
+  const type = document.getElementById('type').value.trim();
+  const localidade = document.getElementById('localidade').value.trim();
+  const region = document.getElementById('region').value.trim();
+  const data = document.getElementById('data').value;
+  const horaInicio = document.getElementById('horaInicio').value;
+  const horaFim = document.getElementById('horaFim').value;
+  const descricao = document.getElementById('descricao').value.trim();
+
+  console.log('Form values:', { id, titulo, type, localidade, region, data, horaInicio, horaFim, descricao });
+
+  const successMessage = document.getElementById('submitSuccessMessage');
+  const errorMessage = document.getElementById('submitErrorMessage');
+
+  successMessage.classList.add('d-none');
+  errorMessage.classList.add('d-none');
+
+  const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
+  const sameDayInitiatives = initiatives.filter(initiative => initiative.data === data && initiative.region === region);
+
+  // Region-specific validation
+  if (changedFields.has('region') || changedFields.has('data') || changedFields.has('type')) {
+      if (region === 'Norte' || region === 'Lisboa') {
+          if (sameDayInitiatives.length >= 3 || sameDayInitiatives.some(initiative => initiative.type === type)) {
+              errorMessage.textContent = 'Não pode haver mais de 3 iniciativas na mesma data ou já existe uma iniciativa com o mesmo tipo.';
+              errorMessage.classList.remove('d-none');
+              return;
+          }
+      } else if (region === 'Centro' || region === 'Algarve') {
+          if (sameDayInitiatives.length >= 2 || sameDayInitiatives.some(initiative => initiative.type === type)) {
+              errorMessage.textContent = 'Não pode haver mais de 2 iniciativas na mesma data ou já existe uma iniciativa com o mesmo tipo.';
+              errorMessage.classList.remove('d-none');
+              return;
+          }
+      } else if (region === 'Alentejo') {
+          if (sameDayInitiatives.length >= 1) {
+              errorMessage.textContent = 'Não pode haver mais de 1 iniciativa na mesma data no Alentejo.';
+              errorMessage.classList.remove('d-none');
+              return;
+          }
+      }
+  }
+
+  const initiative = initiatives.find(i => i.id == id);
+  if (initiative) {
+      if (changedFields.has('titulo')) initiative.titulo = titulo;
+      if (changedFields.has('type')) initiative.type = type;
+      if (changedFields.has('localidade')) initiative.localidade = localidade;
+      if (changedFields.has('region')) initiative.region = region;
+      if (changedFields.has('data')) initiative.data = data;
+      if (changedFields.has('horaInicio')) initiative.horaInicio = horaInicio;
+      if (changedFields.has('horaFim')) initiative.horaFim = horaFim;
+      if (changedFields.has('descricao')) initiative.descricao = descricao;
+
+      console.log('Updated initiative:', initiative);
+  } else {
+      console.error('Initiative not found.');
+  }
+
+  localStorage.setItem('initiatives', JSON.stringify(initiatives));
+  console.log('Initiatives saved to localStorage.');
+
+  successMessage.classList.remove('d-none');
+  errorMessage.classList.add('d-none');
+
+  console.log('Form submission completed.');
+});
+
+function validateDate() {
+  const data = document.getElementById('data').value;
+  const dateInput = document.getElementById('data');
+  const selectedDate = new Date(data);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const nextDay = new Date(today);
+  nextDay.setDate(today.getDate() + 1);
+
+  if (selectedDate <= nextDay) {
+      dateInput.setCustomValidity('Data já ultrapassada');
+      return false;
+  } else {
+      dateInput.setCustomValidity('');
+      return true;
+  }
 }
 
-function toggleTableBody() {
-  var tableBody = document.getElementById("tableBody");
-  var arrow = document.getElementById("arrow");
-  if (tableBody.style.display === "none") {
-    tableBody.style.display = "block";
-    arrow.textContent = "▼";  // Muda a seta para baixo quando expandido
+function validateTime() {
+  const horaInicioInput = document.getElementById('horaInicio');
+  const horaFimInput = document.getElementById('horaFim');
+  const horaInicio = horaInicioInput.value;
+  const horaFim = horaFimInput.value;
+
+  const startTime = new Date(`1970-01-01T${horaInicio}:00`);
+  const endTime = new Date(`1970-01-01T${horaFim}:00`);
+
+  if (endTime <= startTime) {
+      horaFimInput.setCustomValidity('Hora de Fim deve ser depois de Hora de Início');
+      return false;
   } else {
-    tableBody.style.display = "none";
-    arrow.textContent = "▲";  // Muda a seta para cima quando minimizado
+      horaInicioInput.setCustomValidity('');
+      horaFimInput.setCustomValidity('');
+      return true;
   }
 }
 

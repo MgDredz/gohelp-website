@@ -10367,3 +10367,7 @@ body.sidebar-toggled footer.sticky-footer{
     background-color:transparent;
     border: none;       
 }
+
+ #maxparticipantesindividual, #participantesindividual {
+    text-align: center;
+ }

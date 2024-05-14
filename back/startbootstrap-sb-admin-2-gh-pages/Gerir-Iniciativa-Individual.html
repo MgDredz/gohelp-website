@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Gerir Iniciativas</title>
+    <title>GoHelp</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/favicon.png" />
     <!-- Custom fonts for this template-->
@@ -242,29 +242,24 @@
 
                     <div class="tab-menu">
                         <button class="tab-button active" data-tab="Dados" onclick="openTab('Dados')">Dados</button>
-                        <button class="tab-button" data-tab="AlocarProfissionnais"
-                            onclick="openTab('AlocarProfissionnais')">Alocar Profissionnais</button>
-                        <button class="tab-button" data-tab="GerirMateriais" onclick="openTab('GerirMateriais')">Gerir
-                            Materiais</button>
+                        <button class="tab-button" data-tab="AlocarProfissionnais" onclick="openTab('AlocarProfissionnais')">Alocar Profissionnais</button>
+                        <button class="tab-button" data-tab="GerirMateriais" onclick="openTab('GerirMateriais')">Gerir Materiais</button>
                     </div>
-
+                
                     <!-- Dados -->
                     <div id="Dados" class="tab-content" style="display:none">
                         <div class="container-fluid">
-
+                
                             <div class="container"></div>
                             <div class="container">
-                                <form id="inscricaoForm" data-sb-form-api-token="API_TOKEN"
-                                    onsubmit="storeFormData(); return false;">
+                                <form id="inscricaoForm" data-sb-form-api-token="API_TOKEN">
                                     <div class="row align-items-stretch mb-5">
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <!-- Title input-->
                                                 <div class="label">Título</div>
-                                                <input class="form-control-4" id="titulo" type="text"
-                                                    placeholder="Título *" data-sb-validations="required" />
-                                                <div class="invalid-feedback" data-sb-feedback="phone:required">Insira
-                                                    um título.</div>
+                                                <input class="form-control-4" id="titulo" type="text" placeholder="Título *" data-sb-validations="required" />
+                                                <div class="invalid-feedback" data-sb-feedback="phone:required">Insira um título.</div>
                                             </div>
                                             <div class="form-group">
                                                 <!-- Type dropdown -->
@@ -282,10 +277,8 @@
                                             <div class="form-group">
                                                 <!-- Localidade input-->
                                                 <div class="label">Morada</div>
-                                                <input class="form-control-4" id="localidade" type="text"
-                                                    placeholder="Morada *" data-sb-validations="required" />
-                                                <div class="invalid-feedback" data-sb-feedback="name:required">Insira a
-                                                    localidade.</div>
+                                                <input class="form-control-4" id="localidade" type="text" placeholder="Morada *" data-sb-validations="required" />
+                                                <div class="invalid-feedback" data-sb-feedback="name:required">Insira a localidade.</div>
                                             </div>
                                             <div class="form-group">
                                                 <!-- Region dropdown -->
@@ -305,13 +298,11 @@
                                                 <div class="label">Data</div>
                                                 <input type="date" class="form-control-4" id="data" required>
                                             </div>
-                                            <div class="form-group"
-                                                style="display: flex; justify-content: center; gap: 20px;">
+                                            <div class="form-group" style="display: flex; justify-content: center; gap: 20px;">
                                                 <!-- Starting Hour input -->
                                                 <div style="flex: 1; text-align: center;">
                                                     <div class="label">Hora de Início</div>
-                                                    <input class="form-control-4" id="horaInicio" type="time"
-                                                        required />
+                                                    <input class="form-control-4" id="horaInicio" type="time" required />
                                                 </div>
                                                 <!-- Finishing Hour input -->
                                                 <div style="flex: 1; text-align: center;">
@@ -323,63 +314,58 @@
                                                 <!-- Gestor input-->
                                                 <div class="label">Gestor</div>
                                                 <input class="form-control-4 readonly-field" id="gestor" type="text" placeholder="Gestor *" readonly>
-                                                <div class="invalid-feedback" data-sb-feedback="name:required">Insira um
-                                                    gestor.</div>
+                                                <div class="invalid-feedback" data-sb-feedback="name:required">Insira um gestor.</div>
                                             </div>
-                                            <div class="field">
-                                                <div class="label">Inscritos</div>
-                                                <div id=participantes class="output-2"></div>
+                                            <div class="form-group" style="display: flex; justify-content: center; gap: 20px;">
+                                                <div style="flex: 1; text-align: center;">
+                                                    <div class="label">Max Participantes</div>
+                                                    <input class="form-control-4 readonly-field" id="maxparticipantesindividual" type="text" readonly>
+                                                </div>
+                                                <div style="flex: 1; text-align: center;">
+                                                    <div class="label">Participantes</div>
+                                                    <input class="form-control-4 readonly-field" id="participantesindividual" type="text" readonly>
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <!-- Dinheiro input-->
                                                 <div class="label">Dinheiro já angariado</div>
                                                 <input class="form-control-4 readonly-field" id="doacoes" type="text" placeholder="Dinheiro já angariado *" readonly>
-                                                <div class="invalid-feedback" data-sb-feedback="name:required">Insira a
-                                                    localidade.</div>
+                                                <div class="invalid-feedback" data-sb-feedback="name:required">Insira a localidade.</div>
                                             </div>
                                         </div>
                                         <div class="col-md-1"></div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="label">Descrição</div>
-                                                <textarea class="form-control-4" id="descricao"
-                                                    placeholder="Descrição *" maxlength="350" required></textarea>
+                                                <textarea class="form-control-4" id="descricao" placeholder="Descrição *" maxlength="350" required></textarea>
                                             </div>
                                             <div class="form-group">
-                                                
                                                 <!-- Imagem input-->
                                                 <div class="label">Imagem</div>
                                                 <img id="displayImage" src="" alt="Iniciativa Image" class="img-fluid">
                                             </div>
                                             <br></br>
-                                            <button class="btn btn-primary btn-xl text-uppercase">Submeter</button>
+                                            <button class="btn btn-primary btn-xl text-uppercase" type="submit">Submeter</button>
                                         </div>
                                     </div>
                                     <!-- Submit success message-->
-                                    <!---->
-                                    <!-- This is what your users will see when the form-->
-                                    <!-- has successfully submitted-->
                                     <div class="d-none" id="submitSuccessMessage">
                                         <div class="text-center text-bg-secondary mb-3">
-                                            <div class="fw-bolder">Plano de iniciativa criado com sucesso!</div>
+                                            <div class="fw-bolder">Iniciativa atualizada com sucesso!</div>
                                         </div>
                                     </div>
                                     <!-- Submit error message-->
-                                    <!---->
-                                    <!-- This is what your users will see when there is-->
-                                    <!-- an error submitting the form-->
                                     <div class="d-none" id="submitErrorMessage">
-                                        <div class="text-center text-danger mb-3">Erro ao criar Evento! Causa possivel:
-                                            Nenhuma imagem carregada.</div>
+                                        <div class="text-center text-danger mb-3">Erro ao criar Evento! Causa possivel: Nenhuma imagem carregada.</div>
                                     </div>
                                 </form>
                             </div>
                             <!-- /.container-fluid -->
-
+                
                             <br>
                         </div>
                     </div>
-
+                
                     <!-- Alocar Profissionnais -->
                     <div id="AlocarProfissionnais" class="tab-content">
                         <div class="row">
@@ -479,29 +465,27 @@
                             </div>
                         </div>
                     </div> <!-- Este conteúdo de aba será exibido inicialmente -->
-
+                
                     <!-- GerirMateriais -->
                     <div id="GerirMateriais" class="tab-content" style="display:none">
-                                <div class="label CriarIniciativa-table-titulo">Materiais</div>
-                                <div class="materiais-table-container2">
-                                    <table class="materiais-table2">
-                                        <thead>
-                                            <tr>
-                                                <th>Material</th>
-                                                <th>Necessário</th>
-                                                <th>Em Posse</th>
-                                                <th>Custo Unitário</th>
-                                                <th>Custo Total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="materiaisTableBody">
-                                            <!-- Rows for materiais will be dynamically added here -->
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div id="totalCusto">Total: €0</div>
-                            </div>
+                        <div class="label CriarIniciativa-table-titulo">Materiais</div>
+                        <div class="materiais-table-container2">
+                            <table class="materiais-table2">
+                                <thead>
+                                    <tr>
+                                        <th>Material</th>
+                                        <th>Necessário</th>
+                                        <th>Em Posse</th>
+                                        <th>Custo Unitário</th>
+                                        <th>Custo Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="materiaisTableBody">
+                                    <!-- Rows for materiais will be dynamically added here -->
+                                </tbody>
+                            </table>
                         </div>
+                        <div id="totalCusto">Total: €0</div>
                     </div>
                 </div>
                 <!-- /.container-fluid -->

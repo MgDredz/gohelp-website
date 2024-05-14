@@ -41,13 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const professions = ["Ajudante", "Advogado", "Gestor de Seguros"];
         const tableBody = document.getElementById('tableBody');
         tableBody.innerHTML = '';
-    
+
         professions.forEach((prof, index) => {
             const row = document.createElement('tr');
             const funcaoCell = document.createElement('td');
             funcaoCell.textContent = prof;
             row.appendChild(funcaoCell);
-    
+
             const qtdCell = document.createElement('td');
             const qtdInput = document.createElement('input');
             qtdInput.type = 'number';
@@ -55,12 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
             qtdInput.value = 0;
             qtdInput.min = 0;
             qtdInput.classList.add('prof-quantity');
-            qtdInput.addEventListener('input', function() {
+            qtdInput.addEventListener('input', function () {
                 this.setCustomValidity(''); // Clear validity on user input
             });
             qtdCell.appendChild(qtdInput);
             row.appendChild(qtdCell);
-    
+
             tableBody.appendChild(row);
         });
     }
@@ -101,11 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
         function validateMaterialRow() {
             const nameValid = materialInput.value.trim() !== '';
             const quantityValid = parseInt(quantityInput.value, 10) >= 1;
-            
+
             materialInput.setCustomValidity(nameValid ? '' : 'O nome do material não pode estar vazio');
             quantityInput.setCustomValidity(quantityValid ? '' : 'Quantidade deve ser igual ou superior a 1');
 
-            if(nameValid && quantityValid) {
+            if (nameValid && quantityValid) {
                 materialInput.setCustomValidity('');
                 quantityInput.setCustomValidity('');
             }
@@ -119,24 +119,24 @@ document.addEventListener('DOMContentLoaded', () => {
             row.parentNode.removeChild(row);
         });
     });
-    
-    document.getElementById('data').addEventListener('change', function() {
+
+    document.getElementById('data').addEventListener('change', function () {
         this.setCustomValidity(''); // Clear any custom message set previously
         validateDate(); // Optionally, re-validate right away
     });
 
-    document.getElementById('horaInicio').addEventListener('change', function() {
+    document.getElementById('horaInicio').addEventListener('change', function () {
         this.setCustomValidity('');
         validateTime(); // Optionally, re-validate right away
     });
-    
-    document.getElementById('horaFim').addEventListener('change', function() {
+
+    document.getElementById('horaFim').addEventListener('change', function () {
         this.setCustomValidity('');
         validateTime(); // Optionally, re-validate right away
     });
 
     const form = document.getElementById('inscricaoForm');
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', function (event) {
         event.preventDefault();
         if (!validateDate() || !validateTime() || !validateTables()) {
             return;
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const horaInicio = document.getElementById('horaInicio').value;
         const horaFim = document.getElementById('horaFim').value;
         const participantesValue = document.getElementById('participantes').value.trim();
-        const participantes = parseInt(participantesValue, 10);
+        const participantesmax = parseInt(participantesValue, 10);
         const gestor = document.getElementById('gestorDropdown').value.trim();
         const descricao = document.getElementById('descricao').value.trim();
         const imagemFile = document.getElementById('imagem').files[0];
@@ -169,9 +169,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const materiaisData = [];
         document.querySelectorAll('#materiaisTableBody tr').forEach(row => {
             const material = row.cells[0].querySelector('input').value.trim();
-            const qtd = parseInt(row.cells[1].querySelector('input').value, 10);
-            if (material && qtd > 0) { // Only add if material name is not empty and quantity is more than zero
-                materiaisData.push({ material, qtd });
+            const neededqtd = parseInt(row.cells[1].querySelector('input').value, 10);
+            if (material && neededqtd > 0) { // Only add if material name is not empty and quantity is more than zero
+                materiaisData.push({ material, neededqtd });
             }
         });
 
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
         today.setHours(0, 0, 0, 0); // Reset time to the start of the day for accurate comparison
         selectedDate.setHours(0, 0, 0, 0); // Ensure time is set to start of the day
 
-        if (!titulo || !type || !localidade || !region || !data || !horaInicio || !horaFim || !participantes|| !descricao || !gestor || !imagemFile) {
+        if (!titulo || !type || !localidade || !region || !data || !horaInicio || !horaFim || !participantesmax || !descricao || !gestor || !imagemFile) {
             errorMessage.classList.remove('d-none');
             return;
         }
@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             const imagem = e.target.result;
 
             let newId = 1;
@@ -242,12 +242,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 horaFim: horaFim,
                 descricao: descricao,
                 imagem: imagem,
-                participantes: 0,
+                participantes: [], // Default to empty array for now
                 doacoes: 0,
                 materiais: materiaisData,
                 profissionais: profissionaisData,
                 gestor: gestor,
-                participantesmax: participantes
+                participantesmax: participantesmax
             };
 
             initiatives.push(initiative);
@@ -293,11 +293,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const horaFimInput = document.getElementById('horaFim');
         const horaInicio = horaInicioInput.value;
         const horaFim = horaFimInput.value;
-    
+
         // Convert times to date objects for comparison
         const startTime = new Date(`1970-01-01T${horaInicio}:00`);
         const endTime = new Date(`1970-01-01T${horaFim}:00`);
-    
+
         if (endTime <= startTime) {
             horaFimInput.setCustomValidity('Hora de Fim deve ser depois de Hora de Início');
             horaFimInput.reportValidity();
@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function validateTables() {
         const profInputs = document.querySelectorAll('.prof-quantity');
         let valid = true;
-    
+
         // Validate Profissionais quantities
         profInputs.forEach(input => {
             if (parseInt(input.value, 10) < 1) {
@@ -322,20 +322,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 input.setCustomValidity(''); // Clear the custom validity message
             }
         });
-    
+
         // Validate Materiais quantities and names
         const materialRows = document.querySelectorAll('#materiaisTableBody tr');
         materialRows.forEach(row => {
             const materialNameInput = row.querySelector('.material-name');
             const quantityInput = row.querySelector('.material-quantity');
-    
+
             if (materialNameInput.value.trim() === '') {
                 materialNameInput.setCustomValidity('O nome do material não pode estar vazio');
                 valid = false;
             } else {
                 materialNameInput.setCustomValidity(''); // Clear the custom validity message for material name
             }
-    
+
             if (parseInt(quantityInput.value, 10) < 1) {
                 quantityInput.setCustomValidity('Quantidade deve ser igual ou superior a 1');
                 valid = false;
@@ -343,7 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 quantityInput.setCustomValidity(''); // Clear the custom validity message for quantity
             }
         });
-    
+
         return valid;
     }
 });
