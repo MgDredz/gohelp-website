@@ -74,7 +74,7 @@ function createInitiativeElement(initiative) {
             <div class="event-date">${formattedDate}</div>
             <div class="event-location">${initiative.localidade}</div>
             <h3 class="event-Titel">${initiative.titulo}</h3>
-            <p>${initiative.descricao}</p>
+            <p class="descriçãoiniciativas">${initiative.descricao}</p>
         </div>
     </a>
     <div class="row">
