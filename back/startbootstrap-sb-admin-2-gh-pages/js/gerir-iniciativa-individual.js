@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let cell5 = row.insertCell(4);
 
         cell1.textContent = item.material;
-        cell2.textContent = item.qtd;
+        cell2.textContent = item.neededqtd;
         cell3.innerHTML = `<input type="number" class="em-posse" value="${item.emPosse || 0}" min="0" onchange="updateMaterial(${index}, 'emPosse', this.value)">`;
         cell4.innerHTML = `<input type="number" class="custo-unitario" value="${item.custoUnitario || 0}" min="0" onchange="updateMaterial(${index}, 'custoUnitario', this.value)"> €`;
         cell5.innerHTML = `${(item.emPosse * item.custoUnitario).toFixed(2)} €`; // Initial value with € symbol
