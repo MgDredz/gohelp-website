@@ -58,7 +58,7 @@ function createInitiativeElement(initiative) {
         <div class="event-date">${formattedDate}</div>
         <div class="event-location">${initiative.localidade}</div>
         <h3>${initiative.titulo}</h3>
-        <p>${initiative.descricao}</p>
+        <p class="descriçãoiniciativas">${initiative.descricao}</p>
     `;
 
     // Adicionar o botão "INSCREVER" apenas para as iniciativas futuras
