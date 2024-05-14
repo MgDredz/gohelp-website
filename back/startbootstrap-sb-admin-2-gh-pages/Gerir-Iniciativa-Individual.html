@@ -242,14 +242,16 @@
 
                     <div class="tab-menu">
                         <button class="tab-button active" data-tab="Dados" onclick="openTab('Dados')">Dados</button>
-                        <button class="tab-button" data-tab="AlocarProfissionnais" onclick="openTab('AlocarProfissionnais')">Alocar Profissionnais</button>
-                        <button class="tab-button" data-tab="GerirMateriais" onclick="openTab('GerirMateriais')">Gerir Materiais</button>
+                        <button class="tab-button" data-tab="AlocarProfissionnais"
+                            onclick="openTab('AlocarProfissionnais')">Alocar Profissionnais</button>
+                        <button class="tab-button" data-tab="GerirMateriais" onclick="openTab('GerirMateriais')">Gerir
+                            Materiais</button>
                     </div>
-                
+
                     <!-- Dados -->
                     <div id="Dados" class="tab-content" style="display:none">
                         <div class="container-fluid">
-                
+
                             <div class="container"></div>
                             <div class="container">
                                 <form id="inscricaoForm" data-sb-form-api-token="API_TOKEN">
@@ -258,8 +260,10 @@
                                             <div class="form-group">
                                                 <!-- Title input-->
                                                 <div class="label">Título</div>
-                                                <input class="form-control-4" id="titulo" type="text" placeholder="Título *" data-sb-validations="required" />
-                                                <div class="invalid-feedback" data-sb-feedback="phone:required">Insira um título.</div>
+                                                <input class="form-control-4" id="titulo" type="text"
+                                                    placeholder="Título *" data-sb-validations="required" />
+                                                <div class="invalid-feedback" data-sb-feedback="phone:required">Insira
+                                                    um título.</div>
                                             </div>
                                             <div class="form-group">
                                                 <!-- Type dropdown -->
@@ -277,8 +281,10 @@
                                             <div class="form-group">
                                                 <!-- Localidade input-->
                                                 <div class="label">Morada</div>
-                                                <input class="form-control-4" id="localidade" type="text" placeholder="Morada *" data-sb-validations="required" />
-                                                <div class="invalid-feedback" data-sb-feedback="name:required">Insira a localidade.</div>
+                                                <input class="form-control-4" id="localidade" type="text"
+                                                    placeholder="Morada *" data-sb-validations="required" />
+                                                <div class="invalid-feedback" data-sb-feedback="name:required">Insira a
+                                                    localidade.</div>
                                             </div>
                                             <div class="form-group">
                                                 <!-- Region dropdown -->
@@ -298,11 +304,13 @@
                                                 <div class="label">Data</div>
                                                 <input type="date" class="form-control-4" id="data" required>
                                             </div>
-                                            <div class="form-group" style="display: flex; justify-content: center; gap: 20px;">
+                                            <div class="form-group"
+                                                style="display: flex; justify-content: center; gap: 20px;">
                                                 <!-- Starting Hour input -->
                                                 <div style="flex: 1; text-align: center;">
                                                     <div class="label">Hora de Início</div>
-                                                    <input class="form-control-4" id="horaInicio" type="time" required />
+                                                    <input class="form-control-4" id="horaInicio" type="time"
+                                                        required />
                                                 </div>
                                                 <!-- Finishing Hour input -->
                                                 <div style="flex: 1; text-align: center;">
@@ -313,31 +321,39 @@
                                             <div class="form-group">
                                                 <!-- Gestor input-->
                                                 <div class="label">Gestor</div>
-                                                <input class="form-control-4 readonly-field" id="gestor" type="text" placeholder="Gestor *" readonly>
-                                                <div class="invalid-feedback" data-sb-feedback="name:required">Insira um gestor.</div>
+                                                <input class="form-control-4 readonly-field" id="gestor" type="text"
+                                                    placeholder="Gestor *" readonly>
+                                                <div class="invalid-feedback" data-sb-feedback="name:required">Insira um
+                                                    gestor.</div>
                                             </div>
-                                            <div class="form-group" style="display: flex; justify-content: center; gap: 20px;">
+                                            <div class="form-group"
+                                                style="display: flex; justify-content: center; gap: 20px;">
                                                 <div style="flex: 1; text-align: center;">
                                                     <div class="label">Max Participantes</div>
-                                                    <input class="form-control-4 readonly-field" id="maxparticipantesindividual" type="text" readonly>
+                                                    <input class="form-control-4 readonly-field"
+                                                        id="maxparticipantesindividual" type="text" readonly>
                                                 </div>
                                                 <div style="flex: 1; text-align: center;">
                                                     <div class="label">Participantes</div>
-                                                    <input class="form-control-4 readonly-field" id="participantesindividual" type="text" readonly>
+                                                    <input class="form-control-4 readonly-field"
+                                                        id="participantesindividual" type="text" readonly>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <!-- Dinheiro input-->
                                                 <div class="label">Dinheiro já angariado</div>
-                                                <input class="form-control-4 readonly-field" id="doacoes" type="text" placeholder="Dinheiro já angariado *" readonly>
-                                                <div class="invalid-feedback" data-sb-feedback="name:required">Insira a localidade.</div>
+                                                <input class="form-control-4 readonly-field" id="doacoes" type="text"
+                                                    placeholder="Dinheiro já angariado *" readonly>
+                                                <div class="invalid-feedback" data-sb-feedback="name:required">Insira a
+                                                    localidade.</div>
                                             </div>
                                         </div>
                                         <div class="col-md-1"></div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <div class="label">Descrição</div>
-                                                <textarea class="form-control-4" id="descricao" placeholder="Descrição *" maxlength="350" required></textarea>
+                                                <textarea class="form-control-4" id="descricao"
+                                                    placeholder="Descrição *" maxlength="350" required></textarea>
                                             </div>
                                             <div class="form-group">
                                                 <!-- Imagem input-->
@@ -345,7 +361,8 @@
                                                 <img id="displayImage" src="" alt="Iniciativa Image" class="img-fluid">
                                             </div>
                                             <br></br>
-                                            <button class="btn btn-primary btn-xl text-uppercase" type="submit">Submeter</button>
+                                            <button class="btn btn-primary btn-xl text-uppercase"
+                                                type="submit">Submeter</button>
                                         </div>
                                     </div>
                                     <!-- Submit success message-->
@@ -356,116 +373,39 @@
                                     </div>
                                     <!-- Submit error message-->
                                     <div class="d-none" id="submitErrorMessage">
-                                        <div class="text-center text-danger mb-3">Erro ao criar Evento! Causa possivel: Nenhuma imagem carregada.</div>
+                                        <div class="text-center text-danger mb-3">Erro ao criar Evento! Causa possivel:
+                                            Nenhuma imagem carregada.</div>
                                     </div>
                                 </form>
                             </div>
                             <!-- /.container-fluid -->
-                
+
                             <br>
                         </div>
                     </div>
-                
+
                     <!-- Alocar Profissionnais -->
                     <div id="AlocarProfissionnais" class="tab-content">
-                        <div class="row">
-                            <div class="GerirProfissionais-table">
-                                <div class="label GerirProfissionais-table-titulo">Profissionais</div>
-                                <div class="GerirProfissionais-table-container">
-                                    <table>
-                                        <thead onclick="toggleTableBody()">
-                                            <tr>
-                                                <th>
-                                                    <span id="arrow-container">
-                                                        <span id="arrow">▼</span>
-                                                    </span>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                    <div class="GerirProfissionais-table-body" id="tableBody">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Pedro Fernandes Martins</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>João Miguel Ferreira</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Ana Clara Gomes Silva</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Francisco José de Almeida</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Sofia Gabriela Rocha</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Rodrigo Antônio Carvalho</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Beatriz Helena Vieira</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Luís Eduardo Martins</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Camila Fernanda Barbosa</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Rafael Gustavo Pereira</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Rafael Gustavo Pereira</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Rafael Gustavo Pereira</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Rafael Gustavo Pereira</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Rafael Gustavo Pereira</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Rafael Gustavo Pereira</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="GerirProfissionais-table-2">
-                                <div class="GerirProfissionais-table-Profissionais-2">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th class="label GerirProfissionais-table-titulo">Profissionais</th>
-                                                <th class="table-events-header event-tabela-subtitulo">Atribuídos</th>
-                                                <th class="table-events-header event-tabela-subtitulo">Necessários</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Distribuidor de águas</td>
-                                                <td>7</td>
-                                                <td>10</td>
-                                                <td class="plus-sign">+</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Distribuidor de águas</td>
-                                                <td>7</td>
-                                                <td>10</td>
-                                                <td class="plus-sign">+</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                        <div class="label CriarIniciativa-table-titulo">Profissionais</div>
+                        <div class="profissionais-table-container2">
+                            <table class="profissionais-table2">
+                                <thead>
+                                    <tr>
+                                        <th>Função</th>
+                                        <th>Necessário</th>
+                                        <th>Em Posse</th>
+                                        <th>Custo (€/hora)</th>
+                                        <th>Custo Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableBody">
+                                    <!-- Rows will be dynamically added here -->
+                                </tbody>
+                            </table>
                         </div>
+                        <div id="totalCustoProfissionais">Total: €0</div>
                     </div> <!-- Este conteúdo de aba será exibido inicialmente -->
-                
+
                     <!-- GerirMateriais -->
                     <div id="GerirMateriais" class="tab-content" style="display:none">
                         <div class="label CriarIniciativa-table-titulo">Materiais</div>
@@ -485,7 +425,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div id="totalCusto">Total: €0</div>
+                        <div id="totalCustoMateriais">Total: €0</div>
                     </div>
                 </div>
                 <!-- /.container-fluid -->

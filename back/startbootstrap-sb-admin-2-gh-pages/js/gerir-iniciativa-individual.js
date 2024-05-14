@@ -6,8 +6,8 @@ function getQueryParameter(name) {
 document.addEventListener('DOMContentLoaded', () => {
   const storedUser = JSON.parse(localStorage.getItem('loggedInUser'));
   if (storedUser && storedUser.name && storedUser.role) {
-      const displayName = `${storedUser.name} (${storedUser.role})`;
-      document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = displayName;
+    const displayName = `${storedUser.name} (${storedUser.role})`;
+    document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = displayName;
   }
 
   const id = getQueryParameter('id');
@@ -16,50 +16,122 @@ document.addEventListener('DOMContentLoaded', () => {
   const initiative = initiatives.find(i => i.id == id);
 
   if (initiative) {
-      document.getElementById('titulo').value = initiative.titulo;
-      document.getElementById('type').value = initiative.type;
-      document.getElementById('localidade').value = initiative.localidade;
-      document.getElementById('region').value = initiative.region;
-      document.getElementById('data').value = initiative.data;
-      document.getElementById('horaInicio').value = initiative.horaInicio;
-      document.getElementById('horaFim').value = initiative.horaFim;
-      document.getElementById('descricao').value = initiative.descricao;
-      document.getElementById('gestor').value = initiative.gestor;
-      document.getElementById('doacoes').value = initiative.doacoes;
-      document.getElementById('maxparticipantesindividual').value = initiative.participantesmax;
+    document.getElementById('titulo').value = initiative.titulo;
+    document.getElementById('type').value = initiative.type;
+    document.getElementById('localidade').value = initiative.localidade;
+    document.getElementById('region').value = initiative.region;
+    document.getElementById('data').value = initiative.data;
+    document.getElementById('horaInicio').value = initiative.horaInicio;
+    document.getElementById('horaFim').value = initiative.horaFim;
+    document.getElementById('descricao').value = initiative.descricao;
+    document.getElementById('gestor').value = initiative.gestor;
+    document.getElementById('doacoes').value = initiative.doacoes;
+    document.getElementById('maxparticipantesindividual').value = initiative.participantesmax;
 
-      const participantesLength = initiative.participantes.length;
-      document.getElementById('participantesindividual').value = participantesLength;
+    const participantesLength = initiative.participantes.length;
+    document.getElementById('participantesindividual').value = participantesLength;
 
-      const displayImage = document.getElementById('displayImage');
-      if (initiative.imagem) {
-          displayImage.src = initiative.imagem;
-      }
+    const displayImage = document.getElementById('displayImage');
+    if (initiative.imagem) {
+      displayImage.src = initiative.imagem;
+    }
 
-      const tituloBold = document.getElementById('tituloBold');
-      if (tituloBold) {
-          tituloBold.textContent = initiative.titulo;
-      }
+    const tituloBold = document.getElementById('tituloBold');
+    if (tituloBold) {
+      tituloBold.textContent = initiative.titulo;
+    }
+
+    updateProfissionaisTable(initiative.profissionais, initiative.horaInicio, initiative.horaFim);
   }
+
+  function updateProfissionaisTable(profissionais, horaInicio, horaFim) {
+    const tableBody = document.getElementById('tableBody');
+    tableBody.innerHTML = '';
+
+    const totalHours = calculateTotalHours(horaInicio, horaFim);
+
+    profissionais.forEach((prof, index) => {
+        const row = document.createElement('tr');
+
+        const funcaoCell = document.createElement('td');
+        funcaoCell.textContent = prof.funcao;
+        row.appendChild(funcaoCell);
+
+        const qtdCell = document.createElement('td');
+        qtdCell.textContent = prof.qtd;
+        row.appendChild(qtdCell);
+
+        const emposseCell = document.createElement('td');
+        emposseCell.innerHTML = `<input type="number" value="${prof.emposse || 0}" min="0" onchange="updateProfissional(${index}, 'emposse', this.value)">`;
+        row.appendChild(emposseCell);
+
+        const custoUnitarioCell = document.createElement('td');
+        custoUnitarioCell.innerHTML = `<input type="number" class="custo-unitario" value="${prof.custoUnitario || 0}" min="0" onchange="updateProfissional(${index}, 'custoUnitario', this.value)"> €`;
+        row.appendChild(custoUnitarioCell);
+
+        const custoTotalCell = document.createElement('td');
+        const total = (prof.emposse || 0) * (prof.custoUnitario || 0) * totalHours;
+        custoTotalCell.textContent = `${total.toFixed(2)} €`;
+        row.appendChild(custoTotalCell);
+
+        tableBody.appendChild(row);
+    });
+
+    updateGrandTotalProfissional(profissionais, totalHours);
+}
+
+function calculateTotalHours(horaInicio, horaFim) {
+    const startTime = new Date(`1970-01-01T${horaInicio}:00`);
+    const endTime = new Date(`1970-01-01T${horaFim}:00`);
+    const diffMs = endTime - startTime;
+    const diffHours = diffMs / (1000 * 60 * 60);
+    return diffHours;
+}
+
+window.updateProfissional = function(index, field, value) {
+    const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
+    const id = getQueryParameter('id');
+    const initiative = initiatives.find(i => i.id == id);
+
+    if (initiative && initiative.profissionais) {
+        if (field === 'emposse' || field === 'custoUnitario') {
+            initiative.profissionais[index][field] = parseFloat(value) || 0;
+        }
+
+        localStorage.setItem('initiatives', JSON.stringify(initiatives));
+        updateProfissionaisTable(initiative.profissionais, initiative.horaInicio, initiative.horaFim);
+    }
+};
+
+function updateGrandTotalProfissional(profissionais, totalHours) {
+  let grandTotalProfissional = 0;
+
+  profissionais.forEach(prof => {
+      const total = (prof.emposse || 0) * (prof.custoUnitario || 0) * totalHours;
+      grandTotalProfissional += total;
+  });
+
+  document.getElementById('totalCustoProfissionais').textContent = `Total: €${grandTotalProfissional.toFixed(2)}`;
+}
 
   if (initiative && initiative.materiais) {
     const tableBody = document.getElementById('materiaisTableBody');
     initiative.materiais.forEach((item, index) => {
-        let row = tableBody.insertRow();
-        let cell1 = row.insertCell(0);
-        let cell2 = row.insertCell(1);
-        let cell3 = row.insertCell(2);
-        let cell4 = row.insertCell(3);
-        let cell5 = row.insertCell(4);
+      let row = tableBody.insertRow();
+      let cell1 = row.insertCell(0);
+      let cell2 = row.insertCell(1);
+      let cell3 = row.insertCell(2);
+      let cell4 = row.insertCell(3);
+      let cell5 = row.insertCell(4);
 
-        cell1.textContent = item.material;
-        cell2.textContent = item.neededqtd;
-        cell3.innerHTML = `<input type="number" class="em-posse" value="${item.emPosse || 0}" min="0" onchange="updateMaterial(${index}, 'emPosse', this.value)">`;
-        cell4.innerHTML = `<input type="number" class="custo-unitario" value="${item.custoUnitario || 0}" min="0" onchange="updateMaterial(${index}, 'custoUnitario', this.value)"> €`;
-        cell5.innerHTML = `${(item.emPosse * item.custoUnitario).toFixed(2)} €`; // Initial value with € symbol
+      cell1.textContent = item.material;
+      cell2.textContent = item.neededqtd;
+      cell3.innerHTML = `<input type="number" class="em-posse" value="${item.emPosse || 0}" min="0" onchange="updateMaterial(${index}, 'emPosse', this.value)">`;
+      cell4.innerHTML = `<input type="number" class="custo-unitario" value="${item.custoUnitario || 0}" min="0" onchange="updateMaterial(${index}, 'custoUnitario', this.value)"> €`;
+      cell5.innerHTML = `${(item.emPosse * item.custoUnitario).toFixed(2)} €`; // Initial value with € symbol
     });
 
-    updateGrandTotal();
+    updateGrandTotalMaterial();
   }
 });
 
@@ -75,40 +147,40 @@ function updateMaterial(index, field, value) {
     }
 
     localStorage.setItem('initiatives', JSON.stringify(initiatives));
-    updateGrandTotal();
+    updateGrandTotalMaterial();
   }
 }
 
-function updateGrandTotal() {
+function updateGrandTotalMaterial() {
   const id = getQueryParameter('id');
   const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
   const initiative = initiatives.find(i => i.id == id);
 
   const tableBody = document.getElementById('materiaisTableBody');
   const rows = tableBody.rows;
-  let grandTotal = 0;
+  let grandTotalMaterial = 0;
 
   for (let i = 0; i < rows.length; i++) {
     const emPosse = parseFloat(rows[i].cells[2].querySelector('.em-posse').value) || 0;
     const custoUnitario = parseFloat(rows[i].cells[3].querySelector('.custo-unitario').value) || 0;
     const custoTotal = emPosse * custoUnitario;
 
-    rows[i].cells[4].textContent = `${custoTotal.toFixed(2)} €`; // Update the Custo Total cell with € symbol
-    grandTotal += custoTotal;
+    rows[i].cells[4].textContent = `${custoTotal.toFixed(2)} €`;
+    grandTotalMaterial += custoTotal;
   }
 
-  document.getElementById('totalCusto').textContent = `Total: €${grandTotal.toFixed(2)}`;
+  document.getElementById('totalCustoMaterial').textContent = `Total: €${grandTotal.toFixed(2)}`;
 }
 
 function openTab(tabName) {
   var tabcontents = document.querySelectorAll(".tab-content");
   tabcontents.forEach(function (tabcontent) {
-      tabcontent.style.display = "none";
+    tabcontent.style.display = "none";
   });
 
   var tabbuttons = document.querySelectorAll(".tab-button");
   tabbuttons.forEach(function (tabbutton) {
-      tabbutton.classList.remove("active");
+    tabbutton.classList.remove("active");
   });
 
   document.getElementById(tabName).style.display = "block";
@@ -119,17 +191,17 @@ window.onload = function () {
   openTab('Dados');
 };
 
-document.getElementById('data').addEventListener('change', function() {
+document.getElementById('data').addEventListener('change', function () {
   this.setCustomValidity('');
   validateDate();
 });
 
-document.getElementById('horaInicio').addEventListener('change', function() {
+document.getElementById('horaInicio').addEventListener('change', function () {
   this.setCustomValidity('');
   validateTime();
 });
 
-document.getElementById('horaFim').addEventListener('change', function() {
+document.getElementById('horaFim').addEventListener('change', function () {
   this.setCustomValidity('');
   validateTime();
 });
@@ -140,11 +212,11 @@ let changedFields = new Set();
 ['titulo', 'type', 'localidade', 'region', 'data', 'horaInicio', 'horaFim', 'descricao'].forEach(id => {
   const element = document.getElementById(id);
   element.addEventListener('change', () => {
-      changedFields.add(id);
+    changedFields.add(id);
   });
 });
 
-form.addEventListener('submit', function(event) {
+form.addEventListener('submit', function (event) {
   event.preventDefault();
   console.log('Form submission initiated.');
 
@@ -152,20 +224,20 @@ form.addEventListener('submit', function(event) {
   let invalidFields = [];
 
   if (changedFields.has('data') && !validateDate()) {
-      invalidFields.push('data');
-      valid = false;
+    invalidFields.push('data');
+    valid = false;
   }
 
   if ((changedFields.has('horaInicio') || changedFields.has('horaFim')) && !validateTime()) {
-      invalidFields.push('horaInicio', 'horaFim');
-      valid = false;
+    invalidFields.push('horaInicio', 'horaFim');
+    valid = false;
   }
 
   if (!valid) {
-      invalidFields.forEach(id => {
-          document.getElementById(id).reportValidity();
-      });
-      return;
+    invalidFields.forEach(id => {
+      document.getElementById(id).reportValidity();
+    });
+    return;
   }
 
   const id = getQueryParameter('id');
@@ -191,41 +263,41 @@ form.addEventListener('submit', function(event) {
 
   // Region-specific validation
   if (changedFields.has('region') || changedFields.has('data') || changedFields.has('type')) {
-      if (region === 'Norte' || region === 'Lisboa') {
-          if (sameDayInitiatives.length >= 3 || sameDayInitiatives.some(initiative => initiative.type === type)) {
-              errorMessage.textContent = 'Não pode haver mais de 3 iniciativas na mesma data ou já existe uma iniciativa com o mesmo tipo.';
-              errorMessage.classList.remove('d-none');
-              return;
-          }
-      } else if (region === 'Centro' || region === 'Algarve') {
-          if (sameDayInitiatives.length >= 2 || sameDayInitiatives.some(initiative => initiative.type === type)) {
-              errorMessage.textContent = 'Não pode haver mais de 2 iniciativas na mesma data ou já existe uma iniciativa com o mesmo tipo.';
-              errorMessage.classList.remove('d-none');
-              return;
-          }
-      } else if (region === 'Alentejo') {
-          if (sameDayInitiatives.length >= 1) {
-              errorMessage.textContent = 'Não pode haver mais de 1 iniciativa na mesma data no Alentejo.';
-              errorMessage.classList.remove('d-none');
-              return;
-          }
+    if (region === 'Norte' || region === 'Lisboa') {
+      if (sameDayInitiatives.length >= 3 || sameDayInitiatives.some(initiative => initiative.type === type)) {
+        errorMessage.textContent = 'Não pode haver mais de 3 iniciativas na mesma data ou já existe uma iniciativa com o mesmo tipo.';
+        errorMessage.classList.remove('d-none');
+        return;
       }
+    } else if (region === 'Centro' || region === 'Algarve') {
+      if (sameDayInitiatives.length >= 2 || sameDayInitiatives.some(initiative => initiative.type === type)) {
+        errorMessage.textContent = 'Não pode haver mais de 2 iniciativas na mesma data ou já existe uma iniciativa com o mesmo tipo.';
+        errorMessage.classList.remove('d-none');
+        return;
+      }
+    } else if (region === 'Alentejo') {
+      if (sameDayInitiatives.length >= 1) {
+        errorMessage.textContent = 'Não pode haver mais de 1 iniciativa na mesma data no Alentejo.';
+        errorMessage.classList.remove('d-none');
+        return;
+      }
+    }
   }
 
   const initiative = initiatives.find(i => i.id == id);
   if (initiative) {
-      if (changedFields.has('titulo')) initiative.titulo = titulo;
-      if (changedFields.has('type')) initiative.type = type;
-      if (changedFields.has('localidade')) initiative.localidade = localidade;
-      if (changedFields.has('region')) initiative.region = region;
-      if (changedFields.has('data')) initiative.data = data;
-      if (changedFields.has('horaInicio')) initiative.horaInicio = horaInicio;
-      if (changedFields.has('horaFim')) initiative.horaFim = horaFim;
-      if (changedFields.has('descricao')) initiative.descricao = descricao;
+    if (changedFields.has('titulo')) initiative.titulo = titulo;
+    if (changedFields.has('type')) initiative.type = type;
+    if (changedFields.has('localidade')) initiative.localidade = localidade;
+    if (changedFields.has('region')) initiative.region = region;
+    if (changedFields.has('data')) initiative.data = data;
+    if (changedFields.has('horaInicio')) initiative.horaInicio = horaInicio;
+    if (changedFields.has('horaFim')) initiative.horaFim = horaFim;
+    if (changedFields.has('descricao')) initiative.descricao = descricao;
 
-      console.log('Updated initiative:', initiative);
+    console.log('Updated initiative:', initiative);
   } else {
-      console.error('Initiative not found.');
+    console.error('Initiative not found.');
   }
 
   localStorage.setItem('initiatives', JSON.stringify(initiatives));
@@ -248,11 +320,11 @@ function validateDate() {
   nextDay.setDate(today.getDate() + 1);
 
   if (selectedDate <= nextDay) {
-      dateInput.setCustomValidity('Data já ultrapassada');
-      return false;
+    dateInput.setCustomValidity('Data já ultrapassada');
+    return false;
   } else {
-      dateInput.setCustomValidity('');
-      return true;
+    dateInput.setCustomValidity('');
+    return true;
   }
 }
 
@@ -266,12 +338,12 @@ function validateTime() {
   const endTime = new Date(`1970-01-01T${horaFim}:00`);
 
   if (endTime <= startTime) {
-      horaFimInput.setCustomValidity('Hora de Fim deve ser depois de Hora de Início');
-      return false;
+    horaFimInput.setCustomValidity('Hora de Fim deve ser depois de Hora de Início');
+    return false;
   } else {
-      horaInicioInput.setCustomValidity('');
-      horaFimInput.setCustomValidity('');
-      return true;
+    horaInicioInput.setCustomValidity('');
+    horaFimInput.setCustomValidity('');
+    return true;
   }
 }
 
