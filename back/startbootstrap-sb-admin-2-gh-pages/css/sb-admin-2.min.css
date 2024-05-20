@@ -13226,7 +13226,7 @@ body.sidebar-toggled footer.sticky-footer {
     width: 340px;
     display: inline-block;
     padding: 20px;
-    height: 450px;
+    height: 550px;
     box-sizing: border-box;
     display: inline-block;
     color: black;
@@ -13287,6 +13287,11 @@ p {
     font-weight: 700;
     font-size: 25px;
     line-height: 1.2;
+    min-height: 70px;
+}
+
+.numero-evento{
+    color: #000;
 }
 
 .event-button {
@@ -13310,6 +13315,12 @@ p {
     font-weight: bold;
 }
 
+.numero-evento-risco {
+    color: #A0522D;
+    /* Cor dos números */
+    font-weight: bold;
+}
+
 .numero-evento-inscricoes {
     color: #0465BB;
     /* Cor dos números */
@@ -13326,6 +13337,12 @@ p {
 .event-angariacoes {
     width: 44%;
     height: 20px;
+}
+
+.event-risco {
+    width: 100%;
+    height: 20px;
+    text-align: center;
 }
 
 .event-inscricoes {

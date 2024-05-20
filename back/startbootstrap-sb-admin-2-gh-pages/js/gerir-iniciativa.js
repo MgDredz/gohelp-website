@@ -48,7 +48,7 @@ function openTab(tabName) {
     reversedInitiatives.forEach(initiative => {
         const eventDate = new Date(initiative.data);
         eventDate.setHours(0, 0, 0, 0); // Reset time part for accurate comparison
-        const initiativeElement = createInitiativeElement(initiative);
+        const initiativeElement = createInitiativeElement(initiative, eventDate > currentDate);
 
         if (eventDate < currentDate) {
             realizadasContainer.appendChild(initiativeElement);
@@ -60,17 +60,19 @@ function openTab(tabName) {
     });
 }
 
-function createInitiativeElement(initiative) {
+function createInitiativeElement(initiative, isFuture) {
     const container = document.createElement('div');
     container.className = 'event-button'; // Assuming this class aligns with the intended style
 
     const formattedDate = new Date(initiative.data).toLocaleDateString('pt-PT', { weekday: 'short', day: '2-digit', month: 'short' });
 
     const initiativeUrl = `Gerir-Iniciativa-Individual.html?id=${initiative.id}`;
+    const riscoValue = initiative.doacoes / 5;
+
     container.innerHTML = `
     <a href="${initiativeUrl}">
         <div class="event-container">
-            <img src="${initiative.imagem}" alt="Event Image" class="event-image" /> <!-- Set the src attribute with the image data -->
+            <img src="${initiative.imagem}" alt="Event Image" class="event-image" />
             <div class="event-date">${formattedDate}</div>
             <div class="event-location">${initiative.localidade}</div>
             <h3 class="event-Titel">${initiative.titulo}</h3>
@@ -79,16 +81,19 @@ function createInitiativeElement(initiative) {
     </a>
     <div class="row">
         <div class="event-inscricoes">
-            <span class="numero-evento-inscricoes">${initiative.participantes.length}</span> <!-- Default value, update based on your data -->
+            <span class="numero-evento-inscricoes">${initiative.participantes.length}</span>
             <span class="texto-evento">Inscrições</span>
         </div>
         <div class="event-angariacoes">
-            <span class="numero-evento-euros">${initiative.doacoes} €</span> <!-- Default value, update based on your data -->
+            <span class="numero-evento-euros">${initiative.doacoes} €</span>
             <span class="texto-evento">Angariados</span>
         </div>
+        ${isFuture ? `<div class="event-risco"><span class="numero-evento-risco">${riscoValue} </span><span class="texto-evento">Risco</span></div>` : ''}
     </div>
 `;
 
-  return container;
+    return container;
 }
+
+
 
