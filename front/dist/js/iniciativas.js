@@ -61,14 +61,30 @@ function createInitiativeElement(initiative) {
         <p class="descriçãoiniciativas">${initiative.descricao}</p>
     `;
 
-    // Adicionar o botão "INSCREVER" apenas para as iniciativas futuras
     const currentDate = new Date();
     const startDate = new Date(`${initiative.data}T${initiative.horaInicio}`);
     if (startDate > currentDate) {
-        let detailsUrl = `inscricao.html?titulo=${encodeURIComponent(initiative.titulo)}&localidade=${encodeURIComponent(initiative.localidade)}&data=${encodeURIComponent(initiative.data)}&descricao=${encodeURIComponent(initiative.descricao)}&imagem=${encodeURIComponent(initiative.imagem)}&participantes=${encodeURIComponent(initiative.participantes)}&participantesMax=${encodeURIComponent(initiative.participantesmax)}`;
+        const detailsUrl = `inscricao.html?` +
+            `id=${encodeURIComponent(initiative.id)}` +
+            `&titulo=${encodeURIComponent(initiative.titulo)}` +
+            `&type=${encodeURIComponent(initiative.type)}` +
+            `&localidade=${encodeURIComponent(initiative.localidade)}` +
+            `&region=${encodeURIComponent(initiative.region)}` +
+            `&data=${encodeURIComponent(initiative.data)}` +
+            `&horaInicio=${encodeURIComponent(initiative.horaInicio)}` +
+            `&horaFim=${encodeURIComponent(initiative.horaFim)}` +
+            `&descricao=${encodeURIComponent(initiative.descricao)}` +
+            `&participantes=${encodeURIComponent(initiative.participantes)}` +
+            `&doacoes=${encodeURIComponent(initiative.doacoes)}` +
+            `&materiais=${encodeURIComponent(initiative.materiais)}` +
+            `&profissionais=${encodeURIComponent(initiative.profissionais)}` +
+            `&gestor=${encodeURIComponent(initiative.gestor)}` +
+            `&participantesmax=${encodeURIComponent(initiative.participantesmax)}`;
+        
+        console.log("Generated details URL:", detailsUrl);
         container.innerHTML += `<br><a href="${detailsUrl}" class="register-button">INSCREVER</a>`;
     }
-    
+
     return container;
 }
 
