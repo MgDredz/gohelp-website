@@ -392,9 +392,9 @@
                                 <thead>
                                     <tr>
                                         <th>Função</th>
-                                        <th>Necessário</th>
-                                        <th>Em Posse</th>
-                                        <th>Custo (€/hora)</th>
+                                        <th>Mín. Necessário</th>
+                                        <th>Selecionado(s)</th>
+                                        <th>Custo (€/horas)</th>
                                         <th>Custo Total</th>
                                     </tr>
                                 </thead>
@@ -404,6 +404,44 @@
                             </table>
                         </div>
                         <div id="totalCustoProfissionais">Total: €0</div>
+                        <div id="professionalTables" class="d-flex justify-content-around">
+                            <div>
+                              <h3>Ajudantes</h3>
+                              <table id="ajudanteTable" class="table">
+                                <thead>
+                                  <tr>
+                                    <th >Nome</th>
+                                    <th>Selecionar</th>
+                                  </tr>
+                                </thead>
+                                <tbody></tbody>
+                              </table>
+                            </div>
+                            <div>
+                              <h3>Advogados</h3>
+                              <table id="advogadoTable" class="table">
+                                <thead>
+                                  <tr>
+                                    <th>Nome</th>
+                                    <th>Selecionar</th>
+                                  </tr>
+                                </thead>
+                                <tbody></tbody>
+                              </table>
+                            </div>
+                            <div>
+                              <h3>Gestores de Seguros</h3>
+                              <table id="gestorSegurosTable" class="table">
+                                <thead>
+                                  <tr>
+                                    <th>Nome</th>
+                                    <th>Selecionar</th>
+                                  </tr>
+                                </thead>
+                                <tbody></tbody>
+                              </table>
+                            </div>
+                          </div>
                     </div> <!-- Este conteúdo de aba será exibido inicialmente -->
 
                     <!-- GerirMateriais -->
@@ -414,7 +452,7 @@
                                 <thead>
                                     <tr>
                                         <th>Material</th>
-                                        <th>Necessário</th>
+                                        <th>Mín. Necessário</th>
                                         <th>Em Posse</th>
                                         <th>Custo Unitário</th>
                                         <th>Custo Total</th>

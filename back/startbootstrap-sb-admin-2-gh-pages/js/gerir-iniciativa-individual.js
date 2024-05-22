@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = displayName;
   }
 
+  loadProfiles();
+
   const id = getQueryParameter('id');
 
   const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
@@ -51,68 +53,146 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalHours = calculateTotalHours(horaInicio, horaFim);
 
     profissionais.forEach((prof, index) => {
-        const row = document.createElement('tr');
+      const row = document.createElement('tr');
 
-        const funcaoCell = document.createElement('td');
-        funcaoCell.textContent = prof.funcao;
-        row.appendChild(funcaoCell);
+      const funcaoCell = document.createElement('td');
+      funcaoCell.textContent = prof.funcao;
+      row.appendChild(funcaoCell);
 
-        const qtdCell = document.createElement('td');
-        qtdCell.textContent = prof.qtd;
-        row.appendChild(qtdCell);
+      const qtdCell = document.createElement('td');
+      qtdCell.textContent = prof.qtd;
+      row.appendChild(qtdCell);
 
-        const emposseCell = document.createElement('td');
-        emposseCell.innerHTML = `<input type="number" value="${prof.emposse || 0}" min="0" onchange="updateProfissional(${index}, 'emposse', this.value)">`;
-        row.appendChild(emposseCell);
+      const selecionadosCell = document.createElement('td');
+      selecionadosCell.textContent = prof.selecionados || 0;
+      row.appendChild(selecionadosCell);
 
-        const custoUnitarioCell = document.createElement('td');
-        custoUnitarioCell.innerHTML = `<input type="number" class="custo-unitario" value="${prof.custoUnitario || 0}" min="0" onchange="updateProfissional(${index}, 'custoUnitario', this.value)"> €`;
-        row.appendChild(custoUnitarioCell);
+      const custoUnitarioCell = document.createElement('td');
+      custoUnitarioCell.innerHTML = `<input type="number" class="custo-unitario" value="${prof.custoUnitario || 0}" min="0" step="0.01" onchange="updateProfissional(${index}, 'custoUnitario', this.value)"> €`;
+      row.appendChild(custoUnitarioCell);
 
-        const custoTotalCell = document.createElement('td');
-        const total = (prof.emposse || 0) * (prof.custoUnitario || 0) * totalHours;
-        custoTotalCell.textContent = `${total.toFixed(2)} €`;
-        row.appendChild(custoTotalCell);
+      const custoTotalCell = document.createElement('td');
+      const total = (prof.selecionados || 0) * (prof.custoUnitario || 0) * totalHours;
+      custoTotalCell.textContent = `${total.toFixed(2)} €`;
+      row.appendChild(custoTotalCell);
 
-        tableBody.appendChild(row);
+      tableBody.appendChild(row);
     });
 
     updateGrandTotalProfissional(profissionais, totalHours);
-}
+  }
 
-function calculateTotalHours(horaInicio, horaFim) {
-    const startTime = new Date(`1970-01-01T${horaInicio}:00`);
-    const endTime = new Date(`1970-01-01T${horaFim}:00`);
-    const diffMs = endTime - startTime;
-    const diffHours = diffMs / (1000 * 60 * 60);
-    return diffHours;
-}
-
-window.updateProfissional = function(index, field, value) {
+  window.updateProfissional = function(index, field, value) {
     const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
     const id = getQueryParameter('id');
     const initiative = initiatives.find(i => i.id == id);
 
     if (initiative && initiative.profissionais) {
-        if (field === 'emposse' || field === 'custoUnitario') {
-            initiative.profissionais[index][field] = parseFloat(value) || 0;
-        }
+      if (field === 'selecionados') {
+        initiative.profissionais[index][field] = parseFloat(value) || 0;
+      }
+      if (field === 'custoUnitario') {
+        initiative.profissionais[index][field] = parseFloat(value).toFixed(2) || 0;
+      }
 
+      localStorage.setItem('initiatives', JSON.stringify(initiatives));
+      updateProfissionaisTable(initiative.profissionais, initiative.horaInicio, initiative.horaFim);
+    }
+  };
+
+  function calculateTotalHours(horaInicio, horaFim) {
+    const startTime = new Date(`1970-01-01T${horaInicio}:00`);
+    const endTime = new Date(`1970-01-01T${horaFim}:00`);
+    const diffMs = endTime - startTime;
+    const diffHours = diffMs / (1000 * 60 * 60);
+    return diffHours;
+  }
+
+  function updateGrandTotalProfissional(profissionais, totalHours) {
+    let grandTotalProfissional = 0;
+
+    profissionais.forEach(prof => {
+      const total = (prof.selecionados || 0) * (prof.custoUnitario || 0) * totalHours;
+      grandTotalProfissional += total;
+    });
+
+    document.getElementById('totalCustoProfissionais').textContent = `Total: €${grandTotalProfissional.toFixed(2)}`;
+  }
+
+  function loadProfiles() {
+    const profiles = JSON.parse(localStorage.getItem('profissionais'));
+    if (profiles) {
+      populateTables(profiles);
+    } else {
+      console.error("No profiles found in localStorage.");
+    }
+  }
+
+  function populateTables(profiles) {
+    const ajudantesTable = document.querySelector("#ajudanteTable tbody");
+    const advogadosTable = document.querySelector("#advogadoTable tbody");
+    const gestoresSegurosTable = document.querySelector("#gestorSegurosTable tbody");
+
+    profiles.forEach(profile => {
+      const row = document.createElement('tr');
+      const nameCell = document.createElement('td');
+      nameCell.textContent = profile.name;
+      const selectCell = document.createElement('td');
+      const selectInput = document.createElement('input');
+      selectInput.type = 'checkbox';
+      selectInput.checked = isEmployeeSelected(profile);
+      selectInput.addEventListener('change', () => handleSelection(profile, selectInput.checked));
+      selectCell.appendChild(selectInput);
+      row.appendChild(nameCell);
+      row.appendChild(selectCell);
+
+      if (profile.profession === "Ajudante") {
+        ajudantesTable.appendChild(row);
+      } else if (profile.profession === "Advogado") {
+        advogadosTable.appendChild(row);
+      } else if (profile.profession === "Gestor_de_Seguros") {
+        gestoresSegurosTable.appendChild(row);
+      }
+    });
+  }
+
+  function isEmployeeSelected(profile) {
+    const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
+    const id = getQueryParameter('id');
+    const initiative = initiatives.find(i => i.id == id);
+
+    if (initiative && initiative.profissionais) {
+      const professional = initiative.profissionais.find(p => p.funcao === profile.profession);
+      if (professional && professional.selectedEmployees) {
+        return professional.selectedEmployees.some(emp => emp.email === profile.email);
+      }
+    }
+    return false;
+  }
+
+  function handleSelection(profile, isSelected) {
+    const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
+    const id = getQueryParameter('id');
+    const initiative = initiatives.find(i => i.id == id);
+
+    if (initiative && initiative.profissionais) {
+      const professional = initiative.profissionais.find(p => p.funcao === profile.profession);
+      if (professional) {
+        if (isSelected) {
+          professional.selecionados = (professional.selecionados || 0) + 1;
+          if (!professional.selectedEmployees) {
+            professional.selectedEmployees = [];
+          }
+          professional.selectedEmployees.push({ name: profile.name, email: profile.email });
+        } else {
+          professional.selecionados = (professional.selecionados || 0) - 1;
+          professional.selectedEmployees = professional.selectedEmployees.filter(emp => emp.email !== profile.email);
+        }
         localStorage.setItem('initiatives', JSON.stringify(initiatives));
         updateProfissionaisTable(initiative.profissionais, initiative.horaInicio, initiative.horaFim);
+      }
     }
-};
-
-function updateGrandTotalProfissional(profissionais, totalHours) {
-  let grandTotalProfissional = 0;
-
-  profissionais.forEach(prof => {
-      const total = (prof.emposse || 0) * (prof.custoUnitario || 0) * totalHours;
-      grandTotalProfissional += total;
-  });
-
-  document.getElementById('totalCustoProfissionais').textContent = `Total: €${grandTotalProfissional.toFixed(2)}`;
-}
+  }
 
   if (initiative && initiative.materiais) {
     const tableBody = document.getElementById('materiaisTableBody');
@@ -127,7 +207,7 @@ function updateGrandTotalProfissional(profissionais, totalHours) {
       cell1.textContent = item.material;
       cell2.textContent = item.neededqtd;
       cell3.innerHTML = `<input type="number" class="em-posse" value="${item.emPosse || 0}" min="0" onchange="updateMaterial(${index}, 'emPosse', this.value)">`;
-      cell4.innerHTML = `<input type="number" class="custo-unitario" value="${item.custoUnitario || 0}" min="0" onchange="updateMaterial(${index}, 'custoUnitario', this.value)"> €`;
+      cell4.innerHTML = `<input type="number" class="custo-unitario" value="${item.custoUnitario || 0}" min="0" step="0.01" onchange="updateMaterial(${index}, 'custoUnitario', this.value)"> €`;
       cell5.innerHTML = `${(item.emPosse * item.custoUnitario).toFixed(2)} €`; // Initial value with € symbol
     });
 
@@ -141,9 +221,12 @@ function updateMaterial(index, field, value) {
   const initiative = initiatives.find(i => i.id == id);
 
   if (initiative && initiative.materiais) {
-    if (field === 'emPosse' || field === 'custoUnitario') {
+    if (field === 'emPosse') {
       initiative.materiais[index][field] = parseFloat(value) || 0;
-      initiative.materiais[index].total = initiative.materiais[index].emPosse * initiative.materiais[index].custoUnitario;
+    }
+    if (field === 'custoUnitario') {
+      initiative.materiais[index][field] = parseFloat(value).toFixed(2) || 0;
+      initiative.materiais[index].total = (initiative.materiais[index].emPosse * initiative.materiais[index].custoUnitario).toFixed(2);
     }
 
     localStorage.setItem('initiatives', JSON.stringify(initiatives));
@@ -162,14 +245,14 @@ function updateGrandTotalMaterial() {
 
   for (let i = 0; i < rows.length; i++) {
     const emPosse = parseFloat(rows[i].cells[2].querySelector('.em-posse').value) || 0;
-    const custoUnitario = parseFloat(rows[i].cells[3].querySelector('.custo-unitario').value) || 0;
+    const custoUnitario = parseFloat(rows[i].cells[3].querySelector('.custo-unitario').value).toFixed(2) || 0;
     const custoTotal = emPosse * custoUnitario;
 
     rows[i].cells[4].textContent = `${custoTotal.toFixed(2)} €`;
     grandTotalMaterial += custoTotal;
   }
 
-  document.getElementById('totalCustoMaterial').textContent = `Total: €${grandTotal.toFixed(2)}`;
+  document.getElementById('totalCustoMateriais').textContent = `Total: €${grandTotalMaterial.toFixed(2)}`;
 }
 
 function openTab(tabName) {
@@ -347,4 +430,19 @@ function validateTime() {
   }
 }
 
+// Function to enforce 2 decimal places on input
+function enforceTwoDecimalPlaces(input) {
+  input.addEventListener('input', function() {
+    let value = this.value;
+    if (value.includes('.')) {
+      value = value.split('.');
+      value[1] = value[1].slice(0, 2);
+      this.value = value.join('.');
+    }
+  });
+}
 
+// Apply the two decimal places enforcement to the custo-unitario inputs
+document.querySelectorAll('.custo-unitario').forEach(input => {
+  enforceTwoDecimalPlaces(input);
+});
