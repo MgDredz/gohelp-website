@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     gestores.forEach(gestor => {
         const option = document.createElement('option');
         option.value = gestor.email; // setting email as value, can change as required
-        option.textContent = gestor.firstName;
+        option.textContent = gestor.firstName + " " + gestor.lastName;
         dropdown.appendChild(option);
     });
 
