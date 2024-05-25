@@ -12,6 +12,21 @@ document.getElementById("submitBtn").addEventListener("click", function(event) {
         document.getElementById('errorMessage').classList.remove('d-none');
         document.getElementById('successMessage').classList.add('d-none');
     } else {
+        // Retrieve the existing array of form data from local storage or initialize it if not present
+        const profissionais = JSON.parse(localStorage.getItem('profissionais')) || [];
+        
+        // Retrieve existing users from local storage or initialize empty array if none exist
+        const users = JSON.parse(localStorage.getItem('Users')) || [];
+        
+        // Check if the email already exists in Users array
+        const emailExists = users.some(user => user.email === email);
+        if (emailExists) {
+            document.getElementById('errorMessage').classList.remove('d-none');
+            document.getElementById('errorMessage').textContent = "Email is already in use.";
+            document.getElementById('successMessage').classList.add('d-none');
+            return;
+        }
+
         document.getElementById('errorMessage').classList.add('d-none');
         document.getElementById('successMessage').classList.remove('d-none');
 
@@ -24,22 +39,21 @@ document.getElementById("submitBtn").addEventListener("click", function(event) {
             profession: professionChecked ? professionChecked.value : ''
         };
 
-        // Retrieve the existing array of form data from local storage or initialize it if not present
-        const profissionais = JSON.parse(localStorage.getItem('profissionais')) || [];
         profissionais.push(profs); // Add the new form data to the array
         localStorage.setItem('profissionais', JSON.stringify(profissionais)); // Save the updated array back to local storage
 
-        // Additionally, add to general users array
-        const users = JSON.parse(localStorage.getItem('users')) || [];
         const newUser = {
             firstName: name.split(' ')[0],
             lastName: name.split(' ').slice(1).join(' ') || '',
             email: email,
-            password: "password",
+            password: "gohelp",
+            isAdmin: false,
+            frontoffice: false,
             profession: professionChecked.value
         };
+        
         users.push(newUser);
-        localStorage.setItem('users', JSON.stringify(users)); // Save updated users array in local storage
+        localStorage.setItem('Users', JSON.stringify(users)); // Save updated users array in local storage
 
         // Clear all inputs
         form.querySelectorAll('input').forEach(input => {
