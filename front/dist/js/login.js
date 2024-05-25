@@ -71,12 +71,12 @@ function preloadProfiles() {
         { name: "Alice Johnson", email: "alice.johnson@example.com", phone: "1122334455", region: "Lisboa", profession: "Gestor_de_Seguros" },
         { name: "João Sousa", email: "joao.souza@example.com", phone: "1987654321", region: "Norte", profession: "Advogado" },
         { name: "Ana Luisa", email: "ana.luisa@example.com", phone: "2122334455", region: "Norte", profession: "Gestor_de_Seguros" },
-        { name: "Pedro Cunha", email: "pedro.cunha@example.com", phone: "1987654321", region: "Algarve", profession: "Advogado" },
+        { name: "Pedro Lopes", email: "pedro.lopes@example.com", phone: "1987654321", region: "Algarve", profession: "Advogado" },
         { name: "Joana Marques", email: "joana.marques@example.com", phone: "2122334455", region: "Algarve", profession: "Gestor_de_Seguros" },
         { name: "Bruno Brown", email: "bruno.brown@example.com", phone: "5544332211", region: "Lisboa", profession: "Ajudante" },
-        { name: "Pedro Alves", email: "pedro.alves@example.com", phone: "2234567890", region: "Alentejo", profession: "Ajudante" },
-        { name: "Rosa Silva", email: "rosa.silva@example.com", phone: "3234567890", region: "Norte", profession: "Ajudante" },
-        { name: "Tiago Carlos", email: "tiago.carlos@example.com", phone: "4234567890", region: "Centro", profession: "Ajudante" },
+        { name: "Rodrigo Alves", email: "rodrigo.alves@example.com", phone: "2234567890", region: "Alentejo", profession: "Ajudante" },
+        { name: "Rosa Vieira", email: "rosa.vieira@example.com", phone: "3234567890", region: "Norte", profession: "Ajudante" },
+        { name: "Tiago Carvalho", email: "tiago.carvalho@example.com", phone: "4234567890", region: "Centro", profession: "Ajudante" },
         { name: "Pedro Cunha", email: "pedro.cunha@example.com", phone: "4234567890", region: "Algarve", profession: "Ajudante" },
     ];
 
