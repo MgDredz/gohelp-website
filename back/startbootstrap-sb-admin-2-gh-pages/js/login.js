@@ -1,11 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    ensureAdminExists();
+    ensureAdminExists(); // Check and add admin on page load
     preloadProfiles();
     preloadInitiatives();
     preloadDonations();
     preloadPedidos();
     preloadGestores();
     preloadUsers();
+    preloadFrontUsers();
 
 
     const loginButton = document.querySelector('.btn-user.btn-block');
@@ -16,23 +17,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = document.getElementById("exampleInputEmail").value.trim();
             const password = document.getElementById("exampleInputPassword").value.trim();
 
-            const users = JSON.parse(localStorage.getItem('Users')) || [];
+            const users = JSON.parse(localStorage.getItem('users')) || [];
             const user = users.find(user => user.email === email && user.password === password);
 
             if (user) {
                 const fullName = user.firstName + ' ' + user.lastName;
                 localStorage.setItem('loggedInUser', JSON.stringify({ name: fullName, email: user.email, role: user.profession }));
 
-                // Redirect based on user role
-                if (user.isAdmin) {
-                    window.location.href = '/back/startbootstrap-sb-admin-2-gh-pages/index.html'; 
-                } else if (user.frontoffice) {
-                    window.location.href = 'index.html';
-                } else {
-                    window.location.href = '/back/startbootstrap-sb-admin-2-gh-pages/dashboardTerreno.html';
-                }
+                // Redirect based on user type
+                const redirectPage = user.isAdmin ? 'index.html' : 'dashboardTerreno.html';
+                window.location.href = redirectPage;
             } else {
-                console.log("Invalid login credentials.");
+                // Optionally handle login failure case here
             }
         });
     } else {
@@ -47,8 +43,7 @@ function ensureAdminExists() {
         email: "admin@gmail.com",
         password: "adminpass", 
         profession: "Admin",
-        isAdmin: true,
-        frontoffice: false
+        isAdmin: true
     };
 
     const users = JSON.parse(localStorage.getItem('Users')) || [];
@@ -62,8 +57,6 @@ function ensureAdminExists() {
     }
 }
 
-
-
 function preloadProfiles() {
     // Predefined professional profiles
     const predefinedProfiles = [
@@ -71,12 +64,12 @@ function preloadProfiles() {
         { name: "Alice Johnson", email: "alice.johnson@example.com", phone: "1122334455", region: "Lisboa", profession: "Gestor_de_Seguros" },
         { name: "João Sousa", email: "joao.souza@example.com", phone: "1987654321", region: "Norte", profession: "Advogado" },
         { name: "Ana Luisa", email: "ana.luisa@example.com", phone: "2122334455", region: "Norte", profession: "Gestor_de_Seguros" },
-        { name: "Pedro Lopes", email: "pedro.lopes@example.com", phone: "1987654321", region: "Algarve", profession: "Advogado" },
+        { name: "Pedro Cunha", email: "pedro.cunha@example.com", phone: "1987654321", region: "Algarve", profession: "Advogado" },
         { name: "Joana Marques", email: "joana.marques@example.com", phone: "2122334455", region: "Algarve", profession: "Gestor_de_Seguros" },
         { name: "Bruno Brown", email: "bruno.brown@example.com", phone: "5544332211", region: "Lisboa", profession: "Ajudante" },
-        { name: "Rodrigo Alves", email: "rodrigo.alves@example.com", phone: "2234567890", region: "Alentejo", profession: "Ajudante" },
-        { name: "Rosa Vieira", email: "rosa.vieira@example.com", phone: "3234567890", region: "Norte", profession: "Ajudante" },
-        { name: "Tiago Carvalho", email: "tiago.carvalho@example.com", phone: "4234567890", region: "Centro", profession: "Ajudante" },
+        { name: "Pedro Alves", email: "pedro.alves@example.com", phone: "2234567890", region: "Alentejo", profession: "Ajudante" },
+        { name: "Rosa Silva", email: "rosa.silva@example.com", phone: "3234567890", region: "Norte", profession: "Ajudante" },
+        { name: "Tiago Carlos", email: "tiago.carlos@example.com", phone: "4234567890", region: "Centro", profession: "Ajudante" },
         { name: "Pedro Cunha", email: "pedro.cunha@example.com", phone: "4234567890", region: "Algarve", profession: "Ajudante" },
     ];
 
@@ -131,7 +124,7 @@ function preloadInitiatives() {
         { id: 19, titulo: "Palestra de Saúde e Bem-Estar", type: "Outro", localidade: "Auditório Central", region: "Alentejo", data: "2023-12-25", horaInicio: "15:00", horaFim: "17:00", descricao: "Palestra sobre saúde e bem-estar geral.", imagem: "../../assets/saude.webp", participantes: ["jorge@hotmail.com", "joana@gmail.com", "pedrocas@gmail.com"], doacoes: 300.00, materiais: [], profissionais: [], gestor: "s.thor@example.com", participantesmax: 1000 },
         { id: 20, titulo: "Corrida de Ano Novo", type: "Corrida/Maratona", localidade: "Centro da Cidade - Porto", region: "Algarve", data: "2024-01-05", horaInicio: "09:00", horaFim: "11:00", descricao: "Corrida para celebrar o Ano Novo.", imagem: "../../assets/maratona3.jpg", participantes: ["jorge@hotmail.com", "joana@gmail.com", "pedrocas@gmail.com"], doacoes: 600.00, materiais: [], profissionais: [], gestor: "s.thor@example.com", participantesmax: 1000 },
         { id: 21, titulo: "Corrida do Amor", type: "Corrida/Maratona", localidade: "Centro da Cidade - Lisboa", region: "Norte", data: "2024-02-14", horaInicio: "09:00", horaFim: "11:00", descricao: "Corrida para promover o amor e a saúde no Dia dos Namorados.", imagem: "../../assets/maratona1.jpg", participantes: ["jorge@hotmail.com", "joana@gmail.com", "pedrocas@gmail.com"], doacoes: 500.00, materiais: [], profissionais: [], gestor: "s.thor@example.com", participantesmax: 1000 },
-        { id: 22, titulo: "Torneio de Handebol", type: "Outro", localidade: "Ginásio Poliesportivo", region: "Centro", data: "2024-02-20", horaInicio: "14:00", horaFim: "16:00", descricao: "Torneio beneficente de handebol para ajudar crianças necessitadas.", imagem: "../../assets/handebol.jpg", participantes: ["jorge@hotmail.com", "joana@gmail.com", "pedrocas@gmail.com"], doacoes: 200.00, materiais: [], profissionais: [], gestor: "s.thor@example.com", participantesmax: 1000 },
+        { id: 22, titulo: "Torneio de Handebol para ajudar crianças necessitadas.", type: "Outro", localidade: "Ginásio Poliesportivo", region: "Centro", data: "2024-02-20", horaInicio: "14:00", horaFim: "16:00", descricao: "Torneio beneficente de handebol.", imagem: "../../assets/handebol.jpg", participantes: ["jorge@hotmail.com", "joana@gmail.com", "pedrocas@gmail.com"], doacoes: 200.00, materiais: [], profissionais: [], gestor: "s.thor@example.com", participantesmax: 1000 },
         { id: 23, titulo: "Workshop de Alimentação", type: "Workshop", localidade: "Centro Cultural", region: "Alentejo", data: "2024-03-15", horaInicio: "10:00", horaFim: "12:00", descricao: "Workshop sobre técnicas de alimentação saudável.", imagem: "../../assets/nutricao.jpeg", participantes: ["jorge@hotmail.com", "joana@gmail.com", "pedrocas@gmail.com"], doacoes: 300.00, materiais: [], profissionais: [], gestor: "s.thor@example.com", participantesmax: 1000 },
         { id: 24, titulo: "Corrida de Primavera", type: "Corrida/Maratona", localidade: "Centro da Cidade - Coimbra", region: "Algarve", data: "2024-03-20", horaInicio: "09:00", horaFim: "11:00", descricao: "Corrida para celebrar a chegada da primavera.", imagem: "../../assets/maratona2.jpg", participantes: ["jorge@hotmail.com", "joana@gmail.com", "pedrocas@gmail.com"], doacoes: 600.00, materiais: [], profissionais: [], gestor: "s.thor@example.com", participantesmax: 1000 },
         { id: 25, titulo: "Corrida da Cidade", type: "Corrida/Maratona", localidade: "Centro da Cidade - Braga", region: "Norte", data: "2024-04-10", horaInicio: "09:00", horaFim: "11:00", descricao: "Uma maratona urbana para todos os níveis de corredores.", imagem: "../../assets/maratona3.jpg", participantes: ["jorge@hotmail.com", "joana@gmail.com", "pedrocas@gmail.com"], doacoes: 535.00, materiais: [], profissionais: [], gestor: "s.thor@example.com", participantesmax: 1000 },
@@ -233,44 +226,55 @@ function preloadPedidos() {
 
 function preloadUsers() {
     // Predefined user profiles with the required details
-    const predefinedBackUsers = [
-        { firstName: "Jane", lastName: "Smith", email: "jane.smith@example.com", profession: "Advogado", isAdmin: false, password: "gohelp", frontoffice: false },
-        { firstName: "Alice", lastName: "Johnson", email: "alice.johnson@example.com", profession: "Gestor de Seguros", isAdmin: false, password: "gohelp", frontoffice: false },
-        { firstName: "João", lastName: "Sousa", email: "joao.souza@example.com", profession: "Advogado", isAdmin: false, password: "gohelp", frontoffice: false },
-        { firstName: "Ana", lastName: "Luisa", email: "ana.luisa@example.com", profession: "Gestor de Seguros", isAdmin: false, password: "gohelp", frontoffice: false },
-        { firstName: "Pedro", lastName: "Lopes", email: "pedro.lopes@example.com", profession: "Advogado", isAdmin: false, password: "gohelp", frontoffice: false },
-        { firstName: "Joana", lastName: "Marques", email: "joana.marques@example.com", profession: "Gestor de Seguros", isAdmin: false, password: "gohelp", frontoffice: false },
-        { firstName: "Bruno", lastName: "Brown", email: "bruno.brown@example.com", profession: "Ajudante", isAdmin: false, password: "gohelp", frontoffice: false },
-        { firstName: "Rodrigo", lastName: "Alves", email: "rodrigo.alves@example.com", profession: "Ajudante", isAdmin: false, password: "gohelp", frontoffice: false },
-        { firstName: "Rosa", lastName: "Vieira", email: "rosa.vieira@example.com", profession: "Ajudante", isAdmin: false, password: "gohelp", frontoffice: false },
-        { firstName: "Tiago", lastName: "Carvalho", email: "tiago.carvalho@example.com", profession: "Ajudante", isAdmin: false, password: "gohelp", frontoffice: false },
-        { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha@example.com", profession: "Ajudante", isAdmin: false, password: "gohelp", frontoffice: false },
-        { firstName: "Souges", lastName: "Thor", email: "s.thor@example.com", profession: "Gestor", isAdmin: false, password: "gohelp", frontoffice: false }
+    const predefinedUsers = [
+        { firstName: "Jane", lastName: "Smith", email: "jane.smith@example.com", profession: "Advogado", isAdmin: false, password:"gohelp" },
+        { firstName: "Alice", lastName: "Johnson", email: "alice.johnson@example.com", profession: "Gestor de Seguros", isAdmin: false, password:"gohelp" },
+        { firstName: "João", lastName: "Sousa", email: "joao.souza@example.com", profession: "Advogado", isAdmin: false, password:"gohelp" },
+        { firstName: "Ana", lastName: "Luisa", email: "ana.luisa@example.com", profession: "Gestor de Seguros", isAdmin: false, password:"gohelp" },
+        { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha@example.com", profession: "Advogado", isAdmin: false, password:"gohelp" },
+        { firstName: "Joana", lastName: "Marques", email: "joana.marques@example.com", profession: "Gestor de Seguros", isAdmin: false, password:"gohelp" },
+        { firstName: "Bruno", lastName: "Brown", email: "bruno.brown@example.com", profession: "Ajudante", isAdmin: false, password:"gohelp" },
+        { firstName: "Pedro", lastName: "Alves", email: "pedro.alves@example.com", profession: "Ajudante", isAdmin: false, password:"gohelp" },
+        { firstName: "Rosa", lastName: "Silva", email: "rosa.silva@example.com", profession: "Ajudante", isAdmin: false, password:"gohelp" },
+        { firstName: "Tiago", lastName: "Carlos", email: "tiago.carlos@example.com", profession: "Ajudante", isAdmin: false, password:"gohelp" },
+        { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha@example.com", profession: "Ajudante", isAdmin: false, password:"gohelp" },
+        { firstName: "Souges", lastName: "Thor", email: "s.thor@example.com", password: "gestorpass", profession: "Gestor", isAdmin: false, password:"gohelp" }
     ];
 
-    const predefinedFrontUsers = [
-        { firstName: "Carlos", lastName: "Joao", email: "carlosjoao@example.com", isAdmin: false, password: "gohelp", frontoffice: true },
-        { firstName: "Alice", lastName: "Vieira", email: "alice.vieira@example.com", isAdmin: false, password: "gohelp", frontoffice: true },
-        { firstName: "João", lastName: "Sousa", email: "joao.sousa@example.com", isAdmin: false, password: "gohelp", frontoffice: true },
-        { firstName: "Ana", lastName: "Maria", email: "ana.maria@example.com", isAdmin: false, password: "gohelp", frontoffice: true },
-        { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha01@example.com", isAdmin: false, password: "gohelp", frontoffice: true },
-        { firstName: "Joana", lastName: "Oliveira", email: "joana.oliveira@example.com", isAdmin: false, password: "gohelp", frontoffice: true },
-        { firstName: "Bruno", lastName: "Carvalho", email: "bruno.carvalho@example.com", isAdmin: false, password: "gohelp", frontoffice: true },
-        { firstName: "Pedro", lastName: "Alves", email: "pedro.alves@example.com", isAdmin: false, password: "gohelp", frontoffice: true },
-        { firstName: "Rosa", lastName: "Silva", email: "rosa.silva@example.com", isAdmin: false, password: "gohelp", frontoffice: true },
-        { firstName: "Tiago", lastName: "Carlos", email: "tiago.carlos@example.com", isAdmin: false, password: "gohelp", frontoffice: true },
-        { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha02@example.com", isAdmin: false, password: "gohelp", frontoffice: true }
-    ];
-
-    const users = JSON.parse(localStorage.getItem('Users')) || [];
-    const combinedUsers = [...predefinedBackUsers, ...predefinedFrontUsers];
-
-    combinedUsers.forEach(predefinedUser => {
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    predefinedUsers.forEach(predefinedUser => {
         if (!users.some(user => user.email === predefinedUser.email)) {
             users.push(predefinedUser);
         }
     });
 
-    localStorage.setItem('Users', JSON.stringify(users));
+    localStorage.setItem('users', JSON.stringify(users));
     console.log("Users updated in local storage.");
+}
+
+function preloadFrontUsers() {
+    // Predefined user profiles with the required details
+    const predefinedFrontUsers = [
+        { firstName: "Carlos", lastName: "Joao", email: "carlosjoao@example.com", isAdmin: false, password: "gohelp" },
+        { firstName: "Alice", lastName: "Vieira", email: "alice.vieira@example.com", isAdmin: false, password: "gohelp" },
+        { firstName: "João", lastName: "Sousa", email: "joao.sousa@example.com", isAdmin: false, password: "gohelp" },
+        { firstName: "Ana", lastName: "Maria", email: "ana.maria@example.com", isAdmin: false, password: "gohelp" },
+        { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha01@example.com", isAdmin: false, password: "gohelp" },
+        { firstName: "Joana", lastName: "Oliveira", email: "joana.oliveira@example.com", isAdmin: false, password: "gohelp" },
+        { firstName: "Bruno", lastName: "Carvalho", email: "bruno.carvalho@example.com", isAdmin: false, password: "gohelp" },
+        { firstName: "Pedro", lastName: "Alves", email: "pedro.alves@example.com", isAdmin: false, password: "gohelp" },
+        { firstName: "Rosa", lastName: "Silva", email: "rosa.silva@example.com", isAdmin: false, password: "gohelp" },
+        { firstName: "Tiago", lastName: "Carlos", email: "tiago.carlos@example.com", isAdmin: false, password: "gohelp" },
+        { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha02@example.com", isAdmin: false, password: "gohelp" },
+    ];
+
+    const frontUsers = JSON.parse(localStorage.getItem('FrontUsers')) || [];
+    predefinedFrontUsers.forEach(user => {
+        if (!frontUsers.some(existingUser => existingUser.email === user.email)) {
+            frontUsers.push(user);
+        }
+    });
+
+    localStorage.setItem('FrontUsers', JSON.stringify(frontUsers));
+    console.log("FrontUsers updated in local storage.");
 }

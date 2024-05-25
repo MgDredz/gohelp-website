@@ -82,7 +82,7 @@ function createInitiativeElement(initiative) {
             `&participantesmax=${encodeURIComponent(initiative.participantesmax)}`;
         
         console.log("Generated details URL:", detailsUrl);
-        container.innerHTML += `<br><a href="${detailsUrl}" class="register-button">INSCREVER</a>`;
+        container.innerHTML += `<a href="${detailsUrl}" class="register-button">INSCREVER</a>`;
     }
 
     return container;
