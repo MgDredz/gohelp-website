@@ -25,7 +25,7 @@ donations.forEach(donation => {
 });
 
 // Create a number formatter for US English.
-const formatter = new Intl.NumberFormat('en-US', {
+const formatter = new Intl.NumberFormat('de-DE', {
   style: 'currency',
   currency: 'EUR',
   minimumFractionDigits: 2
