@@ -238,12 +238,12 @@ function preloadUsers() {
         { firstName: "Alice", lastName: "Johnson", email: "alice.johnson@example.com", profession: "Gestor de Seguros", isAdmin: false, password: "gohelp", frontoffice: false },
         { firstName: "João", lastName: "Sousa", email: "joao.souza@example.com", profession: "Advogado", isAdmin: false, password: "gohelp", frontoffice: false },
         { firstName: "Ana", lastName: "Luisa", email: "ana.luisa@example.com", profession: "Gestor de Seguros", isAdmin: false, password: "gohelp", frontoffice: false },
-        { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha@example.com", profession: "Advogado", isAdmin: false, password: "gohelp", frontoffice: false },
+        { firstName: "Pedro", lastName: "Lopes", email: "pedro.lopes@example.com", profession: "Advogado", isAdmin: false, password: "gohelp", frontoffice: false },
         { firstName: "Joana", lastName: "Marques", email: "joana.marques@example.com", profession: "Gestor de Seguros", isAdmin: false, password: "gohelp", frontoffice: false },
         { firstName: "Bruno", lastName: "Brown", email: "bruno.brown@example.com", profession: "Ajudante", isAdmin: false, password: "gohelp", frontoffice: false },
-        { firstName: "Pedro", lastName: "Alves", email: "pedro.alves@example.com", profession: "Ajudante", isAdmin: false, password: "gohelp", frontoffice: false },
-        { firstName: "Rosa", lastName: "Silva", email: "rosa.silva@example.com", profession: "Ajudante", isAdmin: false, password: "gohelp", frontoffice: false },
-        { firstName: "Tiago", lastName: "Carlos", email: "tiago.carlos@example.com", profession: "Ajudante", isAdmin: false, password: "gohelp", frontoffice: false },
+        { firstName: "Rodrigo", lastName: "Alves", email: "rodrigo.alves@example.com", profession: "Ajudante", isAdmin: false, password: "gohelp", frontoffice: false },
+        { firstName: "Rosa", lastName: "Vieira", email: "rosa.vieira@example.com", profession: "Ajudante", isAdmin: false, password: "gohelp", frontoffice: false },
+        { firstName: "Tiago", lastName: "Carvalho", email: "tiago.carvalho@example.com", profession: "Ajudante", isAdmin: false, password: "gohelp", frontoffice: false },
         { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha@example.com", profession: "Ajudante", isAdmin: false, password: "gohelp", frontoffice: false },
         { firstName: "Souges", lastName: "Thor", email: "s.thor@example.com", profession: "Gestor", isAdmin: false, password: "gohelp", frontoffice: false }
     ];
