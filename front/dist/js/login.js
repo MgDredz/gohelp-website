@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+    ensureAdminExists();
     preloadProfiles();
     preloadInitiatives();
     preloadDonations();
     preloadPedidos();
     preloadGestores();
     preloadUsers();
-    preloadFrontUsers();
 
 
     const loginButton = document.querySelector('.btn-user.btn-block');
@@ -16,23 +16,52 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = document.getElementById("exampleInputEmail").value.trim();
             const password = document.getElementById("exampleInputPassword").value.trim();
 
-            const users = JSON.parse(localStorage.getItem('FrontUsers')) || [];
+            const users = JSON.parse(localStorage.getItem('Users')) || [];
             const user = users.find(user => user.email === email && user.password === password);
 
             if (user) {
                 const fullName = user.firstName + ' ' + user.lastName;
                 localStorage.setItem('loggedInUser', JSON.stringify({ name: fullName, email: user.email, role: user.profession }));
 
-                // Prepopulate professional profiles if not already done
-                // Redirect to a specific page
-                window.location.href = 'index.html'; // This code will stop execution following the redirect
+                // Redirect based on user role
+                if (user.isAdmin) {
+                    window.location.href = '/back/startbootstrap-sb-admin-2-gh-pages/index.html'; 
+                } else if (user.frontoffice) {
+                    window.location.href = 'index.html';
+                } else {
+                    window.location.href = '/back/startbootstrap-sb-admin-2-gh-pages/dashboardTerreno.html';
+                }
             } else {
+                console.log("Invalid login credentials.");
             }
         });
     } else {
         console.log("Login button not found.");
     }
 });
+
+function ensureAdminExists() {
+    const defaultAdmin = {
+        firstName: "Admin",
+        lastName: "",
+        email: "admin@gmail.com",
+        password: "adminpass", 
+        profession: "Admin",
+        isAdmin: true,
+        frontoffice: false
+    };
+
+    const users = JSON.parse(localStorage.getItem('NewUsers')) || [];
+
+    if (!users.some(user => user.email === defaultAdmin.email && user.isAdmin)) {
+        users.push(defaultAdmin);
+        localStorage.setItem('NewUsers', JSON.stringify(users));
+        console.log("Admin named 'Admin' added to local storage.");
+    } else {
+        console.log("Admin named 'Admin' already exists in local storage.");
+    }
+}
+
 
 
 function preloadProfiles() {
@@ -204,55 +233,44 @@ function preloadPedidos() {
 
 function preloadUsers() {
     // Predefined user profiles with the required details
-    const predefinedUsers = [
-        { firstName: "Jane", lastName: "Smith", email: "jane.smith@example.com", profession: "Advogado", isAdmin: false, password:"gohelp" },
-        { firstName: "Alice", lastName: "Johnson", email: "alice.johnson@example.com", profession: "Gestor de Seguros", isAdmin: false, password:"gohelp" },
-        { firstName: "João", lastName: "Sousa", email: "joao.souza@example.com", profession: "Advogado", isAdmin: false, password:"gohelp" },
-        { firstName: "Ana", lastName: "Luisa", email: "ana.luisa@example.com", profession: "Gestor de Seguros", isAdmin: false, password:"gohelp" },
-        { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha@example.com", profession: "Advogado", isAdmin: false, password:"gohelp" },
-        { firstName: "Joana", lastName: "Marques", email: "joana.marques@example.com", profession: "Gestor de Seguros", isAdmin: false, password:"gohelp" },
-        { firstName: "Bruno", lastName: "Brown", email: "bruno.brown@example.com", profession: "Ajudante", isAdmin: false, password:"gohelp" },
-        { firstName: "Pedro", lastName: "Alves", email: "pedro.alves@example.com", profession: "Ajudante", isAdmin: false, password:"gohelp" },
-        { firstName: "Rosa", lastName: "Silva", email: "rosa.silva@example.com", profession: "Ajudante", isAdmin: false, password:"gohelp" },
-        { firstName: "Tiago", lastName: "Carlos", email: "tiago.carlos@example.com", profession: "Ajudante", isAdmin: false, password:"gohelp" },
-        { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha@example.com", profession: "Ajudante", isAdmin: false, password:"gohelp" },
-        { firstName: "Souges", lastName: "Thor", email: "s.thor@example.com", password: "gestorpass", profession: "Gestor", isAdmin: false, password:"gohelp" }
+    const predefinedBackUsers = [
+        { firstName: "Jane", lastName: "Smith", email: "jane.smith@example.com", profession: "Advogado", isAdmin: false, password: "gohelp", frontoffice: false },
+        { firstName: "Alice", lastName: "Johnson", email: "alice.johnson@example.com", profession: "Gestor de Seguros", isAdmin: false, password: "gohelp", frontoffice: false },
+        { firstName: "João", lastName: "Sousa", email: "joao.souza@example.com", profession: "Advogado", isAdmin: false, password: "gohelp", frontoffice: false },
+        { firstName: "Ana", lastName: "Luisa", email: "ana.luisa@example.com", profession: "Gestor de Seguros", isAdmin: false, password: "gohelp", frontoffice: false },
+        { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha@example.com", profession: "Advogado", isAdmin: false, password: "gohelp", frontoffice: false },
+        { firstName: "Joana", lastName: "Marques", email: "joana.marques@example.com", profession: "Gestor de Seguros", isAdmin: false, password: "gohelp", frontoffice: false },
+        { firstName: "Bruno", lastName: "Brown", email: "bruno.brown@example.com", profession: "Ajudante", isAdmin: false, password: "gohelp", frontoffice: false },
+        { firstName: "Pedro", lastName: "Alves", email: "pedro.alves@example.com", profession: "Ajudante", isAdmin: false, password: "gohelp", frontoffice: false },
+        { firstName: "Rosa", lastName: "Silva", email: "rosa.silva@example.com", profession: "Ajudante", isAdmin: false, password: "gohelp", frontoffice: false },
+        { firstName: "Tiago", lastName: "Carlos", email: "tiago.carlos@example.com", profession: "Ajudante", isAdmin: false, password: "gohelp", frontoffice: false },
+        { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha@example.com", profession: "Ajudante", isAdmin: false, password: "gohelp", frontoffice: false },
+        { firstName: "Souges", lastName: "Thor", email: "s.thor@example.com", profession: "Gestor", isAdmin: false, password: "gohelp", frontoffice: false }
     ];
 
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    predefinedUsers.forEach(predefinedUser => {
+    const predefinedFrontUsers = [
+        { firstName: "Carlos", lastName: "Joao", email: "carlosjoao@example.com", isAdmin: false, password: "gohelp", frontoffice: true },
+        { firstName: "Alice", lastName: "Vieira", email: "alice.vieira@example.com", isAdmin: false, password: "gohelp", frontoffice: true },
+        { firstName: "João", lastName: "Sousa", email: "joao.sousa@example.com", isAdmin: false, password: "gohelp", frontoffice: true },
+        { firstName: "Ana", lastName: "Maria", email: "ana.maria@example.com", isAdmin: false, password: "gohelp", frontoffice: true },
+        { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha01@example.com", isAdmin: false, password: "gohelp", frontoffice: true },
+        { firstName: "Joana", lastName: "Oliveira", email: "joana.oliveira@example.com", isAdmin: false, password: "gohelp", frontoffice: true },
+        { firstName: "Bruno", lastName: "Carvalho", email: "bruno.carvalho@example.com", isAdmin: false, password: "gohelp", frontoffice: true },
+        { firstName: "Pedro", lastName: "Alves", email: "pedro.alves@example.com", isAdmin: false, password: "gohelp", frontoffice: true },
+        { firstName: "Rosa", lastName: "Silva", email: "rosa.silva@example.com", isAdmin: false, password: "gohelp", frontoffice: true },
+        { firstName: "Tiago", lastName: "Carlos", email: "tiago.carlos@example.com", isAdmin: false, password: "gohelp", frontoffice: true },
+        { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha02@example.com", isAdmin: false, password: "gohelp", frontoffice: true }
+    ];
+
+    const users = JSON.parse(localStorage.getItem('Users')) || [];
+    const combinedUsers = [...predefinedBackUsers, ...predefinedFrontUsers];
+
+    combinedUsers.forEach(predefinedUser => {
         if (!users.some(user => user.email === predefinedUser.email)) {
             users.push(predefinedUser);
         }
     });
 
-    localStorage.setItem('users', JSON.stringify(users));
+    localStorage.setItem('Users', JSON.stringify(users));
     console.log("Users updated in local storage.");
-}
-
-function preloadFrontUsers() {
-    // Predefined user profiles with the required details
-    const predefinedFrontUsers = [
-        { firstName: "Carlos", lastName: "Joao", email: "carlosjoao@example.com", isAdmin: false, password: "gohelp" },
-        { firstName: "Alice", lastName: "Vieira", email: "alice.vieira@example.com", isAdmin: false, password: "gohelp" },
-        { firstName: "João", lastName: "Sousa", email: "joao.sousa@example.com", isAdmin: false, password: "gohelp" },
-        { firstName: "Ana", lastName: "Maria", email: "ana.maria@example.com", isAdmin: false, password: "gohelp" },
-        { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha01@example.com", isAdmin: false, password: "gohelp" },
-        { firstName: "Joana", lastName: "Oliveira", email: "joana.oliveira@example.com", isAdmin: false, password: "gohelp" },
-        { firstName: "Bruno", lastName: "Carvalho", email: "bruno.carvalho@example.com", isAdmin: false, password: "gohelp" },
-        { firstName: "Pedro", lastName: "Alves", email: "pedro.alves@example.com", isAdmin: false, password: "gohelp" },
-        { firstName: "Rosa", lastName: "Silva", email: "rosa.silva@example.com", isAdmin: false, password: "gohelp" },
-        { firstName: "Tiago", lastName: "Carlos", email: "tiago.carlos@example.com", isAdmin: false, password: "gohelp" },
-        { firstName: "Pedro", lastName: "Cunha", email: "pedro.cunha02@example.com", isAdmin: false, password: "gohelp" },
-    ];
-
-    const frontUsers = JSON.parse(localStorage.getItem('FrontUsers')) || [];
-    predefinedFrontUsers.forEach(user => {
-        if (!frontUsers.some(existingUser => existingUser.email === user.email)) {
-            frontUsers.push(user);
-        }
-    });
-
-    localStorage.setItem('FrontUsers', JSON.stringify(frontUsers));
-    console.log("FrontUsers updated in local storage.");
 }
