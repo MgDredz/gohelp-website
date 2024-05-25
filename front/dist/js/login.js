@@ -51,11 +51,11 @@ function ensureAdminExists() {
         frontoffice: false
     };
 
-    const users = JSON.parse(localStorage.getItem('NewUsers')) || [];
+    const users = JSON.parse(localStorage.getItem('Users')) || [];
 
     if (!users.some(user => user.email === defaultAdmin.email && user.isAdmin)) {
         users.push(defaultAdmin);
-        localStorage.setItem('NewUsers', JSON.stringify(users));
+        localStorage.setItem('Users', JSON.stringify(users));
         console.log("Admin named 'Admin' added to local storage.");
     } else {
         console.log("Admin named 'Admin' already exists in local storage.");
