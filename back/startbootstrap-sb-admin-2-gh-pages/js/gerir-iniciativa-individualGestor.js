@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateGrandTotalProfissional(profissionais, totalHours);
   }
 
-  window.updateProfissional = function (index, field, value) {
+  window.updateProfissional = function(index, field, value) {
     const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
     const id = getQueryParameter('id');
     const initiative = initiatives.find(i => i.id == id);
@@ -133,17 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const advogadosTable = document.querySelector("#advogadoTable tbody");
     const gestoresSegurosTable = document.querySelector("#gestorSegurosTable tbody");
 
-    const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
-    const id = getQueryParameter('id');
-    const initiative = initiatives.find(i => i.id == id);
-    const initiativeRegion = initiative ? initiative.region : null;
-
     profiles.forEach(profile => {
-
-      if (profile.region !== initiativeRegion) {
-        return;
-      }
-
       const row = document.createElement('tr');
       const nameCell = document.createElement('td');
       nameCell.textContent = profile.name;
@@ -442,7 +432,7 @@ function validateTime() {
 
 // Function to enforce 2 decimal places on input
 function enforceTwoDecimalPlaces(input) {
-  input.addEventListener('input', function () {
+  input.addEventListener('input', function() {
     let value = this.value;
     if (value.includes('.')) {
       value = value.split('.');

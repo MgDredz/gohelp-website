@@ -8,7 +8,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   number = (number + '').replace(',', '').replace(' ', '');
   var n = !isFinite(+number) ? 0 : +number,
     prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-    sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+    sep = (typeof thousands_sep === 'undefined') ? '.' : thousands_sep,
     dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
     s = '',
     toFixedFix = function(n, prec) {
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   ticks: {
                       maxTicksLimit: 5,
                       padding: 10,
-                      callback: function(value, index, values) {
+                      callback: function(value) {
                           return '€' + number_format(value);
                       }
                   },

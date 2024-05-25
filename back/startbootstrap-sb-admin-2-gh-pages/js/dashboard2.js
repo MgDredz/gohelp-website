@@ -1,96 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
     const loggedInUserEmail = loggedInUser.email;
+    
+    // Filter the initiatives by user
     const rawInitiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
-    // Filter the initiatives to get only those managed by "s.thor@example.com"
     const initiatives = rawInitiatives.filter(initiative => initiative.gestor === loggedInUserEmail);
 
-    const donations = JSON.parse(localStorage.getItem('donations')) || [];
     const professionals = JSON.parse(localStorage.getItem('profissionais')) || [];
     const gestores = JSON.parse(localStorage.getItem('gestores')) || [];
-    const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
-    barPerc(initiatives);
-    topCards(donations, initiatives, professionals, gestores, pedidos);
+    
+    topCards(initiatives, professionals, gestores);
   });
   
-  function barPerc(initiatives) {
-    const bars = document.getElementById('barPercentage');
-  
-    // Define the types and initialize counts to zero for each type
-    const types = ['Corrida/Maratona', 'Aulas', 'Jogos de Futebol', 'Workshop', 'Outro'];
-    const typeCounts = {};
-    types.forEach(type => typeCounts[type] = 0);
-  
-    // Get today's date and the date one month ago
-    const today = new Date();
-    const lastMonth = new Date();
-    lastMonth.setMonth(today.getMonth() - 1);
-  
-    // Filter initiatives based on date
-    const filteredInitiatives = initiatives.filter(initiative => {
-      const initiativeDate = new Date(initiative.data);
-      return initiativeDate >= lastMonth && initiativeDate <= today;
-    });
-  
-    // Count each initiative by its type
-    filteredInitiatives.forEach(initiative => {
-        if (typeCounts.hasOwnProperty(initiative.type)) {
-            typeCounts[initiative.type]++;
-        }
-    });
-  
-    const totalFilteredInitiatives = filteredInitiatives.length;
-  
-    // Function to calculate percentage
-    function calculatePercentage(count, total) {
-        return total > 0 ? (count / total * 100).toFixed(2) : 0;
-    }
-  
-    // Calculate percentages
-    const typePercentages = {};
-    types.forEach(type => {
-        typePercentages[type] = calculatePercentage(typeCounts[type], totalFilteredInitiatives);
-    });
-  
-    // Sort the initiative types by percentage in descending order
-    const sortedTypePercentages = Object.entries(typePercentages).sort(([, a], [, b]) => b - a);
-  
-    // Call your function to create the initiative elements or update the UI
-    createBarElement(sortedTypePercentages);
-  
-    // Function to create the initiative elements
-    function createBarElement(sortedTypePercentages) {
-        const container = document.createElement('div');
-        container.className = 'card shadow mb-4'; // Assuming this class aligns with the intended style
-  
-        container.innerHTML = `
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Ações - Tipo (no último mês)</h6>
-            </div>
-            <div class="card-body">
-                ${sortedTypePercentages.map(([type, percentage]) => {
-                    const colorClass = {
-                        'Corrida/Maratona': 'bg-primary',
-                        'Aulas': 'bg-success',
-                        'Jogos de Futebol': 'bg-info',
-                        'Workshop': 'bg-warning',
-                        'Outro': 'bg-danger'
-                    }[type] || 'bg-secondary';
-  
-                    return `
-                        <h4 class="small font-weight-bold">${type} <span class="float-right">${percentage}%</span></h4>
-                        <div class="progress mb-4">
-                            <div class="progress-bar ${colorClass}" role="progressbar" style="width: ${percentage}%"></div>
-                        </div>
-                    `;
-                }).join('')}
-            </div>
-        `;
-        bars.appendChild(container);
-    }
-  }
-
-function topCards(donations, initiatives, professionals, gestores, pedidos) {
+function topCards(initiatives, professionals, gestores) {
 
     //card initiatives
     const today = new Date();
@@ -118,8 +40,7 @@ function topCards(donations, initiatives, professionals, gestores, pedidos) {
     const gestorCount = gestores.length;
     const totalProfessionals = professionalsCount+gestorCount
     //card pedidos
-    const pendentePedidos = pedidos.filter(pedido => pedido.estado === "pendente");
-    const pendenteCount = pendentePedidos.length;
+    const workProfessioanls = todaysInitiatives.reduce((total, todaysInitiatives) => total + todaysInitiatives.profissionais,length, 0);
 
     //escrever html
     const topCards = document.getElementById('topCards');
@@ -131,7 +52,7 @@ function topCards(donations, initiatives, professionals, gestores, pedidos) {
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"  style="margin-top: -15px;">
-                        Ações a decorrer</div>
+                        Iniciativas a decorrer</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"  style="margin-top: 15px;">${todaysInitiativesCount}</div>
                     </div>
                 </div>
@@ -139,14 +60,14 @@ function topCards(donations, initiatives, professionals, gestores, pedidos) {
         </div>
     </div>
 
-    <!--  Ações a decorre Card Example -->
+    <!--  Iniciativas a decorre Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-success shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1"  style="margin-top: -15px;">
-                            Ações no próximo mês</div>
+                            Participantes EsperadosS </div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">${initiativesNext30DaysCount}</div>
                     </div>
                 </div>
@@ -169,15 +90,15 @@ function topCards(donations, initiatives, professionals, gestores, pedidos) {
         </div>
     </div>
 
-    <!-- Pedidos Card Example -->
+    <!-- Participantes Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
     <div class="card border-left-warning shadow h-100 py-2">
         <div class="card-body">
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"  style="margin-top: -15px;">
-                        Pedidos</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"  style="margin-top: 15px;">${pendenteCount}</div>
+                    Iniciativas no próximo mês</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"  style="margin-top: 15px;">${initiativesNext30DaysCount}</div>
                 </div>
             </div>
         </div>

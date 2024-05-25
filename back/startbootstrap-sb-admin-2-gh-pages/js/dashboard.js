@@ -60,7 +60,7 @@
   
         container.innerHTML = `
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Ações - Tipo (no último mês)</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Iniciativas - Tipo (no último mês)</h6>
             </div>
             <div class="card-body">
                 ${sortedTypePercentages.map(([type, percentage]) => {
@@ -89,7 +89,10 @@ function topCards(donations, initiatives, professionals, gestores, pedidos) {
     //card donations
     const totalSum = donations.reduce((sum, donation) => sum + donation.montante, 0);
     const formattedTotalSum = totalSum.toFixed(2);
-    const formattedTotalSum2 = new Intl.NumberFormat('en-US').format(formattedTotalSum);
+    const formattedTotalSum2 = new Intl.NumberFormat('de-DE', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(formattedTotalSum);
 
     //card initiatives
     const today = new Date();
@@ -131,14 +134,14 @@ function topCards(donations, initiatives, professionals, gestores, pedidos) {
         </div>
     </div>
 
-    <!--  Ações a decorre Card Example -->
+    <!--  Iniciativas a decorre Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-success shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1"  style="margin-top: -15px;">
-                            Ações a decorrer</div>
+                        Iniciativas a decorrer</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">${todaysInitiativesCount}</div>
                     </div>
                     <div class="col-auto">
@@ -205,12 +208,12 @@ function bottomCards(todaysInitiatives, todaysInitiativesCount) {
 
     topCards.innerHTML = `
         <div class="col-xl-6 col-md-6 mb-4">
-            <div class="card2 border-left-primary shadow h-100 py-3">
+            <div class="card2 border-left-primary shadow h-100 py-3" style="margin-top: 15px;">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="margin-top: -15px;">
-                                Ações a decorrer</div>
+                            Iniciativas a decorrer</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 20px;">${todaysInitiativesCount}</div>
                         </div>
                         <div class="col-auto">
@@ -222,7 +225,7 @@ function bottomCards(todaysInitiatives, todaysInitiativesCount) {
 
         <!-- Doaçoes Card Example -->
         <div class="col-xl-6 col-md-6 mb-4">
-            <div class="card2 border-left-success shadow h-100 py-3">
+            <div class="card2 border-left-success shadow h-100 py-3"  style="margin-top: 15px;">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -239,7 +242,7 @@ function bottomCards(todaysInitiatives, todaysInitiativesCount) {
 
         <!-- Funcionarios Card Example-->
         <div class="col-xl-6 col-md-6 mb-4">
-            <div class="card2 border-left-info shadow h-100 py-3">
+            <div class="card2 border-left-info shadow h-100 py-3"  style="margin-top: 15px;">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -256,7 +259,7 @@ function bottomCards(todaysInitiatives, todaysInitiativesCount) {
 
         <!-- Dsitritos Card Example -->
         <div class="col-xl-6 col-md-6 mb-4">
-            <div class="card2 border-left-warning shadow h-100 py-3">
+            <div class="card2 border-left-warning shadow h-100 py-3"  style="margin-top: 15px;">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
