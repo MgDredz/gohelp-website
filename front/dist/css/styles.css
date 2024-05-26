@@ -12111,11 +12111,10 @@ h3{
 .pedido {
   background-color: #f0f0f0;
   padding: 20px;
-  margin: 15px;
-  margin-left: 550px;       
+  margin: 15px auto; /* Centraliza horizontalmente */
   border-radius: 5px;     
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);  
-  width: 850px;           
+  width: 800px; /* Ajuste o valor conforme necessário para a largura desejada */           
 }
 
 .pedido-estado {
@@ -12162,4 +12161,31 @@ h3{
 
 .descriçãoiniciativas {
   min-height: 150px;
+}
+
+.content-section-pedidos {
+  min-height: 300px; 
+  width: 100%; /* Ocupa toda a largura disponível */
+  display: flex;
+  justify-content: center; /* Centraliza o conteúdo horizontalmente */
+  align-items: center; /* Centraliza o conteúdo verticalmente */
+}
+
+
+.container-flex-pedidos {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza todos os filhos horizontalmente */
+  min-height: 676px; 
+}
+
+.Mensagem-pedidos {
+  position: absolute;  /* Posicionamento absoluto para que possamos usar top e left com percentagens */
+  width: 250px;        /* Largura fixa para a mensagem */
+  left: 51%;           /* Posiciona a borda esquerda da mensagem no centro horizontal do contêiner */
+  transform: translate(-50%, -50%); /* Desloca a mensagem para trás pela metade de sua altura e largura */
+  font-size: 1.6em;
+  color: #333;
+  font-weight: bold;
+  text-align: center; /* Assegura que o texto dentro do div também esteja centralizado */
 }
