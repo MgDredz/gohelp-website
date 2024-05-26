@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function displayRequests(page = 1) {
     const itemsPerPage = 5;
-    const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+    const rawPedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+    const pedidos = rawPedidos.slice().reverse();
 
     // Filter only "pendente" requests
     const filteredPedidos = pedidos.filter(pedido => pedido.estado === 'pendente');
@@ -150,14 +151,6 @@ function updatePagination(totalPages, currentPage) {
     pagination.appendChild(nextItem);
 }
 
-function displayOpenRequestsCount() {
-    const pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
-    const filteredPedidos = pedidos.filter(pedido => pedido.estado === 'pendente');
-    const headerText = document.querySelector('.h3.mb-2.text-gray-800');
-    if (headerText) {
-        headerText.textContent = `${filteredPedidos.length} Pedidos em Aberto`;
-    }
-}
 
 function logout() {
     // Clear the logged-in user from local storage

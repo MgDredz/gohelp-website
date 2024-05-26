@@ -44,13 +44,12 @@
             <li class="nav-item active">
                 <a class="nav-link" href="dashboardTerreno.html" target="_self">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard (Terreno)</span></a>
+                    <span>Dashboard</span></a>
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <hr class="sidebar-divider my-0">
             
-
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="gerir-iniciativaGestor.html">
@@ -113,8 +112,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        
                     </div>
 
                     <!-- Content Row -->
@@ -130,7 +128,7 @@
                                 <!-- Card Header-->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Doações/Iniciativas</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Participantes/Iniciativas </h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -145,29 +143,18 @@
                         <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
                                 <!-- Card Header -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Fonte das Doações</h6>
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Iniciativas - Tipo</h6>
                                 </div>
                                 <!-- Card Body -->
-                                <div class="card-body">
+                                <div class="card-body" style="padding-bottom: 60px;">
                                     <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Online
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Patrocinadores
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> No Terreno
-                                        </span>
+                                        <canvas id="myPieChart" width="400" height="410"></canvas>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
                    
 

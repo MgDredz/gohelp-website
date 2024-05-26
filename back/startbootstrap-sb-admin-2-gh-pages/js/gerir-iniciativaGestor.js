@@ -42,7 +42,10 @@ function openTab(tabName) {
   };
 
   function displayInitiatives() {
-    const initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    const loggedInUserEmail = loggedInUser.email;
+    const rawInitiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
+    const initiatives = rawInitiatives.filter(initiative => initiative.gestor === loggedInUserEmail);
     const reversedInitiatives = initiatives.reverse();
     const realizadasContainer = document.getElementById('Realizadas');
     const aDecorrerContainer = document.getElementById('ADecorrer');

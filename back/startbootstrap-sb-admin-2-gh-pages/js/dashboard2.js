@@ -36,12 +36,13 @@ function topCards(initiatives, professionals, gestores) {
 }).length;
 
     //card professionals
-    const professionalsCount = professionals.length;
-    const gestorCount = gestores.length;
-    const totalProfessionals = professionalsCount+gestorCount
-    //card pedidos
-    const workProfessioanls = todaysInitiatives.reduce((total, todaysInitiatives) => total + todaysInitiatives.profissionais,length, 0);
-
+    const totalProfessionals = todaysInitiatives.reduce((count, initiative) => {
+        return count + (initiative.profissionais ? initiative.profissionais.length : 0);
+    }, 0);
+    //card participantes
+    const totalParticipantes = todaysInitiatives.reduce((count, initiative) => {
+        return count + (initiative.participantes ? initiative.participantes.length : 0);
+    }, 0);
     //escrever html
     const topCards = document.getElementById('topCards');
 
@@ -67,8 +68,8 @@ function topCards(initiatives, professionals, gestores) {
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1"  style="margin-top: -15px;">
-                            Participantes EsperadosS </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">${initiativesNext30DaysCount}</div>
+                            Participantes Esperados </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">${totalParticipantes}</div>
                     </div>
                 </div>
             </div>
@@ -82,7 +83,7 @@ function topCards(initiatives, professionals, gestores) {
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1"  style="margin-top: -15px;">
-                            Profissionais</div>
+                            Profissionais Alocados</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800" style="margin-top: 15px;">${totalProfessionals}</div>
                     </div>
                 </div>
