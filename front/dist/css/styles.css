@@ -12145,21 +12145,26 @@ h3{
 }
 
 .content-section {
-  width: auto;      /* Ocupa 100% da largura do contêiner pai */
-  min-height: 300px; /* Altura mínima para manter a usabilidade */
-  width: 90vw;
-  flex: 1;          /* Todos os filhos flex têm a mesma proporção */
-  padding: auto;
-  margin: auto;
+  min-height: 3px; /* Altura mínima para manter a usabilidade */
+  width: 40px;
+  
 }
 
 .container-flex {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  min-height: 701px;
+  align-items: center;
+  min-height: 928px;
 }
 
 .descriçãoiniciativas {
   min-height: 150px;
+}
+
+.Mensagem-pedidos {
+  display: flex;
+  width: 250px;
+  font-size: 1.6em;
+  color: #333;
+  font-weight: bold;
 }
