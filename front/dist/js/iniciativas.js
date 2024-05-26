@@ -123,17 +123,7 @@ function changeTab(tabId, element) {
     applyFilters();
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const userProfileDropdown = document.getElementById('userProfileDropdown');
-    const loginLink = document.getElementById('loginLink');
-    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
 
-    if (loggedInUser) {
-        userProfileDropdown.classList.remove('d-none');
-    } else {
-        loginLink.classList.remove('d-none');
-    }
-});
 
 document.addEventListener('DOMContentLoaded', function() {
     const userProfileDropdown = document.getElementById('userProfileDropdown');
