@@ -27,23 +27,45 @@ function loadPedidos() {
     const containerEmEspera = document.getElementById('eventosEmEspera');
     const containerAceites = document.getElementById('eventosAceites');
 
-    containerRecusadas.innerHTML = '';  // Limpa conteúdo anterior
-    containerEmEspera.innerHTML = '';   // Limpa conteúdo anterior
-    containerAceites.innerHTML = '';    // Limpa conteúdo anterior
-    containerTodosPedidos.innerHTML = '';  // Limpa conteúdo anterior
+    // Limpa conteúdo anterior
+    containerRecusadas.innerHTML = '';
+    containerEmEspera.innerHTML = '';
+    containerAceites.innerHTML = '';
+    containerTodosPedidos.innerHTML = '';
 
-    pedidos.filter(pedido => pedido.email === email).forEach(pedido => {
-        containerTodosPedidos.appendChild(createPedidoElement(pedido));
-        if (pedido.estado === "recusado") {
-            containerRecusadas.appendChild(createPedidoElement(pedido));
-        } else if (pedido.estado === "pendente") {
-            containerEmEspera.appendChild(createPedidoElement(pedido));
-        } else if (pedido.estado === "aceite") {
-            containerAceites.appendChild(createPedidoElement(pedido));
-        }
-    });
+    const pedidosUser = pedidos.filter(pedido => pedido.email === email);
+
+    // Verifica se há pedidos para o usuário em qualquer estado
+    if (pedidosUser.length === 0) {
+        const message = document.createElement('div');
+        message.className = 'Mensagem-pedidos';
+        message.textContent = 'Ainda sem pedidos';
+    
+        // Adiciona a mensagem de "Ainda sem pedidos" apenas na aba geral quando não houver pedidos
+        document.getElementById('todosPedidos').style.display = 'block'; // Garante que a aba geral esteja visível
+        document.getElementById('eventosTodosPedidos').appendChild(message);
+    
+        // Assegura que as outras abas estão visíveis e acessíveis, mas sem pedidos listados
+        ['eventosRecusadas', 'eventosEmEspera', 'eventosAceites'].forEach(id => {
+            if(document.getElementById(id).children.length === 0) {
+                const emptyMessage = message.cloneNode(true);
+                document.getElementById(id).appendChild(emptyMessage);
+            }
+        });
+    } else {
+        pedidosUser.forEach(pedido => {
+            const pedidoElement = createPedidoElement(pedido);
+            containerTodosPedidos.appendChild(pedidoElement.cloneNode(true));
+            if (pedido.estado === "recusado") {
+                containerRecusadas.appendChild(pedidoElement.cloneNode(true));
+            } else if (pedido.estado === "pendente") {
+                containerEmEspera.appendChild(pedidoElement.cloneNode(true));
+            } else if (pedido.estado === "aceite") {
+                containerAceites.appendChild(pedidoElement.cloneNode(true));
+            }
+        });
+    }
 }
-
 
 function createPedidoElement(pedido) {
     const element = document.createElement('div');
@@ -54,31 +76,15 @@ function createPedidoElement(pedido) {
     return element;
 }
 
-
-
-
-
-
-
 function changeTab(tabId, element) {
     document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
     element.classList.add('active');
 
-    document.querySelectorAll('.content-section').forEach(section => section.style.display = 'none');
-    document.getElementById(tabId).style.display = 'block';
+    document.querySelectorAll('.content-section-pedidos').forEach(section => {
+        section.style.display = 'none'; // Esconde todas as seções
+    });
+    document.getElementById(tabId).style.display = 'block'; // Mostra apenas a seção da aba ativa
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    const userProfileDropdown = document.getElementById('userProfileDropdown');
-    const loginLink = document.getElementById('loginLink');
-    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-
-    if (loggedInUser) {
-        userProfileDropdown.classList.remove('d-none');
-    } else {
-        loginLink.classList.remove('d-none');
-    }
-});
 
 function logout() {
     // Clear the logged-in user from local storage
