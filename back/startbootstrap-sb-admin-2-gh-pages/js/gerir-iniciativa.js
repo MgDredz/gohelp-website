@@ -67,7 +67,7 @@ function createInitiativeElement(initiative, isFuture) {
     const formattedDate = new Date(initiative.data).toLocaleDateString('pt-PT', { weekday: 'short', day: '2-digit', month: 'short' });
 
     const initiativeUrl = `Gerir-Iniciativa-Individual.html?id=${initiative.id}`;
-    const riscoValue = calculateRisk(initiative.materiais.neededqtd, initiative.materiais.emPosse);
+    const riscoValue = initiative.doacoes / 5;
 
     container.innerHTML = `
     <a href="${initiativeUrl}">
@@ -95,10 +95,5 @@ function createInitiativeElement(initiative, isFuture) {
     return container;
 }
 
-function calculateRisk(materiaisNecessarios, materiaisEmPosse) {
-    if (materiaisNecessarios === 0) return 0;
-    const percentage = (materiaisEmPosse / materiaisNecessarios) * 100;
-    return 100 - Math.min(Math.max(percentage, 0), 100);
-}
 
 

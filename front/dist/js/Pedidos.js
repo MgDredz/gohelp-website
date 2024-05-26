@@ -32,27 +32,16 @@ function loadPedidos() {
     containerAceites.innerHTML = '';    // Limpa conteúdo anterior
     containerTodosPedidos.innerHTML = '';  // Limpa conteúdo anterior
 
-    const pedidosUser = pedidos.filter(pedido => pedido.email === email);
-    if (pedidosUser.length === 0) {
-        const message = document.createElement('div');
-        message.className = 'Mensagem-pedidos';
-        message.textContent = 'Ainda sem pedidos';
-        containerTodosPedidos.appendChild(message);
-        containerRecusadas.appendChild(message.cloneNode(true));
-        containerEmEspera.appendChild(message.cloneNode(true));
-        containerAceites.appendChild(message.cloneNode(true));
-    } else {
-        pedidosUser.forEach(pedido => {
-            containerTodosPedidos.appendChild(createPedidoElement(pedido));
-            if (pedido.estado === "recusado") {
-                containerRecusadas.appendChild(createPedidoElement(pedido));
-            } else if (pedido.estado === "pendente") {
-                containerEmEspera.appendChild(createPedidoElement(pedido));
-            } else if (pedido.estado === "aceite") {
-                containerAceites.appendChild(createPedidoElement(pedido));
-            }
-        });
-    }
+    pedidos.filter(pedido => pedido.email === email).forEach(pedido => {
+        containerTodosPedidos.appendChild(createPedidoElement(pedido));
+        if (pedido.estado === "recusado") {
+            containerRecusadas.appendChild(createPedidoElement(pedido));
+        } else if (pedido.estado === "pendente") {
+            containerEmEspera.appendChild(createPedidoElement(pedido));
+        } else if (pedido.estado === "aceite") {
+            containerAceites.appendChild(createPedidoElement(pedido));
+        }
+    });
 }
 
 
@@ -64,6 +53,12 @@ function createPedidoElement(pedido) {
         <div class="pedido-estado ${pedido.estado}">${pedido.estado}</div>`;  // Classe adicional baseada no estado
     return element;
 }
+
+
+
+
+
+
 
 function changeTab(tabId, element) {
     document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
