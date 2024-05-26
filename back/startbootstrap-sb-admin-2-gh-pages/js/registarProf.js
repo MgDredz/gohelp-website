@@ -64,10 +64,21 @@ document.getElementById("submitBtn").addEventListener("click", function(event) {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const storedUser = JSON.parse(localStorage.getItem('loggedInUser'));
-    if (storedUser && storedUser.name && storedUser.role) {
-        const displayName = `${storedUser.name} (${storedUser.role})`;
-        document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = displayName;
+    const userProfileDropdown = document.getElementById('userProfileDropdown');
+    const loginLink = document.getElementById('loginLink');
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
+    if (loggedInUser) {
+        userProfileDropdown.classList.remove('d-none');
+
+        if (loggedInUser.name && loggedInUser.role) {
+            const displayName = `${loggedInUser.name} (${loggedInUser.role})`;
+            document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = displayName;
+        }
+    } else {
+        loginLink.classList.remove('d-none');
+        // Redirect to 'index.html' if loggedInUser does not exist
+        
     }
 });
 
@@ -83,3 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('input[name="profession"][value="' + profession + '"]').checked = true;
     }
 }; */
+
+function logout() {
+    // Clear the logged-in user from local storage
+    localStorage.removeItem('loggedInUser');
+
+    // Redirect to 'login.html'
+    window.location.href = "../../front/dist/index.html";
+}

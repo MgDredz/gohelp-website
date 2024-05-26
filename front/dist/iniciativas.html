@@ -21,14 +21,19 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item dropdown d-none" id="userProfileDropdown"> <!-- Add 'dropdown' to make this dropdown -->
                         <button class="dropdown-toggle"><img class="img-profile rounded-circle" src="assets/img/undraw_profile_1.svg"></button>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">Profile</a>
                             <a class="dropdown-item" href="#">Settings</a>
                             <a class="dropdown-item" href="#">Activity Log</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="login.html">Logout</a>
+                            <a class="dropdown-item" href="#" onclick="logout()">Logout</a>>
                         </div>
+                        </li>
+                        <li class="nav-item d-none" id="loginLink">
+                            <a class="nav-link" href="login.html">Iniciar Sessão</a>
+                        </li>
                     </ul>
                 </div>
             </div>
