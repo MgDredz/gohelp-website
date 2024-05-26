@@ -54,4 +54,24 @@ document.addEventListener("DOMContentLoaded", () => {
       myModal.show();
     };
   });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const userProfileDropdown = document.getElementById('userProfileDropdown');
+    const loginLink = document.getElementById('loginLink');
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
+    if (loggedInUser) {
+        userProfileDropdown.classList.remove('d-none');
+    } else {
+        loginLink.classList.remove('d-none');
+    }
+});
+
+function logout() {
+    // Clear the logged-in user from local storage
+    localStorage.removeItem('loggedInUser');
+
+    // Redirect to 'index.html'
+    window.location.href = 'index.html';
+}
   

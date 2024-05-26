@@ -14050,6 +14050,10 @@ p {
     border: none;
 }
 
+.readonly-field-euro::after {
+    content: ' €';
+}
+
 #maxparticipantesindividual,
 #participantesindividual {
     text-align: center;

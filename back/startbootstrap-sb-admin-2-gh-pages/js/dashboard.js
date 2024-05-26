@@ -276,5 +276,10 @@ function bottomCards(todaysInitiatives, todaysInitiativesCount) {
     `;
 }
 
+function logout() {
+    // Clear the logged-in user from local storage
+    localStorage.removeItem('loggedInUser');
 
-
+    // Redirect to 'login.html'
+    window.location.href = "../../front/dist/index.html";
+}
