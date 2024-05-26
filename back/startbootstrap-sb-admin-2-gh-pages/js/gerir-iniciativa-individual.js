@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (loggedInUser.name && loggedInUser.role) {
           const displayName = `${loggedInUser.name} (${loggedInUser.role})`;
           document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = displayName;
+          
       }
   } else {
       loginLink.classList.remove('d-none');
@@ -38,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('horaFim').value = initiative.horaFim;
     document.getElementById('descricao').value = initiative.descricao;
     document.getElementById('gestor').value = initiative.gestor;
-    document.getElementById('doacoes').value = initiative.doacoes;
+    document.getElementById('doacoes').value = initiative.doacoes + ' €';
     document.getElementById('maxparticipantesindividual').value = initiative.participantesmax;
 
     const participantesLength = initiative.participantes.length;
@@ -54,7 +55,53 @@ document.addEventListener('DOMContentLoaded', () => {
       tituloBold.textContent = initiative.titulo;
     }
 
+    checkInitiativeDate(initiative.data);
+
     updateProfissionaisTable(initiative.profissionais, initiative.horaInicio, initiative.horaFim);
+  }
+
+  function checkInitiativeDate(date) {
+    const selectedDate = new Date(date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (selectedDate <= today) {
+      disableEditing();
+    }
+  }
+
+  function disableEditing() {
+    const inputs = document.querySelectorAll('#inscricaoForm input, #inscricaoForm select, #inscricaoForm textarea');
+    inputs.forEach(input => {
+      input.setAttribute('disabled', 'disabled');
+    });
+
+    const submitButton = document.querySelector('#inscricaoForm button[type="submit"]');
+    if (submitButton) {
+      submitButton.style.display = 'none';
+    }
+
+    const deleteButton = document.getElementById('deleteButton');
+    if (deleteButton) {
+      deleteButton.style.display = 'none';
+    }
+
+    const custoUnitarioInputs = document.querySelectorAll('.custo-unitario');
+    custoUnitarioInputs.forEach(input => {
+      input.setAttribute('disabled', 'disabled');
+    });
+
+    const emPosseInputs = document.querySelectorAll('.em-posse');
+    emPosseInputs.forEach(input => {
+      input.setAttribute('disabled', 'disabled');
+    });
+
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+      checkbox.setAttribute('disabled', 'disabled');
+    });
+
+    
   }
 
   function updateProfissionaisTable(profissionais, horaInicio, horaFim) {
@@ -451,7 +498,6 @@ function validateTime() {
   }
 }
 
-// Function to enforce 2 decimal places on input
 function enforceTwoDecimalPlaces(input) {
   input.addEventListener('input', function () {
     let value = this.value;
@@ -463,14 +509,28 @@ function enforceTwoDecimalPlaces(input) {
   });
 }
 
-// Apply the two decimal places enforcement to the custo-unitario inputs
 document.querySelectorAll('.custo-unitario').forEach(input => {
   enforceTwoDecimalPlaces(input);
 });
+
 function logout() {
-  // Clear the logged-in user from local storage
   localStorage.removeItem('loggedInUser');
 
-  // Redirect to 'login.html'
   window.location.href = "../../front/dist/index.html";
 }
+
+
+document.getElementById('deleteButton').addEventListener('click', function() {
+  const id = getQueryParameter('id');
+
+  if (confirm('Tem a certeza de que quer apagar esta iniciativa?')) {
+    let initiatives = JSON.parse(localStorage.getItem('initiatives')) || [];
+    initiatives = initiatives.filter(initiative => initiative.id != id);
+
+    localStorage.setItem('initiatives', JSON.stringify(initiatives));
+    
+    alert('Iniciativa apagada com sucesso!');
+    
+    window.location.href = 'gerir-iniciativa.html';
+  }
+});

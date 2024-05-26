@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (loggedInUser.name && loggedInUser.role) {
             const displayName = `${loggedInUser.name} (${loggedInUser.role})`;
             document.querySelector('.mr-2.d-none.d-lg-inline.text-gray-600.small').textContent = displayName;
+            displayRequests();
+            displayOpenRequestsCount();
         }
     } else {
         loginLink.classList.remove('d-none');
