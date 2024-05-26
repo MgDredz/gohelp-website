@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }],
         },
         options: {
-            maintainAspectRatio: true,
+            maintainAspectRatio: false,
             tooltips: {
                 backgroundColor: "rgb(255,255,255)",
                 bodyFontColor: "#858796",
