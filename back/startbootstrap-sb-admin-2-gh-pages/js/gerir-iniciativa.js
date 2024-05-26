@@ -76,9 +76,23 @@ function createInitiativeElement(initiative, isFuture) {
     container.className = 'event-button'; // Assuming this class aligns with the intended style
 
     const formattedDate = new Date(initiative.data).toLocaleDateString('pt-PT', { weekday: 'short', day: '2-digit', month: 'short' });
-
     const initiativeUrl = `Gerir-Iniciativa-Individual.html?id=${initiative.id}`;
-    const riscoValue = initiative.doacoes / 5;
+
+    // Calculate materials risk value
+    let totalNeeded = 0, totalInPossession = 0;
+    initiative.materiais.forEach(material => {
+        const neededQty = parseFloat(material.neededqtd) || 0; // Convert to float, default to 0 if NaN
+        const inPossession = parseFloat(material.emPosse) || 0; // Convert to float, default to 0 if NaN
+        totalNeeded += neededQty;
+        totalInPossession += inPossession;
+    });
+
+    let riscoValue = 0; // Default risk value when no materials are needed
+    if (totalNeeded > 0) {
+        riscoValue = 10 - ((totalInPossession / totalNeeded) * 9); // Scale 1 to 10
+        riscoValue = Math.max(riscoValue, 1); // Ensure minimum risk is 1 when there are needed materials
+        riscoValue = Math.round(riscoValue / 2); // Divide by 2 to scale down to 1-5 and round to nearest whole number
+    }
 
     container.innerHTML = `
     <a href="${initiativeUrl}">
@@ -105,8 +119,6 @@ function createInitiativeElement(initiative, isFuture) {
 
     return container;
 }
-
-
 
 function logout() {
     // Clear the logged-in user from local storage
