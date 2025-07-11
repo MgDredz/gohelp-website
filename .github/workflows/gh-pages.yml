@@ -1,0 +1,21 @@
+name: Deploy Backoffice to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # ou a tua branch principal
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Deploy back/startbootstrap-sb-admin-2-gh-pages to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./back/startbootstrap-sb-admin-2-gh-pages
+
